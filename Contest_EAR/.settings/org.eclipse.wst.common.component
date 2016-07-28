@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Contest_EAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="Developer_Contest_Web.war" deploy-path="/" handle="module:/resource/Developer_Contest_Web/Developer_Contest_Web">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Context_Common_Ejb.jar" deploy-path="/" handle="module:/resource/Context_Common_Ejb/Context_Common_Ejb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Contest_Admin_Web.war" deploy-path="/" handle="module:/resource/Contest_Admin_Web/Contest_Admin_Web">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="lib/C:/Users/o-malek.elgazzar/Downloads/primefaces-4.0.jar.ear" deploy-path="/" handle="module:/classpath/lib/C:/Users/o-malek.elgazzar/Downloads/primefaces-4.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
