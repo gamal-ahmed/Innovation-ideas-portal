@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="content">
+
+
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{contestPageController.initiateContest}" />
+		</f:metadata>
+		<div class="details">
+			<div class="content">
+				<div class="mainContent">
+					<div class="component">
+						<div class="head">
+							<span class="bullet"></span> <span class="title">#{contestPageController.currentContest.name}</span>
+						</div>
+						<div class="content">
+							<span class="bullet"></span>
+							<div class="textContent">
+								<span class="imgSub"><h:graphicImage
+										library="#{siteLanguage}" name="images/img.gif"></h:graphicImage>
+								</span>
+								<h:outputText
+									value="#{contestPageController.currentContest.getLocalizedDescription(userSessionController.siteLanguage)}">
+								</h:outputText>
+							</div>
+						</div>
+					</div>
+					<div class="challenges">
+						<div class="component">
+							<div class="head">
+								<span class="bullet"></span> <span class="title">Challenges</span>
+							</div>
+							<p:dataScroller
+								value="#{contestPageController.getCurrentContestChallenges(0)}"
+								var="chall" chunkSize="4">
+								<f:facet name="header">
+            Scroll Down to Load More Challenges
+        </f:facet>
+								<div class="challenge">
+									<div class="content">
+										<span class="bullet"></span>
+										<div class="textContent">
+											<h:link class="title"
+												outcome="/challenge/challenge.xhtml?challengeId=#{chall.id}"
+												includeViewParams="true">
+										#{chall.name}:</h:link>
+											<h:outputText
+												value="#{chall.getLocalizedDescription(userSessionController.siteLanguage)}" />
+										</div>
+
+									</div>
+								</div>
+							</p:dataScroller>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="sideContent">
+					<div class="top">
+						<div class="component">
+							<div class="head">
+								<span class="bullet"></span> <span class="counter"></span>
+							</div>
+							<div class="counterSubTitle">
+								<div id="getting-started"></div>
+								<span class="bullet"> </span> <span>Remaing till end date</span>
+							</div>
+							<div class="contestCriteria">
+								<div class="part">
+									<span class="icon"><i class="fa fa-user"></i></span> <span
+										class="title">Target Audience</span> <span class="text">#{contestPageController.currentContest.getLocalizedTargetAudience(userSessionController.siteLanguage)}</span>
+								</div>
+								<div class="part">
+									<span class="icon"><i class="fa fa-certificate"></i></span> <span
+										class="title">Awards</span> <span class="text">#{contestPageController.currentContest.getLocalizedAwards(userSessionController.siteLanguage)}</span>
+								</div>
+								<div class="part">
+									<span class="icon"><i class="fa fa-clipboard"></i></span> <span
+										class="title">Evaluation criteria</span> <span class="text">#{contestPageController.currentContest.getLocalizEdevaluationCriteria(userSessionController.siteLanguage)}</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<h:outputScript>
+
+  $("#getting-started")
+   .countdown("2016/01/01", function(event) {
+      $(this).text(
+     event.strftime('%D days %H:%M:%S')
+    );
+  });
+
+		</h:outputScript>
+	</ui:define>
+</ui:composition>
+</html>

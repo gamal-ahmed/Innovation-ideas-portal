@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/templates/main.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{stageController.loadAllStages}" />
+	</f:metadata>
+	<ui:define name="content">
+		<div class="DiscussionsTabsContent">
+			<h:messages />
+			<h:form>
+				<h:panelGroup id="paginationContainer">
+					<div class="DiscussionsContent" />
+				</h:panelGroup>
+
+				<rich:dataTable value="#{stageController.allStage}" var="stage" id="stage" styleClass="BlogsDiscussions"
+					rowClasses="odd,even">
+					<f:facet name="header">
+						<h:outputText value="#{messages['stage.manageStage.message.StagesHeader']}" />
+					</f:facet>
+
+
+					<rich:column>
+						<f:facet name="header">#{messages['stage.manageStage.message.ArabicName']}</f:facet>
+						<h:commandLink value="#{stage.stageArabicName}" action="#{stageController.editStage}">
+							<f:setPropertyActionListener value="#{stage}" target="#{stageController.currentContestStage}" />
+						</h:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">#{messages['stage.manageStage.message.EnglishName']}</f:facet>
+						<h:commandLink value="#{stage.stageEnglishName}" action="#{stageController.editStage}">
+							<f:setPropertyActionListener value="#{stage}" target="#{stageController.currentContestStage}" />
+						</h:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">#{messages['stage.manageStage.message.ArabicDesc']}</f:facet>		
+				      #{stage.stageArabicDesc}
+		       </rich:column>
+
+					<rich:column>
+						<f:facet name="header">#{messages['stage.manageStage.message.EnglishDesc']}</f:facet>		
+				      #{stage.stageEnglishDesc}
+		       </rich:column>
+
+					<rich:column id="startDate" sortBy="#{stage.stageStartDate}" sortOrder="#{stageController.dateOrder}">
+						<f:facet name="header">
+							<u><a4j:commandLink value="#{messages['stage.manageStage.message.StartDate']}" render="stage"
+								action="#{stageController.sortByStartDate}"  style="color:#FFFFFF"/></u>
+						</f:facet>
+						<rich:calendar value="#{stage.stageStartDate}" disabled="true" popup="true" datePattern="dd-MM-yyyy"/>
+					</rich:column>
+
+				</rich:dataTable>
+			</h:form>
+			<br />
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+<ui:composition template="/templates/main.xhtml">
+	
+	<ui:define name="content">
+		<h:form>
+
+			<rich:dataTable style="width:100%" value="#{contestController.allContests}" var="cap"
+				rows="20" reRender="ds" id="simpletable">
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column >
+							<h:outputText value="Contest ID" />
+						</rich:column>
+						<rich:column >
+							<h:outputText value="Contest Name" />
+						</rich:column>
+						<rich:column >
+							<h:outputText value="Contest Type" />
+						</rich:column>
+						
+					</rich:columnGroup>
+				</f:facet>
+				<rich:column filterBy="#{cap.contestId}" filterEvent="onkeyup"
+					filterValue="#{capitalsBean.currentStateFilterValue}">
+					<h:outputText value="#{cap.contestId}" />
+				</rich:column>
+				<rich:column filterBy="#{cap.name}" filterEvent="onkeyup"
+					filterValue="#{capitalsBean.currentNameFilterValue}">
+					<h:outputText value="#{cap.name}" />
+				</rich:column>
+				<rich:column filterBy="#{cap.contestTypeID.description}" filterEvent="onkeyup"
+					filterValue="#{capitalsBean.currentNameFilterValue}">
+					<h:outputText value="#{cap.contestTypeID.description}" />
+				</rich:column>
+
+			</rich:dataTable>
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

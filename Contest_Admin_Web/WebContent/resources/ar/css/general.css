@@ -1,0 +1,386 @@
+/* Reset 
+--------------------------------------------------------------------*/
+
+@font-face {font-family: 'gess';src: url('#{resource['ar:css/fonts/ge_ss_two_medium-webfont.eot']}');src: url('#{resource['ar:css/fonts/ge_ss_two_medium-webfont.eot?#iefix']}') format('embedded-opentype'),url('#{resource['ar:css/fonts/ge_ss_two_medium-webfont.ttf']}') format('truetype'),url('#{resource['ar:css/fonts/ge_ss_two_medium-webfont.woff']}') format('woff'),url('#{resource['ar:css/fonts/ge_ss_two_medium-webfont.svg#ge_ss_two_medium-webfont']}') format('svg');font-weight: normal;font-style: normal;}
+
+html { margin:0; padding:0; border:0; }
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section { display:block; }
+body { line-height: 1.5; background: white; }
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: right; font-weight: normal; float:none; }
+table, th, td { vertical-align: middle; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; }
+blockquote, q { quotes: "" ""; }
+a img { border: none; }
+:focus { outline: 0; }
+table{border-collapse:collapse}
+
+body{ font-family:Tahoma, Geneva, sans-serif; font-size:12px;color:#727272;background:url(#{resource['ar:images/bg.png']});color:#0d0d0d;direction:rtl;text-align:right}
+.MainContainer{ margin:0 auto;width:900px;padding:0 0 30px}
+
+/* Header 
+--------------------------------------------------------------------*/
+.SaytarLogo{float:right;height:182px;position: relative;}
+.EtisalatLogo{margin:23px 19px 0;display:inline-block}
+.SideLogoTitle{ overflow: hidden;}
+.HeaderTitle{color: #FFF;display: inline-block;float: right;font-family: gess;font-size: 38px;line-height: 46px;padding:44px 44px 35px 26px;  width: 72.5%;}
+.SmallHeaderTitle{font-size:28px;}
+.lang{background:url(#{resource['ar:images/lang.png']}) no-repeat;font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#fff;font-weight:700;  padding:3px 30px 3px 10px;  text-align: left;display:inline-block}
+.SideLogo{float:right;}
+.lang:hover{color:#fff}
+.MainHeader{overflow:hidden}
+
+/* Menu 
+--------------------------------------------------------------------*/
+.TopMenu{border-bottom:9px solid #a1c42f;height:40px;margin:-5px 0 0;clear:both}
+.TopMenu ul{width:90%;display:inline-block;}
+.TopMenu ul li{float:right;list-style-type:none;padding:5px 0 15px 0 }
+.TopMenu ul li.selected{background:url(#{resource['ar:images/menu_selected.png']}) bottom center no-repeat;}
+.TopMenu ul li a{color:#fff;background:url(#{resource['ar:images/menu_seb.jpg']}) right no-repeat;font-size:14px;padding:0 10px;font-weight:700}
+.TopMenu ul li.selected a{color:#a1c42f}
+.TopMenu ul li:first-child a{background:none}
+.TopMenuSelect{display:none}
+.Logout{float:left;font-family:gess;color:#A1C42F;font-size:14px;margin: 15px 0 0;}
+
+/* Welcome Message 
+--------------------------------------------------------------------*/
+.WelcomeMessage{background:#072f34 url(#{resource['ar:images/banner_draw.png']}) right no-repeat;height:66px; margin:5px 0 0;padding:15px 0;font-size:14px; color:#fff}
+.MessageText{padding:0 10px;width:60%;float:right}
+.MessageTitle{width:35%;float:right;padding:0 20px 0 0 ;}
+.MessageTitle a{font-family:gess; color:#a1c42f;text-decoration:none}
+.MessageTitle a:hover{color:#bbe532;text-decoration:none}
+.MessageTitle a.register{font-size: 40px;}
+.MessageTitle span{font-family:gess;color:#a1c42f;text-decoration:none; font-size: 26px;line-height: 32px;}
+.MessageTitle .Font12{font-size:12px;font-family:Tahoma, Geneva, sans-serif;font-weight:700;margin:-5px 0 0 5px;display:inline-block}
+.MessageTitle .Comment{color:#fff;font-family:Tahoma, Geneva, sans-serif;font-weight:700}
+.MessageTitle .LineHeightFix{line-height:40px}
+
+/* Home Template
+--------------------------------------------------------------------*/
+.ContentContainer{background:#fff url(#{resource['ar:images/corner_draw.png']}) no-repeat left top;padding:15px 10px 15px;overflow:hidden}
+.YoutubeContainer{width:300px;height:260px;float:right}
+.StepsGraph{margin:15px 1px 15px 1px;float:right}
+.StageNumber{background:url(#{resource['ar:images/user_stage.jpg']}) right 3px no-repeat;font-family: gess;font-size: 31px;margin: 8px 0 0;padding: 0 40px;}
+.Font12{font-size:12px}
+.Stage1,.Stage2,.Stage3,.Stage4{ font-family:gess;font-size: 26px;line-height: 46px;} 
+.Content .Stage1,.Content .Stage2,.Content .Stage3,.Content .Stage4{font-size:19px;}
+.Stage1{color:#1c5b00;}
+.Stage2{color:#e3390a;}
+.Stage3{color:#00315b;}
+.Stage4{color:#8409d1;}
+.StageArea{display:inline-block;float:left;width:35%}
+.Timer{border:1px solid #fff;background:url(#{resource['ar:images/timer_bg.jpg']}) repeat-x;font-family: gess;font-size: 18px;padding: 2px 8px;color:#fff; height: 42px;}
+#defaultCountdown{font-size: 16px;width:310px;display:inline-block;}
+.DHMS{color:#fff;font-size:27px}
+.TimerContainer{border:1px solid #565353;margin: 0 0 28px;}
+.LoginForm{background:#aad61d; display:inline-block;padding: 0 5px 10px;width: 228px;margin:0 0 5px}
+.LoginContainer{position:relative}
+.LoginContainer  input[type="text"],.LoginContainer  input[type="password"]{padding:2px;border:1px solid #ABABAB;height:18px;width: 110px;}
+.LoginContainer  label,.LoginContainer  label{display: inline-block;font-size: 12px;font-weight: 700;margin: 10px 0 0;width: 94px;}
+.StageDesc{line-height:16px;  padding: 0 0 0 22px; margin: -10px 0 0;}
+.ForgetPassword{color:#3a9d0e;font-weight:700;text-decoration:underline}
+.ForgetPassword:hover{color:#acd821;}
+.SubmitJadges{  padding: 0 0 0 20px;width: 42%;float:right}
+.Voter{text-align:center}
+
+/* Buttons
+--------------------------------------------------------------------*/
+input[type="submit"].LoginButton{left: -8px;position: absolute;top: 4px;background:url(#{resource['ar:images/login.png']}) no-repeat; width:113px; height:87px;padding:0;border:0;cursor:pointer}
+input[type="submit"].LoginButton:focus,input[type="submit"].LoginButton:active{background:url(#{resource['ar:images/login_focus.png']}) no-repeat;}
+input[type="submit"].SubmitButton{background:url(#{resource['ar:images/submit.png']}) no-repeat; width:132px; height:87px;padding:0;border:0;cursor:pointer}
+input[type="submit"].SubmitButton:focus,input[type="submit"].SubmitButton:active{background:url(#{resource['ar:images/submit_focus.png']}) no-repeat}
+input[type="submit"].ViewButton{background:url(#{resource['ar:images/view.png']}) no-repeat; width:132px; height:87px;padding:0;border:0;cursor:pointer}
+input[type="submit"].ViewButton:focus,input[type="submit"].ViewButton:active{background:url(#{resource['ar:images/view_focus.png']}) no-repeat}
+input[type="submit"].JadgesButton{background:url(#{resource['ar:images/judges.png']}) no-repeat; width:132px; height:87px;padding:0;border:0;cursor:pointer}
+input[type="submit"].JadgesButton:focus,input[type="submit"].JadgesButton:active{background:url(#{resource['ar:images/judges_focus.png']}) no-repeat;}
+input[type="submit"].VoteButton{background:url(#{resource['ar:images/vote.png']}) no-repeat; width:142px; height:87px;padding:0;border:0;margin: -10px 0 0;cursor:pointer}
+input[type="submit"].VoteButton:focus,input[type="submit"].VoteButton:active{background:url(#{resource['ar:images/vote_focus.png']}) no-repeat;}
+input[type="submit"].SubmitFormButton{left: -40px;position: absolute;bottom: -60px;background:url(#{resource['ar:images/submit_form.png']}) no-repeat; width:150px; height:101px;padding:0;border:0;cursor:pointer}
+input[type="submit"].SubmitFormButton:focus,input[type="submit"].SubmitFormButton:active{background:url(#{resource['ar:images/submit_form_focus.png']}) no-repeat;}
+input[type="submit"].RegisterButton{left: -45px;position: absolute;bottom:-55px;background:url(#{resource['ar:images/register2.png']}) no-repeat; width:158px; height:99px;padding:0;border:0;cursor:pointer}
+input[type="submit"].RegisterButton:focus,input[type="submit"].RegisterButton:active{background:url(#{resource['ar:images/register2_focus.png']}) no-repeat;}
+input[type="submit"].ResetButton{left: -2px;float:left;Text-indent: -9999px;bottom:-5px;background:url(#{resource['ar:images/reset2.jpg']}) no-repeat; width:140px; height:75px;padding:0;border:0;cursor:pointer}
+input[type="submit"].ResetButton:focus,input[type="submit"].ResetButton:active{background:url(#{resource['ar:images/reset1.jpg']}) no-repeat;}
+.resetButtonContainer{padding-right: 25px;}
+.backToLogin{float:right;padding-top:30px;}
+#discustinForm{width:60% !important;}
+/* Inner Template
+--------------------------------------------------------------------*/
+.Content{padding:0 0 40px}
+.SectionTitle{font-family:gess; color:#a1c42f; font-size:20px;margin:0 0 10px 0}
+.Form{border: 10px solid #AAD61D;border-radius:5px;padding: 30px 45px;width: 295px;position:relative;  margin: 0 auto;}
+.Form .FormTextbox{padding:2px;border:1px solid #bdbcbc;height:18px;width:160px}
+.Form .FormCombo{border:1px solid #bdbcbc;height:22px;width:166px}
+.Form .FormBrowse{width: 215px;font-size: 12px;height:20px;padding: 0;margin: 0 0 0 5px;}
+.Form label{font-size:12px; font-weight:700;width:40%;display:inline-block;vertical-align:top}
+.Form textarea{padding:2px;border:1px solid #bdbcbc;height:60px;width:280px;margin:5px 0 0;resize:none}
+.Form .FormEntry{margin:0 0 5px 0;}
+.Form .Upload,.Form .Upload:hover,.Form .Upload:focus{background:#aad61d;font-weight:700;color:#fff;padding:3px 7px;display:inline-block;border:none}
+.BrowseUpload{margin:1px 0}
+.SectionText{ margin:0 0 40px}
+.FormSide{padding:0 35px;width:340px; float:right;font-size:14px;line-height:18px}
+.FormSide h1{ color:#aad61d; font-size:18px; font-family:gess; padding:0 0 10px }
+.FormSide .DevStatus{ font-weight:700; font-size:25px; text-align:center; padding:10px 0 20px 0}
+.FormSide hr{ border:none;border-top: 1px solid #4C5254;  margin:10px 0;}
+.StatusControls { padding:10px 0 0}
+.StatusControls a{ color:#aad61d; font-weight:700; font-size:14px; margin:10px 0 0}
+.StatusControls a:first-child{ border-left:1px solid #aad61d; margin:0 0 0 8px ; padding:0 0 0 5px}
+.FormTable { margin:0 0 10px}
+.FormTable td{ padding:2px; }
+.FormTable input[type="text"],.FormTable input[type="password"]{ width:160px; padding:2px; margin:0 0 5px}
+.FormTable select{height: 25px;    padding: 0;    width: 166px; margin:0 0 5px}
+.FormTable textarea{ width:270px; padding:5px; height:66px; margin:2px 0 0}
+.SubmitForm{ position:relative; height:20px}
+.RegisterForm{ margin:0 auto; float:none}
+.participateHeader p{ width:84%; font-size:14px}
+.FiveSections{ overflow:hidden; margin:0 0 50px}
+.FiveSections div{ float:right; width:160px; padding:0 10px 5px 6px; background:url(#{resource['ar:images/sectionBg.png']}) repeat-y right; min-height:150px}
+.FiveSections div:first-child{ background:none; padding:0 0  5px 16px}
+.BlogsContent{display:inline-block}
+.BlogTabs{ margin:0; padding:0; list-style:none; height:21px}
+.BlogTabs li{ margin:0 5px; display:block; float:right}
+.BlogTabs li a{ padding:5px; background:#e4e3e3; border:1px solid #bdbcbc; font-weight:700; color:#333}
+.BlogTabs li a.selected{background:#fff; border-bottom:1px solid #fff}
+.BlogsTabsContent{ border-top:1px solid #bdbcbc; padding:15px 28px;overflow:hidden} 
+.LeftBlogColumn{  width:100px; float:right;}
+.RightBlogColumn{ width:554px; float:right;font-size:14px}
+.VotesNcomments{ width:63px; padding:10px; background:#aad61d; color:#fff; min-height:50px; text-align:center; font-weight:700;line-height: 16px;}
+.CommentArea{ width:416px; margin:10px 58px; overflow:hidden}
+.CommentArea textarea{ width:410px; padding:2px; border:1px solid #ccc; height:66px;resize:none}
+.CustomBtn1{ font-family:gess; color:#aad61d; font-size:14px;float:left; display:inline-block  }
+.CustomBtn1:hover,.CustomBtn2:hover{ color:#aad61d; }
+.CustomBtn2{ color:#aad61d; font-weight:700; margin:0 0 10px; display:inline-block}
+.CommentSep{ border:none;border-top: 1px dashed #ccc;  margin:5px 0;}
+.DateNtime{ color:#777; margin:0 0 10px;font-size:11px}
+.LeftBlogColumn .CustomBtn1{ float:none; margin:10px 0}
+.StageDesc ul li{ list-style:none}
+.DeveloperForm{padding:0 0 80px 0 ;float:right }
+.Form .ChoicesLabel{width:70px}
+.Form .NormalWeight{font-weight:normal}
+.FAQ{ border-top: 1px solid #CCCCCC;margin:0 0 20px 0;font-size: 14px;line-height: 20px;overflow: hidden;padding: 10px 0 ;width: 85%;}
+.SectionText .FAQ:first-child{border:none}
+.ContactUsForm{background:url(#{resource['ar:images/ContactUs.jpg']}) left top no-repeat;}
+.Question{width:29%; margin:0 10% 0 0;float:right }
+.Answer{width:60%; margin:0;float:right }
+.Popup{background:#fff;padding:10px}
+.PopupTitle{background:url(#{resource['ar:images/terms_players_logo.jpg']}) 1% 3px no-repeat; border-bottom:2px solid #bed30c; font-family:gess; color:#bed30c;margin:0 0 10px;padding: 0 0 8px;font-size: 17px;font-weight: 700;}
+.Popup p{margin:0 0 10px}
+.Toggle{color:#719E19;padding:7px 20px;font-weight: 700;display:inline-block;background:url(#{resource['ar:images/plus.gif']}) right 7px  no-repeat;cursor:pointer}
+.Minus{background:url(#{resource['ar:images/minus.gif']}) right 7px no-repeat}
+.Toggle:hover{text-decoration:underline}
+.ExpandCollapse{display: none;padding: 0 20px 15px 20px}
+.JudgingAwardsImg{width:80px;height:80px;float:right}
+.JudgingAwardsDesc{float:right;margin:0 5px 0 0 }
+.JudgingAwardsList{margin:10px 0 0}
+.JudgingAwardsList li{background:url(#{resource['ar:images/draw_bullet.jpg']}) right 8px no-repeat;list-style-type:none;list-style-position:outside;padding:0 15px 0 0 ;font-size:14px;margin-bottom:14px}
+.JudgingAwardsList li .ListTitle{display:block;text-decoration:underline}
+.JudgingAwardsContainer{margin-bottom:20px;border-top:1px solid #ccc;padding: 15px 0 0;overflow:hidden;width:85%}
+.participateHeader .JudgingAwardsContainer:first-child{border-top:none}
+
+.BlogsDiscussions{width:100%}
+.BlogsDiscussions tr th{border-bottom:1px solid #ccc;border-left:1px solid #ccc;background:#A1C42F;color:#fff;text-align:center;padding: 5px;font-weight:700;font-size:13px}
+.BlogsDiscussions tr th:first-child{border-right:1px solid #ccc;}
+.BlogsDiscussions tr td{border-bottom:1px solid #ccc;border-left:1px solid #ccc;padding: 10px;text-align:center}
+.BlogsDiscussions tr td:first-child{border-right:1px solid #ccc;text-align:right}
+.DiscussionsTabsContent{border-top: 1px solid #BDBCBC;padding:0;width:100%}
+.DiscussionTitle{color:#5E5E5E;display:block;font-size:12px; font-weight:700;}
+.BlogsDiscussions tr td p{font-size:12px;color:#797979}
+.DiscussionTextbox{border: 1px solid #ABABAB;height: 16px;padding: 2px;width: 90%;font-size:11px}
+.DiscussionCombobox{border: 1px solid #ABABAB;padding: 2px;width: 90%;font-size:11px}
+.odd{background:#F8F8F8}
+.even{background:#fff}
+.DiscussionsContent{height: 21px;margin: 53px 0px 0px 0;}
+.Pagging{float:left}
+.Pagging li{ margin:0 1px; display:block; float:right}
+.Pagging li a{background:#fafafa}
+.Pagging li a.selected{background:#A1C42F;border-bottom: 1px solid #A1C42F;color:#fff}
+.LikeDislikeContainer{display: inline-block;width: 100%;background:url(#{resource['ar:images/comments_arrow.png']}) 96% top  no-repeat }
+.LikeDislike{margin:9px 0 0;background:#f1f1f1 }
+.Like,.Dislike{border: 1px solid #f1f1f1;padding:5px 28px 2px 7px;display: inline-block;font-size: 11px;color: #6E6E6E;display: inline-block;height: 18px;font-weight:700}
+.Like:hover,.Dislike:hover{text-decoration:none;background-color:#f8f8f8}
+.Like{background:url(#{resource['ar:images/like.png']}) 92% 6px  no-repeat }
+.Dislike{background:url(#{resource['ar:images/dislike.png']}) 92% 6px  no-repeat }
+.LikeActive{background:url(#{resource['ar:images/like_active.png']}) 92% 6px  no-repeat;background-color:#f8f8f8;box-shadow: inset 0 0 3px #DDD;border: 1px solid #E0E0E0;}
+.DislikeActive{background:url(#{resource['ar:images/dislike_active.png']}) 92% 6px  no-repeat;background-color:#f8f8f8;box-shadow: inset 0 0 3px #DDD;border: 1px solid #E0E0E0;}
+.CommentsList li{list-style-type:none}
+#discustinForm{width:60% !important}
+#discustinForm span span{width:70%}
+.balloonJudge{width:100% !important}
+.balloon{width:100% !important}
+.duscustionBoardTextArea{width:100% !important;margin:0 !important;}
+.duscustionBoardSubmit{margin:0 !important; float:left }
+
+/* Footer
+--------------------------------------------------------------------*/
+.FooterContainer{background:#0d0d0d url(#{resource['ar:images/footer_bg.jpg']}) repeat-x;color:#fff;text-align:center;padding:30px 20px 15px}
+.FooterContainer ul{display:inline-block}
+.FooterContainer ul li{background:url(#{resource['ar:images/menu_seb.jpg']}) right no-repeat;list-style-type:none;float:right}
+.FooterContainer ul li:first-child{background:none}
+.FooterContainer ul li a{color:#fff;padding:0 15px;}
+.TermsConditions{height:20px}
+
+/* Controls 
+--------------------------------------------------------------------------------------------*/
+input[type="text"]:hover,input[type="password"]:hover,textarea:hover,select:hover{background-color: #fbfff0;}
+input[type="text"]:focus,input[type="password"]:focus,textarea:focus,select:focus{background-color: #fbfff0;border:1px solid #0a0a0a}
+.input_error{background-color: #faddd9;border: 1px solid #e5442c; color:#9d2817}
+.RadioLabel{ vertical-align:middle; margin:0 2px 0 0 }
+.RadioFirst{vertical-align:middle;margin:0 3px 0 0 }
+.Radio{vertical-align:middle; margin:0 5px 0 0 }
+
+/* General Classes 
+--------------------------------------------------------------------*/	
+img{border:none}
+input{font-family:Tahoma, Geneva, sans-serif}
+a{text-decoration:none; font-weight:400;outline: none;color:#AAD61D}
+a:hover{text-decoration:underline}
+.Float{float:right}
+.FloatAway{float:left}
+.Bold{font-weight:700}
+.Italic{font-style:italic}
+.NormalWeight{font-weight:normal}
+.Underline{text-decoration:underline}
+.Pointer{cursor:pointer}	
+.AlignCenter{text-align:center}
+.AlignLeft{text-align:right}
+.AlignRight{text-align:left}
+.Hide{display:none}
+.Show{display:block}
+.Required{color:#F00}
+.Font11{font-size:11px}
+.Error{color:#ED0000;font-weight:700;padding:3px 20px 3px 0;background:url(#{resource['ar:images/error.png']}) no-repeat right 3px;}
+.Form .Error{color:#ED0000;font-weight:700;padding: 0;background:none;margin:-3px 0 10px 0}
+
+/* Responsive design
+--------------------------------------------------------------------*/
+@media screen and (min-width:0) and (max-width: 980px) { }
+@media screen and (min-width:0) and (max-width:768px)  {
+
+.MainContainer{width:100%;padding:0}
+.ContentContainer{padding:15px 10px 30px;background-image:none;overflow:hidden;}
+.SectionText {width: auto;}
+.SaytarLogo { margin: 0 auto;width:295px;float:20px}
+.SideLogoTitle{ overflow: hidden;  width:372px;float:left}
+input.LoginButton[type="button"] {top: 48px;left: -8px;}
+.HeaderTitle {line-height: 30px;padding: 50px 15px 15px 15px;width:65%;font-size: 30px;}
+.SmallHeaderTitle {font-size: 20px;display: block;}
+.MessageText{display:none}
+.TopMenuSelect{border:1px solid #bdbcbc;width:96%;margin: 10px;display:inline-block}
+.TopMenu{height:0;border:none}
+.TopMenu ul{display:none}
+.BigLogo{display:none}
+.Logout {font-size: 16px;font-weight: 700;margin: 0 10px;float:none;padding: 10px 0;text-align: left;display:block}
+.MessageTitle {width: auto;padding: 0;margin: 0 10px;}
+.LoginForm{width:auto}
+.MessageTitle a.register {font-size: 35px;}
+.MessageTitle a {font-size: 28px;}
+.FooterContainer ul{display:inline-block}
+.FooterContainer ul li{background:none;list-style-type:disc;float:none;list-style-position:inside}
+.StepsGraph {margin: 15px 20px;text-align: center;}
+.StageArea {display: block;margin: 0 30px;width: 340px;}
+.YoutubeContainer	{float: none;margin: 0 auto;}
+.FooterContainer{text-align:right}
+.TermsConditions {padding:0 0 10px 0;height: auto;}
+.LoginContainer input[type="text"], .LoginContainer input[type="password"] {width:60%}
+.FiveSections div{width:auto;background:none; padding: 0;min-height: 90px;}
+.participateHeader p{width:auto}
+.FiveSections div:first-child{  text-align: center;width: 100%;}
+.BlogsTabsContent{ padding:15px 0} 
+.CommentArea textarea {margin: 10px 0 0;width: 95%;}  
+.FormSide {padding: 0 ;width: auto;}
+.VotesNcomments{margin:0 auto}
+.DeveloperForm{float:none;margin: 0 auto;width: 405px;}
+.RightBlogColumn {width: auto;}
+.CommentArea {margin: 0 0 20px;overflow: hidden;width: 100%;}
+.LeftBlogColumn {float: none;margin: 0 auto;width: auto; text-align: center;}
+.Error{margin:5px 0;width:70%}
+.Form .Error{margin:-3px 0 10px;width:100%}
+.JudgingAwardsImg {height: 65px;margin: 0 0 0 7px;width: 65px;}
+.JudgingAwardsDesc{float:none;margin: 0 5px 0 0 }
+.JudgingAwardsDesc p{font-size: 16px;padding: 20px 15px;}
+.JudgingAwardsList {clear: both;}
+}
+@media screen and (min-width:0) and (max-width:685px)  { 
+.SideLogoTitle{float:none;margin:-40px auto 0;}
+.SaytarLogo {float:none;margin:0 auto;}
+.HeaderTitle {line-height: 26px;padding: 50px 15px 15px 15px;width:60%;font-size: 24px;}
+.SmallHeaderTitle {font-size: 18px;display: block;}
+.TopMenuSelect{width:96%}
+.StepsGraph {float: none;margin: 15px auto;text-align: center;}
+.StageArea {display: block;float: none;margin: 0 auto;}
+.FAQ,.JudgingAwardsContainer{ width: 100%;}
+}
+@media screen and (min-width:0) and (max-width:600px)  {
+.TopMenuSelect{width:96%}
+
+}
+@media screen and (min-width:0) and (max-width:568px)  { 
+.TopMenuSelect{width:96%}
+.FiveSections div{min-height: 120px;}
+
+}
+@media screen and (min-width:0) and (max-width:480px)  {
+.TopMenuSelect{width:94%} 
+.DeveloperForm{float:none;margin: 0 ;width: auto;}
+.BrowseUpload {margin: 10px 0;}
+.Form .FormBrowse{width:100%}
+input.SubmitFormButton[type="button"] {left: -15px;bottom: -60px;}
+.Form {padding: 10px 15px;width: auto;}
+.Form .FormTextbox {width: 97%;}
+.Form textarea {width: 97%;}
+.Form .FormCombo {width: 98%;}
+.Form label {width:100%}
+input.RegisterButton[type="button"] {  left: -20px;  bottom: -85px;}
+.StageArea {width:300px}
+.HeaderTitle {width: 55%;}
+.Question{width:100%; margin:0 0 10px;float:none }
+.Answer{width:100%; margin:0;float:none }
+
+.BlogTabs li{margin:0 1px}
+.BlogsDiscussions tr td p{display:none}
+.DiscussionsTabsContent{width:100%}
+.BlogsDiscussions tr th{padding: 2px;font-size:12px}
+.BlogsDiscussions tr td{padding: 2px;font-size:11px}
+.DiscussionTitle{font-size:11px;padding:3px;color:#333333 }
+.balloonJudge{width:80% !important}
+.balloon{width:80% !important}
+#discustinForm {width: 80% !important;
+}
+@media screen and (min-width:0) and (max-width:380px)  {
+.TopMenuSelect{width:92%}
+
+}
+@media screen and (min-width:0) and (max-width: 320px) {
+.TopMenuSelect{width:90%}
+.StageArea {width:300px}
+input.LoginButton[type="button"] {left: -8px;}
+}
+div.ideaUploadClass{padding:0px;}
+
+input[type="submit"].popupDeleteIdea{margin-right:28px; margin-left:5px; margin-top:10px;}
+
+div.ideasCollection{font-family:tahoma; float:right; width:300px; padding:5px; margin-right:0px; border-right:0px;border-left:0px;border-top:0px;}
+
+.resetIdea{color:#3a9d0e;font-weight:700;text-decoration:underline; margin-right:2px;font-size:13px;}
+
+span.spanFontFamily{font-family:Tahoma}
+textarea.duscustionBoardTextArea{margin-right:110px}
+.BlogAccess{float:left;}
+.BlogActions{
+	float:left;
+	padding-left:20px;
+	}
+	
+	.backAllBlogs{
+	float:left;
+	color: rgb(170, 214, 29);
+	}
+	
+.alignTopForGrid{
+    vertical-align: top;
+}
+
+.personalDetails{
+	margin-right: 13px;
+	}

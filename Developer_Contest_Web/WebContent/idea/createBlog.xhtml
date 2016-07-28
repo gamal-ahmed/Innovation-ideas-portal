@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+
+
+<ui:composition template="/templates/main.xhtml">
+<f:metadata>
+	<f:event type="preRenderView" listener="#{ideaBlogController.initiateBlog}" />
+</f:metadata>
+
+	<ui:define name="content">
+		 <div class="SectionTitle">#{messages['blog.manageBlog.message.blogsPage']}</div>
+		 <div class="SectionText participateHeader">
+        	<br />
+        	<h:messages globalOnly="true" />
+        </div>
+		
+		<div >
+			<h:form class="Form" id="mainForm" acceptcharset="UTF-8" accept="text/html; charset=utf-8" >
+
+				    <div class="FormEntry">
+						<h:outputLabel style="width:100%" for="BlogName">#{messages['blog.manageBlog.message.enterName']}</h:outputLabel>
+						<h:inputText style="width:90%" id="BlogName" value="#{ideaBlogController.currentIdeaBlog.blogTitle}" required="true" requiredMessage="#{messages['blog.manageBlog.message.mandatoryName']}" >
+							<f:validateLength maximum="500" />
+						</h:inputText>
+						<p><h:message for="BlogName" styleClass="Error" /></p>
+					</div>
+					
+					<div class="FormEntry">
+						<h:outputLabel style="width:100%" for="BlogDesc">#{messages['blog.manageBlog.message.enterDescription']}</h:outputLabel> <i style="font-size:11px;">(maximum of 4000 characters)</i>
+						<h:inputTextarea style="width:90%;height:200px"  id="BlogDesc" value="#{ideaBlogController.currentIdeaBlog.blogText}" required="true" requiredMessage="#{messages['blog.manageBlog.message.mandatoryDesc']}"> 
+							<f:validateLength maximum="4000" />
+						</h:inputTextarea>
+						<p><h:message for="BlogDesc" styleClass="Error"/></p>
+					</div>
+					
+                    <div class="BlogActions">
+					<h:commandButton style="margin:5px;"  action="#{ideaBlogController.updateBlog}" value="#{messages['blog.manageBlog.message.updateBlog']}" disabled="#{ideaBlogController.currentIdeaBlog.new}"></h:commandButton>
+					<h:commandButton style="margin:5px;" action="#{ideaBlogController.addNewBlog}" value="#{messages['blog.manageBlog.message.addBlog']}" disabled="#{not ideaBlogController.currentIdeaBlog.new}" />
+				    </div>
+				    
+		<div class="blogNavigation">
+		
+			<p><h:link style="color:#AAD61D;font-weight:700;"  outcome="/idea/developers.html" value="#{messages['blog.manageBlog.message.backToIdea']}" /></p>
+			<p><h:link style="color:#AAD61D;font-weight:700;" outcome="/idea/personalBlogs.html" value="#{messages['blog.manageBlog.message.backToBlog']}" /></p>
+		
+		</div>
+		
+			</h:form>
+			
+		</div>
+		
+		
+
+	</ui:define>
+</ui:composition>
+</html>

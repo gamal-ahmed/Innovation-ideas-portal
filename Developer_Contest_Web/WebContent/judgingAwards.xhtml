@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+
+	<ui:define name="content">
+
+		<div class="SectionTitle">#{messages['site.template.menu.judgingAndArwards']}</div>
+		<div class="SectionText participateHeader">
+			<h:outputText value="#{messages['site.judgingAndArwards.header']}" escape="false" />
+		</div>
+		<div class="SectionText participateHeader">
+			<div class="JudgingAwardsContainer">
+				<h:graphicImage library="#{siteLanguage}" styleClass="JudgingAwardsImg" name="images/categories.jpg"
+					alt="#{messages['site.judgingAndArwards.categories']}" title="#{messages['site.judgingAndArwards.categories']}" />
+					
+				<div class="JudgingAwardsDesc"  style="width:87%">
+					<p>
+						<strong>#{messages['site.judgingAndArwards.categories']}</strong>
+					</p>
+					<h:outputText value="#{messages['site.judgingAndArwards.categoriesList']}"  escape="false"/>
+				</div>
+			</div>
+			<div class="JudgingAwardsContainer">
+				<h:graphicImage library="#{siteLanguage}" styleClass="JudgingAwardsImg" name="images/judging.jpg"
+					alt="#{messages['site.judgingAndArwards.judging']}" title="#{messages['site.judgingAndArwards.judging']}" />
+				<div class="JudgingAwardsDesc" style="width:87%">
+					<p>
+						<strong>#{messages['site.judgingAndArwards.judging']}</strong>
+					</p>
+					<h:outputText value="#{messages['site.judgingAndArwards.judgingList']}"  escape="false"/>
+				</div>
+			</div>
+			<div class="JudgingAwardsContainer">
+				<h:graphicImage library="#{siteLanguage}" styleClass="JudgingAwardsImg" name="images/awards.jpg"
+					alt="#{messages['site.judgingAndArwards.awards']}" title="#{messages['site.judgingAndArwards.awards']}" />
+				<div class="JudgingAwardsDesc">
+					<p>
+						<strong>#{messages['site.judgingAndArwards.awards']}</strong>
+					</p>
+					<h:outputText value="#{messages['site.judgingAndArwards.awardsList']}"  escape="false"/>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

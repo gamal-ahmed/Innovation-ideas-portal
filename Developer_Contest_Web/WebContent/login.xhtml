@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">
+
+
+<ui:composition template="/templates/main.xhtml">
+
+
+	<ui:define name="content">
+
+		<div class="YoutubeContainer">
+		<!-- 	<h:graphicImage library="#{siteLanguage}" name="images/idea.jpg"	width="300" height="260"/> -->
+		</div>
+		<div class="StepsGraph">
+			<h:graphicImage library="#{siteLanguage}" name="images/stages.png"  />
+		</div>
+		<div class="StageArea" style="width:330px;" >
+			<div class="StageNumber Stage1">#{userSessionController.currentStage.getStageName(siteLanguage)}</div>
+			<div class="TimerContainer">
+				<div class="Timer">
+					<span id="defaultCountdown" ></span> 
+					
+				</div>
+				</div>
+
+			<div class="LoginContainer">
+				<h:form styleClass="LoginForm" style="width: 310px;height: 95px">
+					<div>
+						<h:outputLabel for="email" value="#{messages['user.manageUser.email']}"></h:outputLabel>
+						<h:inputText id="email" value="#{userController.currentUser.email}" required="true"
+							requiredMessage="#{messages['user.manageUser.message.emailrequired']}"
+							validatorMessage="#{messages['user.manageUser.message.emailPattern']}">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</h:inputText>
+						
+						
+					</div>
+					
+					<div style="height:15px;"><h:message for="email" styleClass="Error" /></div>
+					
+					<div>
+						<h:outputLabel for="password" value="#{messages['user.manageUser.password']}"></h:outputLabel>
+						<h:inputSecret id="password" value="#{userController.currentUser.password}" required="true"
+							requiredMessage="#{messages['user.manageUser.message.passwordrequired']}"
+							>
+							
+						</h:inputSecret>
+					</div>
+					
+					<div style="height:10px;"><h:message for="password" styleClass="Error" /></div>
+					<br/>
+					<h:commandButton action="#{userController.login()}" styleClass="LoginButton" value="Sign In" />
+				</h:form>
+				<div>
+					
+					<h:link outcome="/resetPassword.xhtml" styleClass="ForgetPassword"> #{messages['user.manageUser.forgetpasswd']}</h:link>				
+				</div>
+			</div>
+			<div style="height:15px">
+		</div>
+		</div>
+				
+		<h:outputScript>
+	jQuery(document).ready(function(jQuery){
+	
+	jQuery('#defaultCountdown').countdown({
+		until: new Date(#{userSessionController.currentStage.nextStageStartDate.time}),layout: ' #{messages['user.manageUser.stage.leftTime']}'
+   	});
+   
+   jQuery('.Toggle').click(function () {
+	  jQuery(this).toggleClass('Minus');
+      jQuery(this).parent().next('.ExpandCollapse').slideToggle('slow')
+	 
+    });
+
+
+});
+		</h:outputScript>
+
+	</ui:define>
+</ui:composition>
+
+</html>

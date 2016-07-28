@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+
+
+<f:metadata>
+	<f:event type="preRenderView" listener="#{ideaBlogController.loadBlog}" />
+</f:metadata>
+
+
+
+<div class="BlogsTabsContent">
+	<h:message errorStyle="Error" />
+	<div class="LeftBlogColumn">
+		<div class="VotesNcomments">
+			<p><h:outputText value="#{ideaBlogController.blogTotalVotes}" id="votesOutput" ></h:outputText> / 10</p>
+			<p>Rating</p> 
+			<p><h:outputText value="#{ideaBlogController.currentIdeaBlog.totalComments}" id="commentsNo" /></p>
+			<p>#{messages['blog.manageBlog.message.Comments']}</p>
+		</div>
+		
+			<h:form>
+				<a4j:commandLink value="#{messages['blog.manageBlog.message.resetBlogVotes']}" styleClass="CustomBtn2"
+						rendered="#{ userSessionController.currentUser!=null and userSessionController.resetBlogVotesEnabled}"
+						oncomplete="#{rich:component('resetBlogVotes')}.show()">
+				</a4j:commandLink>
+			</h:form>
+		
+	</div>
+	
+<rich:popupPanel id="resetBlogVotes" modal="true" autosized="true" resizeable="false">
+
+	<f:facet name="header">
+		<h:outputText value="#{messages['blog.manageBlog.message.confirm']}" />
+	</f:facet>
+
+	<p style="font-size: 12px;">#{messages['blog.manageBlog.message.beforResetVote']}</p>
+	<h:form>
+		<h:commandButton actionListener="#{ideaBlogController.resetBlogVotes}"
+			value="#{messages['blog.manageBlog.message.confirm.yes']}" styleClass="popupDeleteIdea" immediate="true"/>
+		<h:commandButton onclick="#{rich:component('popup')}.hide(); return false;"
+			value="#{messages['blog.manageBlog.message.confirm.no']}" />
+	</h:form>
+</rich:popupPanel>
+
+ 
+
+	<div class="RightBlogColumn">
+	
+		<p class="DateNtime">
+			<h:outputLabel value="#{ideaBlogController.getLastUpdatedDate(ideaBlogController.currentIdeaBlog.lastUpdateDate)}"></h:outputLabel>
+		</p>
+		<p>
+			<strong><h:outputLabel value="#{ideaBlogController.currentIdeaBlog.blogTitle}"></h:outputLabel></strong>
+		</p>
+		<p>
+			<h:outputLabel value="#{ideaBlogController.currentIdeaBlog.blogText}"></h:outputLabel>
+		</p>
+
+
+
+		<div class="CommentArea">
+
+			<ui:include src="_createComment.xhtml" />
+		</div>
+
+
+		<ui:include src="_showAllComments.xhtml" />
+
+
+	</div>
+	
+	<div class="backAllBlogs">  
+	 	<h:link style="color:#AAD61D;font-weight:700;" outcome="/idea/allBlogs.html" value="#{messages['blog.manageBlog.message.backToAllBlog']}" />
+	</div>
+
+
+</div>
+
+
+
+
+
+</html>

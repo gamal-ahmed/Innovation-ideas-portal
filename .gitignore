@@ -45,3 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+.metadata/
+Contest_Admin_Web/.settings
+Contest_Admin_Web/bin
+Contest_Admin_Web/build
+Contest_Admin_Web/build/classes
+Contest_Admin_Web/WebContent/CVS/Entries.Extra
+Contest_Admin_Web/WebContent/user/CVS
+Contest_Admin_Web/WebContent/user/CVS
+Context_Common_Ejb/build/classes
+RemoteSystemsTempFiles
+Contest_EAR/.settings
+Developer_Contest_Web/build

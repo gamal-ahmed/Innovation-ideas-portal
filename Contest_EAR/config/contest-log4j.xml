@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd/MM/yy hh:mm:ss:sss z}] %5p %c{2}: %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="CONTEST"
+		class="org.jboss.logging.appender.DailyRollingFileAppender">
+		<errorHandler class="org.jboss.logging.util.OnlyOnceErrorHandler" />
+		<param name="File" value="${jboss.server.home.dir}/log/contest.log" />
+		<param name="Append" value="true" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd/MM/yy hh:mm:ss:sss z}] %5p %c{2}: %m%n" />
+		</layout>
+	</appender>
+
+
+	<appender name="CONTEST_ERROR"
+		class="org.jboss.logging.appender.DailyRollingFileAppender">
+		<errorHandler class="org.jboss.logging.util.OnlyOnceErrorHandler" />
+
+		<param name="File" value="${jboss.server.log.dir}/contest_error.log" />
+		<param name="Append" value="true" />
+		<param name="Threshold" value="ERROR" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd/MM/yy hh:mm:ss:sss z}] %5p %c{2}: %m%n" />
+		</layout>
+	</appender>
+
+
+
+	<category name="eg.com.etisalat.contest">
+		<priority value="DEBUG" />
+		<appender-ref ref="COLLECTION_ERROR" />
+	</category>
+
+	<category name="eg.com.etisalat.base">
+		<priority value="DEBUG" />
+		<appender-ref ref="COLLECTION_ERROR" />
+	</category>
+
+	<category name="eg.com.etisalat.jsf">
+		<priority value="DEBUG" />
+		<appender-ref ref="COLLECTION_ERROR" />
+	</category>
+
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="CONTEST" />
+	</root>
+</log4j:configuration>

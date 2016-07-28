@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Class-Path: activation.jar 
+ common-annotations.jar 
+ commons-beanutils-1.7.0.jar 
+ commons-collections-3.2.jar 
+ commons-digester-1.8.jar 
+ commons-lang.jar 
+ commons-logging-1.0.4.jar 
+ cssparser-0.9.5.jar 
+ jstl-1.2.jar 
+ log4j.jar 
+ mail.jar 
+ richfaces-components-api-4.2.0.Final.jar 
+ richfaces-components-ui-4.2.0.Final.jar 
+ richfaces-core-api-4.2.0.Final.jar 
+ richfaces-core-impl-4.2.0.Final.jar 
+ sac-1.3.jar 
+ velocity.jar
+

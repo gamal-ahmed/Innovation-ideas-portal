@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<div class="SectionTitle">#{messages['site.howToParticipate.title']}</div>
+		<div class="SectionText participateHeader" style="font-size:10pt">
+			<div style="width:715px">
+				<h:outputText  value="#{messages['site.howToParticipate.content1_new']}" escape="false" />
+			</div>
+			<br /> 
+			
+			<h:outputText value="#{messages['site.howToParticipate.content1']}" escape="false" />
+			<br /> 
+			<h:outputText value="#{messages['site.howToParticipate.content2']}" escape="false" />
+		</div>
+ <br/>
+		<div class="FiveSections">
+			<div>
+				<h:graphicImage name="images/stagesSmall.png" library="#{siteLanguage}" />
+			</div>
+			<div>
+				<h2 class="Stage1">Stage-1</h2><span class="Stage1" style="font-size:15px">[2 weeks]</span>
+				<p>#{messages['site.howToParticipate.stage1.description']}</p>
+			</div>
+			<div>
+				<h2 class="Stage2">Stage-2</h2><span class="Stage2" style="font-size:15px">[1 week]</span>
+				<p>#{messages['site.howToParticipate.stage2.description']}</p>
+			</div>
+			<div>
+				<h2 class="Stage3">Stage-3</h2><span class="Stage3" style="font-size:15px">[1 week]</span>
+				<p>#{messages['site.howToParticipate.stage3.description']}</p>
+			</div>
+			<div>
+				<h2 class="Stage4">Stage-4</h2><span class="Stage4" style="font-size:15px"> <br/></span>
+				<p>#{messages['site.howToParticipate.stage4.description']}</p>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<ui:composition template="/templates/main.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{contestController.initiateContest}" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div>
+			<h:form>
+				<h:panelGrid columns="3">
+					<rich:validator event="change">
+						<h:outputLabel value="Contest Name" />
+						<h:inputText id="name"
+							value="#{contestController.currentContest.name}" required="true"
+							requiredMessage="Contest Name is Required"></h:inputText>
+						<rich:message for="name" ajaxRendered="true" />
+
+						<h:outputLabel value="Arabic place holder" />
+						<h:inputTextarea id="placehol_en" required="true"
+							requiredMessage="Arabic place holder is Required"
+							value="#{contestController.currentContest.placeHolder_AR}" />
+						<rich:message for="placehol_en" ajaxRendered="true" />
+
+						<h:outputLabel value="English place holder" />
+						<h:inputTextarea id="placehol_ar" required="true"
+							requiredMessage="English place holder is Required"
+							value="#{contestController.currentContest.placeHolder_EN}" />
+						<rich:message for="placehol_ar" ajaxRendered="true" />
+
+
+						<h:outputLabel value="Arabic Description" />
+						<h:inputTextarea id="desc_ar" required="true"
+							requiredMessage="Arabic Description is short"
+							value="#{contestController.currentContest.description_AR}">
+							<f:validateLength minimum="5" />
+						</h:inputTextarea>
+						<rich:message for="desc_ar" ajaxRendered="true" />
+
+						<h:outputLabel value="English Description" />
+						<h:inputTextarea id="desc_en" required="true"
+							requiredMessage="English Description is short"
+							value="#{contestController.currentContest.description_EN}">
+							<f:validateLength minimum="5" />
+						</h:inputTextarea>
+						<rich:message for="desc_en" ajaxRendered="true" />
+
+						<h:outputLabel value="Target Audience Arabic " />
+						<h:inputTextarea id="targetAudience_AR" required="true"
+							requiredMessage="Target Audience Arabic is required"
+							value="#{contestController.currentContest.targetAudience_AR}">
+							<f:validateLength minimum="5" />
+						</h:inputTextarea>
+						<rich:message for="targetAudience_AR" ajaxRendered="true" />
+
+						<h:outputLabel value="Target Audience English " />
+						<h:inputTextarea id="target_en" required="true"
+							requiredMessage="Target Audience English is required"
+							value="#{contestController.currentContest.targetAudience_EN}">
+						</h:inputTextarea>
+						<rich:message for="target_en" ajaxRendered="true" />
+
+						<h:outputLabel value="Awards Arabic" />
+						<h:inputTextarea id="award_ar" required="true"
+							requiredMessage="Awards Arabic is required"
+							value="#{contestController.currentContest.awards_AR}" />
+						<rich:message for="award_ar" ajaxRendered="true" />
+
+						<h:outputLabel value="Awards English" />
+						<h:inputTextarea id="award_en" required="true"
+							requiredMessage="Awards English is required"
+							value="#{contestController.currentContest.awards_EN}" />
+						<rich:message for="award_en" ajaxRendered="true" />
+
+						<h:outputLabel value="Evaluation Criteria Arabic" />
+						<h:inputTextarea id="evalutaion_ar" required="true"
+							requiredMessage="Evaluation Criteria Arabic is required"
+							value="#{contestController.currentContest.evaluationCriteria_AR}" />
+						<rich:message for="evalutaion_ar" ajaxRendered="true" />
+
+						<h:outputLabel value="Evaluation Criteria English" />
+						<h:inputTextarea id="evalutaion_en" required="true"
+							requiredMessage="Evaluation Criteria English is required"
+							value="#{contestController.currentContest.evaluationCriteria_EN}" />
+						<rich:message for="evalutaion_en" ajaxRendered="true" />
+
+						<h:outputLabel value="Contest Type " />
+						<h:selectOneMenu requiredMessage="contestType Is Required"
+							converter="genericConverter" id="contestType"
+							value="#{contestController.currentContestType}">
+							<f:selectItems value="#{contestController.allContestTypes}"
+								var="contestType" itemLabel="#{contestType.description}"
+								itemValue="#{contestType}" />
+						</h:selectOneMenu>
+						<rich:message for="contestType" ajaxRendered="true" />
+
+						<h:outputLabel value="Contest Image " />
+						<rich:fileUpload rendered="true"
+							fileUploadListener="#{contestController.listener}"
+							maxFilesQuantity="1" id="upload" immediateUpload="true"
+							uploadLabel="#{messages['idea.contender.upload']}"
+							addLabel="#{messages['idea.contender.add']}"
+							clearAllLabel="#{messages['idea.contender.clear']}"
+							deleteLabel="#{messages['idea.contender.delete']}"
+							acceptedTypes="#{ideaController.extensionsForStage}"
+							allowFlash="false"
+							ontyperejected="alert('#{messages['idea.contender.idea.error3']}');"
+							style="width:285px; height:96px;padding:0px;"
+							render="uploadFilePanel, ideaFiles1Table,ideaFiles2Table, errrors"
+							limitRender="false">
+						</rich:fileUpload>
+						<rich:message for="upload" ajaxRendered="true" />
+
+						<h:outputLabel value="Add New Challenge" />
+						<h:commandLink id="s"action="#{contestController.addChallenge}"></h:commandLink>
+						<rich:message for="s" ajaxRendered="true" />
+
+					</rich:validator>
+					<a4j:commandButton value="Add"
+						actionListener="#{contestController.creatContest}"
+						rendered="#{contestController.currentContest.new}" />
+					<a4j:commandButton style="margin:5px;" binding="#{updateBtn}"
+						action="#{contestController.updateContest}" value="Update"
+						rendered="#{not contestController.currentContest.new}" />
+
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

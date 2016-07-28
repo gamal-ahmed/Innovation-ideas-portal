@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<div class="YoutubeContainer">
+		<!-- 	<h:graphicImage library="#{siteLanguage}" name="images/300X260.jpg"	width="300" height="260"/> -->
+		</div>
+		<div class="StepsGraph" >
+			<h:graphicImage library="#{siteLanguage}" name="images/stages.png" />
+		</div>
+
+		<c:set value="#{userSessionController.currentStage.nextStageStartDate == null}" var="lastStage" />
+
+		<div class="StageArea" style="width: 330px;">
+			<div class="StageNumber Stage1">#{userSessionController.currentStage.getStageName(siteLanguage)}</div>
+			<div class="TimerContainer">
+				<div class="Timer" >
+					<c:choose>
+						<c:when test="#{not lastStage}">
+							<span id="defaultCountdown" ></span>
+						</c:when>
+						<c:otherwise>
+							<span id="defaultCountdown"><h:outputText value="#{messages['user.manageUser.lastStage']}" /> </span>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+			<h:form>
+
+				<h:panelGroup rendered="true">
+					<div>
+						<h:panelGroup styleClass="SubmitJadges" style="width:85%; text-align:center;"  rendered="#{!userSessionController.currentStage3 or userSessionController.currentUser.discussionThread == null}">
+							<h:commandButton action="/idea/developers.html?faces-redirect=true" value="View" styleClass="SubmitButton" rendered="#{userSessionController.currentStage2 or userSessionController.currentStage4}"/>
+							<h:commandButton action="/idea/createidea.html?faces-redirect=true" value="Submit" styleClass="SubmitButton" rendered="#{userSessionController.currentStage1}"/>
+							<h:commandButton action="/idea/developers.html?faces-redirect=true" value="Modify" styleClass="SubmitButton" style="font-size:19px" rendered="#{userSessionController.currentStage3}"/>
+							<div class="StageDesc">
+								<ul>
+								
+								 <h:panelGroup rendered="#{userSessionController.currentStage2 or userSessionController.currentStage4 }">
+									<li>#{messages['user.manageUser.message.home.contender.partone']}</li>
+								</h:panelGroup>
+								 <h:panelGroup rendered="#{userSessionController.currentStage1 }">
+									<li>#{messages['user.manageUser.message.home.contender.submitIdea']}</li>
+								</h:panelGroup>	
+								
+								 <h:panelGroup rendered="#{userSessionController.currentStage3 }">
+									<li>Consider updating your shortlisted ideas based on blog commments and community contributions</li>
+								</h:panelGroup>
+								
+								</ul>
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="SubmitJadges"  rendered="#{userSessionController.currentStage3 and userSessionController.currentUser.discussionThread != null}">
+							<h:commandButton action="/idea/developers.html?faces-redirect=true" styleClass="ViewButton" rendered="#{userSessionController.currentStage2 or userSessionController.currentStage4}"/>
+							<h:commandButton action="/idea/developers.html?faces-redirect=true" styleClass="SubmitButton" rendered="#{userSessionController.currentStage1 or userSessionController.currentStage3}"/>
+							<div class="StageDesc">
+								<ul>
+									<li>#{messages['user.manageUser.message.home.contender.uploadFiles']}</li>
+								</ul>
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="SubmitJadges" rendered="#{userSessionController.currentStage3 and userSessionController.currentUser.discussionThread != null}">
+							<h:commandButton action="/idea/discustionBoard.html?faces-redirect=true" styleClass="JadgesButton" />
+							<div class="StageDesc">#{messages['user.manageUser.message.home.contender.parthree']}</div>
+						</h:panelGroup>
+					</div>
+				</h:panelGroup>
+				<h:panelGroup columns="1" rendered="#{userSessionController.voter}">
+					<div>
+						<div class="Voter">
+							<h:commandButton action="/idea/allBlogs.html?faces-redirect=true" value="Vote" styleClass="VoteButton" />
+							<div class="StageDesc">#{messages['user.manageUser.message.home.voter.partone']}</div>
+						</div>
+					</div>
+
+				</h:panelGroup>
+			</h:form>
+
+
+		</div>
+
+		<c:if test="#{not lastStage}">
+
+			<h:outputScript>
+						jQuery(document).ready(function(jQuery){
+			jQuery('#defaultCountdown').countdown({
+					until: new Date(#{userSessionController.currentStage.nextStageStartDate.time}),layout: ' #{messages['user.manageUser.stage.leftTime']}'
+  			 });
+   
+   		jQuery('.Toggle').click(function () {
+				  jQuery(this).toggleClass('Minus');
+     			 jQuery(this).parent().next('.ExpandCollapse').slideToggle('slow')
+	 
+
+   		 });
+
+
+	});
+		</h:outputScript>
+		</c:if>
+	</ui:define>
+
+</ui:composition>
+</html>

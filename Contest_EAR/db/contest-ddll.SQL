@@ -1,0 +1,901 @@
+--
+-- CONTEST_STAGE  (Table) 
+--
+CREATE TABLE CONTEST_STAGE
+(
+  STAGE_ID            NUMBER                    NOT NULL,
+  STAGE_ARABIC_NAME   VARCHAR2(100 BYTE)        NOT NULL,
+  STAGE_ARABIC_DESC   VARCHAR2(200 BYTE),
+  STAGE_START_DATE    DATE                      NOT NULL,
+  STAGE_ORDER         INTEGER                   NOT NULL,
+  STAGE_ENGLISH_NAME  VARCHAR2(100 BYTE),
+  STAGE_ENGLISH_DESC  VARCHAR2(200 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- USER_TYPE  (Table) 
+--
+CREATE TABLE USER_TYPE
+(
+  USER_TYPE_ID  NUMBER                          NOT NULL,
+  DESCRIPTION   VARCHAR2(100 BYTE)              NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- CATEGORY  (Table) 
+--
+CREATE TABLE CATEGORY
+(
+  CATEGORY_ID     INTEGER                       NOT NULL,
+  DESCRIPTION_EN  VARCHAR2(100 BYTE)            NOT NULL,
+  DESCRIPTION_AR  VARCHAR2(100 BYTE)            NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- USER_STATUS  (Table) 
+--
+CREATE TABLE USER_STATUS
+(
+  USER_STATUS_ID  INTEGER                       NOT NULL,
+  DESCRIPTION     VARCHAR2(100 BYTE)            NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- COMMENT_STATUS  (Table) 
+--
+CREATE TABLE COMMENT_STATUS
+(
+  COMMENT_STATUS_ID  INTEGER                    NOT NULL,
+  DESCRIPTION        VARCHAR2(100 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- IDEA_STATUS  (Table) 
+--
+CREATE TABLE IDEA_STATUS
+(
+  IDEA_STATUS_ID  INTEGER                       NOT NULL,
+  DESCRIPTION     VARCHAR2(100 BYTE)            NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- THREAD_STATUS  (Table) 
+--
+CREATE TABLE THREAD_STATUS
+(
+  THREAD_STATUS_ID  INTEGER                     NOT NULL,
+  DESCRIPTION       VARCHAR2(100 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- MESSAGE_TYPE  (Table) 
+--
+CREATE TABLE MESSAGE_TYPE
+(
+  MESSAGE_TYPE_ID  INTEGER                      NOT NULL,
+  DESCRIPTION      VARCHAR2(100 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- SETTING  (Table) 
+--
+CREATE TABLE SETTING
+(
+  SETTING_ID     NUMBER                         NOT NULL,
+  SETTING_NAME   VARCHAR2(500 BYTE)             NOT NULL,
+  SETTING_VALUE  VARCHAR2(500 BYTE)             NOT NULL,
+  LAST_UPDATE    DATE                           DEFAULT SYSDATE               NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- PK_CATEGORY  (Index) 
+--
+CREATE UNIQUE INDEX PK_CATEGORY ON CATEGORY
+(CATEGORY_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_COMMENT_STATUS  (Index) 
+--
+CREATE UNIQUE INDEX PK_COMMENT_STATUS ON COMMENT_STATUS
+(COMMENT_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- CONTEST_STAGE_PK  (Index) 
+--
+CREATE UNIQUE INDEX CONTEST_STAGE_PK ON CONTEST_STAGE
+(STAGE_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_IDEA_STATUS  (Index) 
+--
+CREATE UNIQUE INDEX PK_IDEA_STATUS ON IDEA_STATUS
+(IDEA_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_MESSAGE_TYPE  (Index) 
+--
+CREATE UNIQUE INDEX PK_MESSAGE_TYPE ON MESSAGE_TYPE
+(MESSAGE_TYPE_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_SETTING  (Index) 
+--
+CREATE UNIQUE INDEX PK_SETTING ON SETTING
+(SETTING_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_THREAD_STATUS  (Index) 
+--
+CREATE UNIQUE INDEX PK_THREAD_STATUS ON THREAD_STATUS
+(THREAD_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_USER_STATUS  (Index) 
+--
+CREATE UNIQUE INDEX PK_USER_STATUS ON USER_STATUS
+(USER_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+--
+-- PK_USER_TYPE  (Index) 
+--
+CREATE UNIQUE INDEX PK_USER_TYPE ON USER_TYPE
+(USER_TYPE_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- "USER"  (Table) 
+--
+CREATE TABLE "USER"
+(
+  USER_ID            NUMBER                     NOT NULL,
+  PASSWORD           VARCHAR2(200 BYTE)         NOT NULL,
+  EMAIL              VARCHAR2(300 BYTE)         NOT NULL,
+  FIRST_NAME         VARCHAR2(100 BYTE)         NOT NULL,
+  LAST_NAME          VARCHAR2(100 BYTE)         NOT NULL,
+  GROUP_COUNT        NUMBER                     DEFAULT 0,
+  GROUP_EMAILS       VARCHAR2(400 BYTE),
+  REGISTRATION_DATE  DATE                       DEFAULT SYSDATE               NOT NULL,
+  USER_TYPE_ID       NUMBER                     NOT NULL,
+  USER_STATUS_ID     INTEGER                    NOT NULL,
+  THREAD_ID          NUMBER,
+  MSISDN             VARCHAR2(20 BYTE)          NOT NULL,
+  AGE                NUMBER,
+  GENDER             CHAR(1 BYTE),
+  GROUP_FLAG         VARCHAR2(1 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IDEA  (Table) 
+--
+CREATE TABLE IDEA
+(
+  IDEA_ID           NUMBER                      NOT NULL,
+  IDEA_NAME         VARCHAR2(100 BYTE)          NOT NULL,
+  IDEA_DESCRIPTION  VARCHAR2(1000 BYTE),
+  LINK_1            VARCHAR2(500 BYTE),
+  LINK_2            VARCHAR2(500 BYTE),
+  LINK_3            VARCHAR2(500 BYTE),
+  SUBMIT_DATE       DATE                        DEFAULT SYSDATE               NOT NULL,
+  UPDATE_DATE       DATE,
+  IDEA_STATUS_ID    INTEGER                     NOT NULL,
+  CATEGORY_ID       INTEGER                     NOT NULL,
+  BLOG_ID           NUMBER,
+  USER_ID           NUMBER                      NOT NULL,
+  LINK_4            VARCHAR2(500 BYTE),
+  LINK_5            VARCHAR2(500 BYTE)
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IDEA_BLOG  (Table) 
+--
+CREATE TABLE IDEA_BLOG
+(
+  BLOG_ID           NUMBER                      NOT NULL,
+  BLOG_TITLE        VARCHAR2(500 BYTE)          NOT NULL,
+  BLOG_TEXT         VARCHAR2(4000 BYTE)         NOT NULL,
+  POSITIVE_RATING   INTEGER,
+  NEGATIVE_RATING   INTEGER,
+  CREATED_DATE      TIMESTAMP(6),
+  LAST_UPDATE_DATE  TIMESTAMP(6),
+  IDEA_ID           NUMBER                      NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- BLOG_COMMENT  (Table) 
+--
+CREATE TABLE BLOG_COMMENT
+(
+  COMMENT_ID         NUMBER                     NOT NULL,
+  COMMENT_TEXT       VARCHAR2(2000 BYTE)        NOT NULL,
+  COMMENT_DATE       DATE                       NOT NULL,
+  COMMENT_TITLE      VARCHAR2(300 BYTE),
+  COMMENT_STATUS_ID  INTEGER                    NOT NULL,
+  BLOG_ID            NUMBER                     NOT NULL,
+  USER_ID            NUMBER                     NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- DISCUSSION_THREAD  (Table) 
+--
+CREATE TABLE DISCUSSION_THREAD
+(
+  THREAD_ID         NUMBER                      NOT NULL,
+  LAST_UPDATE_DATE  DATE                        NOT NULL,
+  THREAD_STATUS_ID  INTEGER                     NOT NULL,
+  USER_ID           NUMBER
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- THREAD_MESSAGE  (Table) 
+--
+CREATE TABLE THREAD_MESSAGE
+(
+  MESSAGE_ID       NUMBER                       NOT NULL,
+  MESSAGE_TEXT     VARCHAR2(1000 BYTE)          NOT NULL,
+  MESSAGE_DATE     DATE                         NOT NULL,
+  MESSAGE_TYPE_ID  INTEGER                      NOT NULL,
+  THREAD_ID        NUMBER                       NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_BLOG_COMMENT  (Index) 
+--
+CREATE UNIQUE INDEX PK_BLOG_COMMENT ON BLOG_COMMENT
+(COMMENT_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_BC_COM_STATUS_ID  (Index) 
+--
+CREATE INDEX IX_FK_BC_COM_STATUS_ID ON BLOG_COMMENT
+(COMMENT_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_BC_IDEA_BLOG_ID  (Index) 
+--
+CREATE INDEX IX_FK_BC_IDEA_BLOG_ID ON BLOG_COMMENT
+(BLOG_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_DISCUSSION_THREAD  (Index) 
+--
+CREATE UNIQUE INDEX PK_DISCUSSION_THREAD ON DISCUSSION_THREAD
+(THREAD_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_DT_THREAD_STATUS_ID  (Index) 
+--
+CREATE INDEX IX_FK_DT_THREAD_STATUS_ID ON DISCUSSION_THREAD
+(THREAD_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_DT_USER_ID  (Index) 
+--
+CREATE INDEX IX_FK_DT_USER_ID ON DISCUSSION_THREAD
+(USER_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_IDEA  (Index) 
+--
+CREATE UNIQUE INDEX PK_IDEA ON IDEA
+(IDEA_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_I_IDEA_STATUS_ID  (Index) 
+--
+CREATE INDEX IX_FK_I_IDEA_STATUS_ID ON IDEA
+(IDEA_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_I_IDEA_CAT_ID  (Index) 
+--
+CREATE INDEX IX_FK_I_IDEA_CAT_ID ON IDEA
+(CATEGORY_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_I_BLOG_ID  (Index) 
+--
+CREATE INDEX IX_FK_I_BLOG_ID ON IDEA
+(BLOG_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_I_USER_ID  (Index) 
+--
+CREATE INDEX IX_FK_I_USER_ID ON IDEA
+(USER_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_IDEA_BLOG  (Index) 
+--
+CREATE UNIQUE INDEX PK_IDEA_BLOG ON IDEA_BLOG
+(BLOG_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_IB_IDEA_ID  (Index) 
+--
+CREATE INDEX IX_FK_IB_IDEA_ID ON IDEA_BLOG
+(IDEA_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_THREAD_MESSAGE  (Index) 
+--
+CREATE UNIQUE INDEX PK_THREAD_MESSAGE ON THREAD_MESSAGE
+(MESSAGE_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_TM_MESSAGE_TYPE_ID  (Index) 
+--
+CREATE INDEX IX_FK_TM_MESSAGE_TYPE_ID ON THREAD_MESSAGE
+(MESSAGE_TYPE_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_TM_THREAD_ID  (Index) 
+--
+CREATE INDEX IX_FK_TM_THREAD_ID ON THREAD_MESSAGE
+(THREAD_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- PK_USER  (Index) 
+--
+CREATE UNIQUE INDEX PK_USER ON "USER"
+(USER_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_U_USER_TYPE_ID  (Index) 
+--
+CREATE INDEX IX_FK_U_USER_TYPE_ID ON "USER"
+(USER_TYPE_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_U_USER_STATUS_ID  (Index) 
+--
+CREATE INDEX IX_FK_U_USER_STATUS_ID ON "USER"
+(USER_STATUS_ID)
+LOGGING
+NOPARALLEL;
+
+
+/* This object may not be sorted properly in the script due to cirular references */
+--
+-- IX_FK_U_DISS_THREAD_ID  (Index) 
+--
+CREATE INDEX IX_FK_U_DISS_THREAD_ID ON "USER"
+(THREAD_ID)
+LOGGING
+NOPARALLEL;
+
+
+-- 
+-- Non Foreign Key Constraints for Table CONTEST_STAGE 
+-- 
+ALTER TABLE CONTEST_STAGE ADD (
+  CONSTRAINT CONTEST_STAGE_PK
+ PRIMARY KEY
+ (STAGE_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table USER_TYPE 
+-- 
+ALTER TABLE USER_TYPE ADD (
+  CONSTRAINT PK_USER_TYPE
+ PRIMARY KEY
+ (USER_TYPE_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table CATEGORY 
+-- 
+ALTER TABLE CATEGORY ADD (
+  CONSTRAINT PK_CATEGORY
+ PRIMARY KEY
+ (CATEGORY_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table USER_STATUS 
+-- 
+ALTER TABLE USER_STATUS ADD (
+  CONSTRAINT PK_USER_STATUS
+ PRIMARY KEY
+ (USER_STATUS_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table COMMENT_STATUS 
+-- 
+ALTER TABLE COMMENT_STATUS ADD (
+  CONSTRAINT PK_COMMENT_STATUS
+ PRIMARY KEY
+ (COMMENT_STATUS_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table IDEA_STATUS 
+-- 
+ALTER TABLE IDEA_STATUS ADD (
+  CONSTRAINT PK_IDEA_STATUS
+ PRIMARY KEY
+ (IDEA_STATUS_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table THREAD_STATUS 
+-- 
+ALTER TABLE THREAD_STATUS ADD (
+  CONSTRAINT PK_THREAD_STATUS
+ PRIMARY KEY
+ (THREAD_STATUS_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table MESSAGE_TYPE 
+-- 
+ALTER TABLE MESSAGE_TYPE ADD (
+  CONSTRAINT PK_MESSAGE_TYPE
+ PRIMARY KEY
+ (MESSAGE_TYPE_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table SETTING 
+-- 
+ALTER TABLE SETTING ADD (
+  CONSTRAINT PK_SETTING
+ PRIMARY KEY
+ (SETTING_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table "USER" 
+-- 
+ALTER TABLE "USER" ADD (
+  CONSTRAINT PK_USER
+ PRIMARY KEY
+ (USER_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table IDEA 
+-- 
+ALTER TABLE IDEA ADD (
+  CONSTRAINT PK_IDEA
+ PRIMARY KEY
+ (IDEA_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table IDEA_BLOG 
+-- 
+ALTER TABLE IDEA_BLOG ADD (
+  CONSTRAINT PK_IDEA_BLOG
+ PRIMARY KEY
+ (BLOG_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table BLOG_COMMENT 
+-- 
+ALTER TABLE BLOG_COMMENT ADD (
+  CONSTRAINT PK_BLOG_COMMENT
+ PRIMARY KEY
+ (COMMENT_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table DISCUSSION_THREAD 
+-- 
+ALTER TABLE DISCUSSION_THREAD ADD (
+  CONSTRAINT PK_DISCUSSION_THREAD
+ PRIMARY KEY
+ (THREAD_ID));
+
+
+-- 
+-- Non Foreign Key Constraints for Table THREAD_MESSAGE 
+-- 
+ALTER TABLE THREAD_MESSAGE ADD (
+  CONSTRAINT PK_THREAD_MESSAGE
+ PRIMARY KEY
+ (MESSAGE_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table "USER" 
+-- 
+ALTER TABLE "USER" ADD (
+  CONSTRAINT FK_U_USER_TYPE_ID 
+ FOREIGN KEY (USER_TYPE_ID) 
+ REFERENCES USER_TYPE (USER_TYPE_ID));
+
+ALTER TABLE "USER" ADD (
+  CONSTRAINT FK_U_USER_STATUS_ID 
+ FOREIGN KEY (USER_STATUS_ID) 
+ REFERENCES USER_STATUS (USER_STATUS_ID));
+
+ALTER TABLE "USER" ADD (
+  CONSTRAINT FK_U_DISS_THREAD_ID 
+ FOREIGN KEY (THREAD_ID) 
+ REFERENCES DISCUSSION_THREAD (THREAD_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table IDEA 
+-- 
+ALTER TABLE IDEA ADD (
+  CONSTRAINT FK_I_IDEA_STATUS_ID 
+ FOREIGN KEY (IDEA_STATUS_ID) 
+ REFERENCES IDEA_STATUS (IDEA_STATUS_ID));
+
+ALTER TABLE IDEA ADD (
+  CONSTRAINT FK_I_IDEA_CAT_ID 
+ FOREIGN KEY (CATEGORY_ID) 
+ REFERENCES CATEGORY (CATEGORY_ID));
+
+ALTER TABLE IDEA ADD (
+  CONSTRAINT FK_I_BLOG_ID 
+ FOREIGN KEY (BLOG_ID) 
+ REFERENCES IDEA_BLOG (BLOG_ID)
+    ON DELETE SET NULL);
+
+ALTER TABLE IDEA ADD (
+  CONSTRAINT FK_I_USER_ID 
+ FOREIGN KEY (USER_ID) 
+ REFERENCES "USER" (USER_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table IDEA_BLOG 
+-- 
+ALTER TABLE IDEA_BLOG ADD (
+  CONSTRAINT FK_IB_IDEA_ID 
+ FOREIGN KEY (IDEA_ID) 
+ REFERENCES IDEA (IDEA_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table BLOG_COMMENT 
+-- 
+ALTER TABLE BLOG_COMMENT ADD (
+  CONSTRAINT FK_BC_COM_STATUS_ID 
+ FOREIGN KEY (COMMENT_STATUS_ID) 
+ REFERENCES COMMENT_STATUS (COMMENT_STATUS_ID));
+
+ALTER TABLE BLOG_COMMENT ADD (
+  CONSTRAINT FK_BC_IDEA_BLOG_ID 
+ FOREIGN KEY (BLOG_ID) 
+ REFERENCES IDEA_BLOG (BLOG_ID));
+
+ALTER TABLE BLOG_COMMENT ADD (
+  CONSTRAINT "FK_BC_User_ID" 
+ FOREIGN KEY (USER_ID) 
+ REFERENCES "USER" (USER_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table DISCUSSION_THREAD 
+-- 
+ALTER TABLE DISCUSSION_THREAD ADD (
+  CONSTRAINT FK_DT_THREAD_STATUS_ID 
+ FOREIGN KEY (THREAD_STATUS_ID) 
+ REFERENCES THREAD_STATUS (THREAD_STATUS_ID));
+
+ALTER TABLE DISCUSSION_THREAD ADD (
+  CONSTRAINT FK_DT_USER_ID 
+ FOREIGN KEY (USER_ID) 
+ REFERENCES "USER" (USER_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table THREAD_MESSAGE 
+-- 
+ALTER TABLE THREAD_MESSAGE ADD (
+  CONSTRAINT FK_TM_MESSAGE_TYPE_ID 
+ FOREIGN KEY (MESSAGE_TYPE_ID) 
+ REFERENCES MESSAGE_TYPE (MESSAGE_TYPE_ID));
+
+ALTER TABLE THREAD_MESSAGE ADD (
+  CONSTRAINT FK_TM_THREAD_ID 
+ FOREIGN KEY (THREAD_ID) 
+ REFERENCES DISCUSSION_THREAD (THREAD_ID));
+
+
+--
+-- Note: 
+-- The following objects may not be sorted properly in the script due to cirular references
+--
+--  "USER"  (Table) 
+--  IDEA  (Table) 
+--  IDEA_BLOG  (Table) 
+--  BLOG_COMMENT  (Table) 
+--  DISCUSSION_THREAD  (Table) 
+--  THREAD_MESSAGE  (Table) 
+--  PK_BLOG_COMMENT  (Index) 
+--  IX_FK_BC_COM_STATUS_ID  (Index) 
+--  IX_FK_BC_IDEA_BLOG_ID  (Index) 
+--  PK_DISCUSSION_THREAD  (Index) 
+--  IX_FK_DT_THREAD_STATUS_ID  (Index) 
+--  IX_FK_DT_USER_ID  (Index) 
+--  PK_IDEA  (Index) 
+--  IX_FK_I_IDEA_STATUS_ID  (Index) 
+--  IX_FK_I_IDEA_CAT_ID  (Index) 
+--  IX_FK_I_BLOG_ID  (Index) 
+--  IX_FK_I_USER_ID  (Index) 
+--  PK_IDEA_BLOG  (Index) 
+--  IX_FK_IB_IDEA_ID  (Index) 
+--  PK_THREAD_MESSAGE  (Index) 
+--  IX_FK_TM_MESSAGE_TYPE_ID  (Index) 
+--  IX_FK_TM_THREAD_ID  (Index) 
+--  PK_USER  (Index) 
+--  IX_FK_U_USER_TYPE_ID  (Index) 
+--  IX_FK_U_USER_STATUS_ID  (Index) 
+--  IX_FK_U_DISS_THREAD_ID  (Index)
+
+ 
+ --
+-- VOTE  (Table) 
+--
+CREATE TABLE VOTE
+(
+  VOTE_ID     NUMBER                            NOT NULL,
+  USER_ID     NUMBER                            NOT NULL,
+  BLOG_ID     NUMBER                            NOT NULL,
+  VOTE_VALUE  NUMBER(22,2)                      NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+--
+-- BLOG_VOTER_PK  (Index) 
+--
+CREATE UNIQUE INDEX BLOG_VOTER_PK ON VOTE
+(VOTE_ID)
+LOGGING
+NOPARALLEL;
+
+
+-- 
+-- Non Foreign Key Constraints for Table VOTE 
+-- 
+ALTER TABLE VOTE ADD (
+  CONSTRAINT PK_BLOG_VOTER
+ PRIMARY KEY
+ (VOTE_ID));
+
+
+-- 
+-- Foreign Key Constraints for Table VOTE 
+-- 
+ALTER TABLE VOTE ADD (
+  CONSTRAINT IX_FK_BV_BLOG_ID 
+ FOREIGN KEY (BLOG_ID) 
+ REFERENCES IDEA_BLOG (BLOG_ID));
+
+ALTER TABLE VOTE ADD (
+  CONSTRAINT IX_FK_BV_USER_ID 
+ FOREIGN KEY (USER_ID) 
+ REFERENCES "USER" (USER_ID));
+ 
+ 
+
+  
+ALTER TABLE IDEA_BLOG
+ ADD (TOTAL_COMMENTS  INTEGER                      DEFAULT 0                     NOT NULL);
+ 
+ 
+ALTER TABLE CONTEST_STAGE
+MODIFY(STAGE_ARABIC_DESC VARCHAR2(800 BYTE) NOT NULL);
+
+
+ALTER TABLE CONTEST_STAGE
+MODIFY(STAGE_ENGLISH_NAME  NOT NULL);
+
+
+ALTER TABLE CONTEST_STAGE
+MODIFY(STAGE_ENGLISH_DESC VARCHAR2(800 BYTE) NOT NULL);
+
+ALTER TABLE IDEA
+MODIFY(SUBMIT_DATE TIMESTAMP(6));
+
+
+ALTER TABLE IDEA
+MODIFY(UPDATE_DATE TIMESTAMP(6));
+  

@@ -1,0 +1,19 @@
+﻿/* Remove all prestyles
+-------------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, cite, font, img, ins, kbd, q, s, samp, small, big, strike, strong, dl, dt, dd, ol, ul, li, fieldset, form, input, textarea, label, legend, caption, table, tbody, tfoot, thead, tr, th, td{font-family:inherit;font-weight:inherit;margin:0;padding:0;vertical-align:baseline;}
+body{font-family:Tahoma, Geneva, sans-serif;line-height:1.5}
+table{border-collapse:separate;border-spacing:0}
+img{vertical-align:middle}
+img, a img{border:none}
+a:focus{outline: 0;}
+
+/* Set Common Tags Styles
+-------------------------------------------------------------------- */
+h1{font-size:2em} /* 32px */
+h2{font-size:1.5em} /* 24px */
+h3{font-size:1.2em; font-weight:normal}
+h1,h2,h4,h5,h6,strong{font-weight:bold}
+ol li {list-style: decimal inside}
+ul li ul{margin-left:1em}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;line-height:1.2}

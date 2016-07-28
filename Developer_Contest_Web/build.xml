@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Contest_Admin_Web" default="build_and_deploy" basedir=".">
+
+	<property file="build.properties" />
+	<property name="EJB" value="EJB" />
+	<property name="web" value="web" />
+	<property name="EAR" value="EAR" />
+
+	<property name="classes" value="classes" />
+	<property name="src" value="src" />
+	<property name="war" value="war" />
+
+	<property name="contest-web" location="${builddir}/${web}" />
+	<property name="contest-web-classes" location="${builddir}/${web}/${classes}" />
+	<property name="contest-web-war" location="${builddir}/${web}/${war}" />
+	<property name="contest-web-war-class" location="${builddir}/${web}/${war}/WEB-INF/classes" />
+	<property name="contest-web-war-lib" location="${builddir}/${web}/${war}/WEB-INF/lib" />
+
+	<fileset id="jboss.lib.jsf.1" dir="${JBOSS_HOME}/server/default/deployers/jsf.deployer">
+		<include name="*.jar" />
+	</fileset>
+	<fileset id="jboss.lib.jsf.2" dir="${JBOSS_HOME}/server/default/deployers/jsf.deployer/Mojarra-2.0/jsf-libs">
+		<include name="*.jar" />
+	</fileset>
+
+	<fileset id="jboss.lib.1" dir="${JBOSS_HOME}/lib">
+		<include name="*.jar" />
+	</fileset>
+	<fileset id="jboss.lib.2" dir="${JBOSS_HOME}/lib/endorsed">
+		<include name="*.jar" />
+	</fileset>
+	<fileset id="jboss.lib.3" dir="${JBOSS_HOME}/server/default/lib">
+		<include name="*.jar" />
+	</fileset>
+	<fileset id="jboss.lib.4" dir="${JBOSS_HOME}/client">
+		<include name="*.jar" />
+	</fileset>
+	<fileset dir="./WebContent/WEB-INF/lib" id="web-lib">
+		<include name="*.jar" />
+	</fileset>
+
+	<path id="neededclasspath">
+		<fileset refid="web-lib" />
+		<fileset refid="jboss.lib.jsf.1" />
+		<fileset refid="jboss.lib.jsf.2" />
+		<fileset refid="jboss.lib.1" />
+		<fileset refid="jboss.lib.2" />
+		<fileset refid="jboss.lib.3" />
+		<fileset refid="jboss.lib.4" />
+	</path>
+
+
+
+	<target name="clean">
+		<deltree dir="${Collection-web}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${contest-web}" />
+		<mkdir dir="${contest-web-classes}" />
+		<mkdir dir="${contest-web-war}" />
+		<mkdir dir="${contest-web-war-class}" />
+		<mkdir dir="${contest-web-war-lib}" />
+	</target>
+
+	<target name="copy" depends="init">
+		<copy todir="${contest-web-classes}">
+			<fileset dir="./src">
+				<exclude name="*/**/*.java" />
+				<include name="**/*" />
+			</fileset>
+			<fileset dir="./base">
+				<exclude name="*/**/*.java" />
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build_and_deploy" depends="war">
+		<copy todir="${JBOSS_HOME}/server/default/deploy">
+			<fileset dir="${contest-web}">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="war" depends="copy">
+		<javac destdir="${contest-web-classes}" debug="true" debuglevel="lines,vars,source">
+			<src path="./src" />
+			<src path="./base" />
+			<classpath refid="neededclasspath" />
+		</javac>
+
+		<copy todir="${contest-web-war}">
+			<fileset dir="./WebContent">
+				<include name="WEB-INF/beans.xml" />
+				<include name="WEB-INF/web.xml" />
+				<include name="WEB-INF/jboss-web.xml" />
+				<include name="WEB-INF/faces-config.xml" />
+				<include name="**/*.tld" />
+				<include name="META-INF/**/*.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${contest-web-war}">
+			<fileset dir="./judge-admin">
+				<include name="**/*.*" />
+				<!-- 
+				<include name="**/*.xhtml"/>
+				<include name="**/*.html"/>
+				<include name="**/*.jsp"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.tld"/>
+				<include name="images/*.*"/>
+				<include name="META-INF/**/*.*"/>
+				<include name="**/exception_list_sample.xls"/>
+				-->
+			</fileset>
+
+		</copy>
+		<copy todir="${contest-web-war-class}">
+			<fileset dir="${contest-web-classes}" />
+		</copy>
+		<copy todir="${contest-web-war-lib}">
+			<fileset dir="./WebContent/WEB-INF/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
+		<war destfile="${contest-web}/Contest_Admin_Web.war" manifest="./WebContent/META-INF/MANIFEST.MF" webxml="./config/web.xml">
+			<fileset dir="${contest-web-war}" />
+		</war>
+	</target>
+</project>

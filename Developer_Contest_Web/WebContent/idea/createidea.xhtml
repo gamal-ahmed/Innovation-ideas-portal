@@ -1,0 +1,340 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{ideaController.preRenderIdeaScreen}" />
+	</f:metadata>
+	<ui:define name="content">
+
+		<h:outputScript rendered="#{ideaController.ideaAddedSuccessfully}">
+		jQuery(document).ready(function(){
+			#{rich:component('ideaInformationPopup')}.show();
+		 });
+	</h:outputScript>
+		<div class="home">
+			<div class="content">
+				<div class="mainContent">
+					<div class="componentFull">
+						<div class="head">
+							<span class="bullet"></span> <span class="title">Title</span>
+						</div>
+						<div class="content">
+							<span class="bullet"></span>
+							<div class="textContent">You can submit up to ten(10) ideas
+								in any of the contestӳ categories, to make your ideas available
+								for public voting, create Blog.</div>
+						</div>
+					</div>
+					<h:panelGroup columnClasses="alignTopForGrid,alignTopForGrid"
+						columns="2" rendered="#{userSessionController.contender}">
+						<h:panelGroup id="submitIdeaPanel"
+							rendered="#{ideaController.canSubmitIdea}">
+							<h:messages globalOnly="true" id="errrors" styleClass="Error"
+								rendered="#{not ideaController.ideaAddedSuccessfully}" />
+
+
+							<div class="DeveloperForm">
+								<h:form class="Form" id="developerForm" enctype="UTF-8">
+									<div class="sc_box_280">
+										<h:selectOneRadio id="radio"
+											value="#{ideaController.isOpenChallenge}"
+											styleClass="sc_input_radio" name="number">
+											<f:selectItem itemValue="1" itemLabel="Open Challenge-Yes" />
+											<f:selectItem itemValue="0" itemLabel="Open Challenge-No" />
+											<p:ajax update="@form"></p:ajax>
+										</h:selectOneRadio>
+									</div>
+									<div class="sc_box_280">
+										<h:selectOneRadio id="privacy"
+											value="#{ideaController.privacy}" name="number">
+											<f:selectItem itemValue="0" itemLabel="privacy- private" />
+											<f:selectItem itemValue="1" itemLabel="privacy- public" />
+										</h:selectOneRadio>
+									</div>
+									<div class="sc_box_280">
+										<p:inputText id="ideaname" styleClass="sc_input_text"
+											value="#{ideaController.currentIdea.ideaName}"
+											binding="#{ideaController.ideaName}" required="true"
+											placeholder="${messages['idea.contender.name']}"
+											requiredMessage="#{messages['idea.contender.idea.error.1']}"
+											readonly="#{! userSessionController.currentStage1}" />
+
+										<h:message for="ideaname" styleClass="Error" />
+									</div>
+									<div class="sc_box_280">
+										<h:selectOneMenu
+											rendered="#{ideaController.isOpenChallenge==0}"
+											styleClass="sc_input_list"
+											value="#{ideaController.slectedContest}"
+											converter="genericConverter" id="contests"
+											disabled="#{! userSessionController.currentStage1}"
+											style="width:200px;">
+											<a4j:ajax listener="#{ideaController.loadChalengesOfContest}"
+												render="challenges" />
+
+											<f:selectItem itemLabel="Select Contest" itemValue="" />
+											<f:selectItems value="#{ideaController.listOfContests}"
+												var="c" itemLabel="#{c.name}" itemValue="#{c}" />
+
+										</h:selectOneMenu>
+
+										<h:selectOneMenu label="Select Challenge"
+											rendered="#{ideaController.isOpenChallenge==0}"
+											styleClass="sc_input_list" converter="genericConverter"
+											id="challenges"
+											disabled="#{! userSessionController.currentStage1}"
+											value="#{ideaController.currentIdea.challenge}">
+											<f:selectItem itemLabel="Select Challenge" />
+											<f:selectItems value="#{ideaController.listOfChallengies}"
+												var="chal" itemLabel="#{chal.name}" itemValue="#{chal}" />
+										</h:selectOneMenu>
+									</div>
+									<div class="sc_box_280">
+										<h:selectOneMenu
+											rendered="#{ideaController.isOpenChallenge==1}"
+											styleClass="sc_input_list" converter="genericConverter"
+											id="openchallenges"
+											disabled="#{! userSessionController.currentStage1}"
+											value="#{ideaController.currentIdea.challenge}">
+											<f:selectItem itemLabel="---Select Challenge---" />
+											<f:selectItems
+												value="#{ideaController.listOfOpenChallengies}" var="chal"
+												itemLabel="#{chal.name}" itemValue="#{chal}" />
+										</h:selectOneMenu>
+									</div>
+									<div class="sc_box_280">
+										<i style="font-size: 11px;">(maximum of 2500 characters)</i> <br></br>
+										<p:inputTextarea id="ideaDesc"
+											value="#{ideaController.currentIdea.ideaDescription}"
+											placeholder="${messages['idea.contender.ideaDesc']}"
+											required="true"
+											requiredMessage="#{messages['idea.contender.idea.error.2']}"
+											onkeyup="limitText(this,2500)"
+											binding="#{ideaController.ideaDescription}"
+											readonly="#{ideaController.canEditDesc}"
+											styleClass="sc_input_textArea">
+											<f:validateLength maximum="3000"></f:validateLength>
+										</p:inputTextarea>
+										<h:message for="ideaDesc" styleClass="Error" />
+									</div>
+									<div class="FormEntry" id="uploadedfiles">
+										<rich:dataTable
+											value="#{ideaController.listOfFilesForCurrentIdea_STG1}"
+											var="file" style="width:285px;" id="ideaFiles1Table">
+											<rich:column style="width:170px; white-space:normal">
+												<h:outputText
+													value="#{fn:substring(file.fileName, 0, 20)} ..."
+													rendered="#{fn:length(file.fileName) gt 30 }" />
+												<h:outputText value="#{file.fileName}"
+													rendered="#{fn:length(file.fileName) le 30 }" />
+
+
+												<rich:tooltip followMouse="true" showDelay="500"
+													styleClass="tooltip">
+													<h:panelGrid columns="1">
+														<h:outputText value="#{file.fileName}" />
+													</h:panelGrid>
+												</rich:tooltip>
+											</rich:column>
+											<rich:column>
+
+												<h:commandButton
+													action="#{ideaController.downloadFile(file.filePath)}"
+													value="#{messages['idea.contender.download']}" />
+											</rich:column>
+
+											<rich:column>
+
+												<a4j:commandButton
+													disabled="#{! userSessionController.currentStage1 and ! (userSessionController.currentStage3 and ideaController.currentIdea.ideaStatus.ideaStatusId == 3) }"
+													oncomplete="#{rich:component('filePopup')}.show()"
+													actionListener="#{ideaController.setFilePath(file.filePath)}"
+													value=" #{messages['idea.contender.delete']}"
+													style="font-size:12px;"></a4j:commandButton>
+											</rich:column>
+										</rich:dataTable>
+									</div>
+
+
+									<div class="FormEntry" id="uploadedfiles2">
+										<rich:dataTable
+											rendered="#{userSessionController.currentStage3 or userSessionController.currentStage4}"
+											value="#{ideaController.listOfFilesForCurrentIdea_STG3}"
+											var="file" style="width:285px;" id="ideaFiles2Table">
+											<rich:column style="width:170px; white-space:normal">
+												<h:outputText
+													value="#{fn:substring(file.fileName, 0, 20)} ..."
+													rendered="#{fn:length(file.fileName) gt 30 }" />
+												<h:outputText value="#{file.fileName}"
+													rendered="#{fn:length(file.fileName) le 30 }" />
+
+
+												<rich:tooltip followMouse="true" showDelay="500"
+													styleClass="tooltip">
+													<h:panelGrid columns="1">
+														<h:outputText value="#{file.fileName}" />
+													</h:panelGrid>
+												</rich:tooltip>
+											</rich:column>
+											<rich:column>
+
+												<h:commandButton
+													action="#{ideaController.downloadFile(file.filePath)}"
+													value="#{messages['idea.contender.download']}" />
+											</rich:column>
+
+											<rich:column>
+
+												<a4j:commandButton
+													oncomplete="#{rich:component('filePopup')}.show()"
+													disabled="#{! userSessionController.currentStage3}"
+													actionListener="#{ideaController.setFilePath(file.filePath)}"
+													value=" #{messages['idea.contender.delete']}"
+													style="font-size:12px;"></a4j:commandButton>
+											</rich:column>
+										</rich:dataTable>
+									</div>
+
+
+									<div class="FormEntry">
+										<rich:panel bodyClass="rich-laguna-panel-no-header"
+											rendered="#{ideaController.currentIdea.new}"
+											style="padding:0px; border: none; background: transparent;">
+											<h:commandButton action="#{ideaController.sendIdea}"
+												value="#{messages['idea.contender.uploadFiles']}"
+												rendered="#{ideaController.currentIdea.new}"
+												styleClass="sc_button_green" style="margin:0 0 0 0px;]">
+
+											</h:commandButton>
+										</rich:panel>
+										<br /> <br />
+
+										<h:panelGroup id="uploadFilePanel">
+											<rich:panel
+												bodyClass="rich-laguna-panel-no-header ideaUploadClass"
+												rendered="#{!ideaController.currentIdea.new and ideaController.canSubmitFile}"
+												style="padding:0px; border: none; background: transparent;">
+												<span class="Bold">#{messages['idea.contender.upload']}
+													(<h:outputText value="#{ideaController.extensionsForStage}" />)
+												</span>
+												<span> - #{messages['idea.contender.maximum']} <h:outputText
+														value="#{ideaController.maximumFilesForStage}" />
+													#{messages['idea.contender.files']}
+												</span>
+												<br />
+												<span class="Bold"><h:outputFormat
+														value="#{messages['idea.contender.filesize']}">
+														<f:param value="#{ideaController.fileSize/1024/1024}" />
+													</h:outputFormat> </span>
+
+												<br />
+
+												<rich:fileUpload
+													fileUploadListener="#{ideaController.listener}"
+													maxFilesQuantity="1" id="upload" immediateUpload="true"
+													uploadLabel="#{messages['idea.contender.upload']}"
+													addLabel="#{messages['idea.contender.add']}"
+													clearAllLabel="#{messages['idea.contender.clear']}"
+													deleteLabel="#{messages['idea.contender.delete']}"
+													acceptedTypes="#{ideaController.extensionsForStage}"
+													allowFlash="false"
+													ontyperejected="alert('#{messages['idea.contender.idea.error3']}');"
+													style="width:285px; height:96px;padding:0px;"
+													render="uploadFilePanel, ideaFiles1Table,ideaFiles2Table, errrors"
+													limitRender="false">
+												</rich:fileUpload>
+											</rich:panel>
+										</h:panelGroup>
+									</div>
+
+									<h:commandButton
+										rendered="#{(userSessionController.currentStage1 or userSessionController.currentStage3) }"
+										styleClass="SubmitFormButton" value="Submit"
+										action="#{ideaController.sendIdeaAndReset}" />
+								</h:form>
+								<div class="SectionText participateHeader"
+									style="margin-right: 5px; width: 75%; padding: 10px;">
+
+									Please make sure before submitting your idea to fulfill
+									challenge requirements and judging criteria as per challenge
+									content:<a
+										href="http://reach/HPfiles_Reach/innovation%20icons/innovation%20index1.htm"
+										target="_new">Here</a>
+
+
+								</div>
+							</div>
+						</h:panelGroup>
+					</h:panelGroup>
+				</div>
+
+				<div class="sideContent">
+					<div class="top">
+						<div class="component">
+							<div class="head">
+								<span class="bullet"></span> <span class="title">Idea Box</span>
+							</div>
+							<span class="bullet"></span>
+							<div class="content">
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="rssFeed">
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Inspiration
+										RSS feed</span>
+								</div>
+								<span class="bullet"></span>
+								<div class="content">
+									<div class="textContent">
+										<span class="rssIcon"></span><span class="rssTxt"><span
+											class="title">Complex of Technical</span> - Schools in New
+											York, Complex of Technical Schools Selfeducation via books,
+											gemi ongraphic design, SEO, websites creation.</span>
+									</div>
+									<div class="textContent">
+										<span class="rssIcon"></span><span class="rssTxt"><span
+											class="title">Complex of Technical</span> - Schools in New
+											York, Complex of Technical Schools Selfeducation via books,
+											gemi ongraphic design, SEO, websites creation.</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

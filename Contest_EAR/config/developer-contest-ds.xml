@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- JBoss, Home of Professional Open Source Copyright 2012, Red Hat, Inc. 
+    and/or its affiliates, and individual contributors by the @authors tag. See 
+    the copyright.txt in the distribution for a full listing of individual contributors. 
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+    use this file except in compliance with the License. You may obtain a copy 
+    of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+    by applicable law or agreed to in writing, software distributed under the 
+    License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+    OF ANY KIND, either express or implied. See the License for the specific 
+    language governing permissions and limitations under the License. -->
+<!-- This is an unmanaged datasource. It should be used for proofs of concept 
+    or testing only. It uses H2, an in memory database that ships with JBoss 
+    AS. -->
+<datasources >
+    <!-- The datasource is bound into JNDI at this location. We reference 
+        this in META-INF/persistence.xml -->
+        
+	<local-tx-datasource>
+		<jndi-name>jboss/datasources/DeveloperContestDS</jndi-name>
+		<connection-url>jdbc:oracle:thin:@ 10.195.5.108:1521/PORTALDB_STG</connection-url>
+		<driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+		<user-name>contest</user-name>
+		<password>contest</password>
+		<min-pool-size>1</min-pool-size>
+		<max-pool-size>20</max-pool-size>
+		<track-statements>true</track-statements>
+		<check-valid-connection-sql>select sysdate from dual</check-valid-connection-sql>
+		<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+		<metadata>
+			 <type-mapping>Oracle9i</type-mapping>
+		</metadata>
+	</local-tx-datasource>        
+	
+</datasources>
+ 

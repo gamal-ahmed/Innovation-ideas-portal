@@ -1,0 +1,389 @@
+/* Reset 
+--------------------------------------------------------------------*/
+
+@font-face { font-family: 'neotechalt-webfont'; src: url('fonts/neotechalt-webfont.eot'); src: url('fonts/neotechalt-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/neotechalt-webfont.ttf') format('truetype'), url('fonts/neotechalt-webfont.woff') format('woff'), url('fonts/neotechalt-webfont.svg#ge_ss_two_medium-webfont') format('svg'); font-weight: normal; font-style: normal; }
+@font-face {font-family: 'impact-webfont';src: url('fonts/impact-webfont.eot');src: url('fonts/impact-webfont.eot?#iefix') format('embedded-opentype'),url('fonts/impact-webfont.ttf') format('truetype'),url('fonts/impact-webfont.woff') format('woff'),url('fonts/impact-webfont.svg#impact-webfont') format('svg');font-weight: normal;font-style: normal;}
+
+html { margin:0; padding:0; border:0; }
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section { display:block; }
+body { line-height: 1.5; background: white; }
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; float:none; }
+table, th, td { vertical-align: middle; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; }
+blockquote, q { quotes: "" ""; }
+a img { border: none; }
+:focus { outline: 0; }
+table{border-collapse:collapse}
+
+body{ font-family: 'neotechalt-webfont', Helvetica, sans-serif; font-size:12px;color:#727272; background:url(#{resource['en:images/6.jpg']}) center 0 no-repeat #FFF; color:#0d0d0d}
+.MainContainer{ margin:0 auto;width:900px;padding:0 0 30px}
+
+/* Header 
+--------------------------------------------------------------------*/
+.SaytarLogo{float:left;height:182px;width: 295px; background: url(#{resource['en:images/logo.png']}) 19px 21px no-repeat; }
+.SaytarLogo img { display: none;}
+.EtisalatLogo{margin: 13px 11px 0;display:inline-block}
+.SideLogoTitle{ overflow: hidden;}
+.HeaderTitle{color: #4E4E4E;display: inline-block;float: left;font-size: 30px;line-height: 53px;padding: 30px 26px 35px 52px;  width: 72.5%;/* font-weight: bold; *//* text-align: center; */}
+.SmallHeaderTitle{font-size:32px;}
+.lang{background:url(#{resource['en:images/lang.png']}) no-repeat;font-family:Tahoma, Geneva, sans-serif;font-size:13px;color:#fff;font-weight:700;  padding:3px 10px 3px 30px;  text-align: right;display: none;}
+.SideLogo{float:left;}
+.lang:hover{color:#fff}
+.MainHeader{overflow:hidden;/* background: url(#{resource['en:images/bg3.jpg']}); */}
+
+/* Menu 
+--------------------------------------------------------------------*/
+.TopMenu{border-bottom: 9px solid #93ca5d;height:40px;margin: 0px 0 0;clear:both;background: #426136;}
+.TopMenu ul{width: 100%;display:inline-block;}
+.TopMenu ul li{float:left;list-style-type:none;padding: 5px 0 11px 0;}
+.TopMenu ul li.selected{background:url(#{resource['en:images/menu_selected.png']}) bottom center no-repeat;}
+.TopMenu ul li a{color: #FFF;background:url(#{resource['en:images/menu_seb.jpg']}) left no-repeat;font-size: 18px;padding: 0 23px;/* font-weight: 600; */}
+.TopMenu ul li.selected a{color: #93ca5d;}
+.TopMenu ul li:first-child a{background:none}
+.TopMenuSelect{display:none}
+.Logout{float:right;font-family: 'neotechalt-webfont'; font-weight: bold;color:#93ca5d;font-size:14px;margin: 15px 0 0;}
+
+/* Welcome Message 
+--------------------------------------------------------------------*/
+.WelcomeMessage{background: #0b1c04 url(#{resource['en:images/bg3.jpg']}) 0 -5px no-repeat;height:83px; margin:5px 0 0;padding:15px 0;font-size:14px; color:#fff}
+.MessageText{padding:0 10px;width:60%;float:left}
+.MessageTitle{width:35%;float:left;padding:0 0 0 20px;}
+.MessageTitle a{font-family:impact,impact-webfont; color: #93ca5d;text-decoration:none}
+.MessageTitle a:hover{color:#bbe532;text-decoration:none}
+.MessageTitle a.register{font-size: 40px;}
+.MessageTitle span{font-family:impact,impact-webfont;color:#93ca5d;text-decoration:none; font-size: 28px;line-height: 26px;}
+.MessageTitle .Font12{font-size:12px;font-family:Arial, Helvetica, sans-serif;font-weight:700}
+.MessageTitle .Comment{color:#fff;font-family:Arial, Helvetica, sans-serif;font-weight:700}
+.MessageTitle .LineHeightFix{line-height:34px}
+
+/* Home Template
+--------------------------------------------------------------------*/
+.ContentContainer{background:#fff url(#{resource['en:images/corner_draw.png']}) no-repeat right top;padding:15px 10px 15px;overflow:hidden}
+.YoutubeContainer{width: 290px;height:260px;float:left;background: url(#{resource['en:images/idea.jpg']}) no-repeat 0 11px;}
+.StepsGraph{margin: 15px 35px 15px 0px;float:left}
+.StageNumber{background: url(#{resource['en:images/stage1.png']}) 8px 3px no-repeat;font-family: impact,impact-webfont;font-size: 31px;margin: 8px 0 0;padding: 0 44px;}
+.Font12{font-size:12px}
+.Stage1,.Stage2,.Stage3,.Stage4{ font-family:impact,impact-webfont; font-size:31px; }
+.Content .Stage1,.Content .Stage2,.Content .Stage3,.Content .Stage4{font-size:19px;}
+.Stage1{color:#1c5b00;}
+.Stage2{color:#e3390a;}
+.Stage3{color:#00315b;}
+.Stage4{color:#8409d1;}
+.StageArea{display:inline-block;float:left;width:35%}
+.Timer{border:1px solid #fff;background:url(#{resource['en:images/timer_bg.jpg']}) repeat-x;font-family: impact,impact-webfont;font-size: 20px;padding: 2px 8px;color:#fff; height: 42px;}
+#defaultCountdown{font-size: 20px;width:100%;display:inline-block;}
+.DHMS{color:#fff;font-size:27px}
+.TimerContainer{border:1px solid #565353;margin: 0 0 28px;}
+.LoginForm{background: #93ca5d; display:inline-block;padding: 0 5px 10px;width: 295px;margin:0 0 5px}
+.LoginContainer{position:relative}
+.LoginContainer  input[type="text"],.LoginContainer  input[type="password"]{padding:2px;border:1px solid #ABABAB;height:18px;width: 191px;}
+.LoginContainer  label,.LoginContainer  label{width:72px;color:#0d0d0d;font-size:14px;font-weight:700;margin:10px 5px 0 10px;display:inline-block}
+.StageDesc{line-height:16px;  padding: 0 0 0 10px; margin: -10px 0 0;}
+.ForgetPassword{color:#3a9d0e;font-weight:700;text-decoration:underline}
+.ForgetPassword:hover{color:#acd821;}
+.SubmitJadges{  padding: 0 0 0 20px;width: 42%;float:left}
+.Voter{text-align:center}
+
+/* Buttons
+--------------------------------------------------------------------*/
+input[type="submit"].LoginButton{right: 5px;position: absolute;background:url(#{resource['en:images/login.png']}) no-repeat; width: 117px; height: 41px;padding: 0 0 7px 13px;border:0;cursor:pointer;color: #FFF;font-size: 26px;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].SubmitButton{background:url(#{resource['en:images/login.png']}) no-repeat; width: 117px; height: 41px;padding: 0 0 0px 16px;border:0;cursor:pointer;color: #FFF;font-size: 23px;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].LoginButton:hover, input[type="submit"].LoginButton:active,{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+input[type="submit"].LoginButton:hover, input[type="submit"].LoginButton:active,input[type="submit"].LoginButton:hover{background: url(#{resource['en:images/login-hover.png']}) no-repeat;  }
+input[type="submit"].SubmitButton:hover,input[type="submit"].SubmitButton:active{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+input[type="submit"].JadgesButton{background: url(#{resource['en:images/login.png']}) no-repeat; width:132px; height: 52px;padding: 0 0 14px 0;border:0;cursor:pointer;color: #FFF;font-size: 21px;margin: 0 0 17px 0;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].JadgesButton:hover,input[type="submit"].JadgesButton:active{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+input[type="submit"].VoteButton{background: url(#{resource['en:images/login.png']}) no-repeat; width: 116px; height: 47px;padding: 0 0 9px 15px;border:0;margin: -9px 0 20px 0;cursor:pointer;color: #FFF;font-size: 25px;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].VoteButton:hover,input[type="submit"].VoteButton:active{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+input[type="submit"].SubmitFormButton{right: -9px;position: absolute;bottom: -60px;background: url(#{resource['en:images/login.png']}) no-repeat; width: 116px; height: 43px;padding: 0 0 5px 14px;border:0;cursor:pointer;color: #FFF;font-size: 20px;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].SubmitFormButton:hover,input[type="submit"].SubmitFormButton:active{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+input[type="submit"].RegisterButton{right: -12px;position: absolute;bottom: -60px;background: url(#{resource['en:images/login.png']}) no-repeat; width: 117px; height: 44px;padding: 0 0 7px 15px;border:0;cursor:pointer;color: #FFF;font-size: 20px;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+input[type="submit"].RegisterButton:hover,input[type="submit"].RegisterButton:active{background: url(#{resource['en:images/login-hover.png']}) no-repeat;}
+
+/* Inner Template
+--------------------------------------------------------------------*/
+.Content{padding:0 0 40px}
+.SectionTitle{font-family: 'neotechalt-webfont'; color:#93ca5d; font-weight: bold; font-size:20px;margin:0 0 10px 0}
+.Form{border: 10px solid #93ca5d;border-radius:5px;padding: 15px 45px 10px;width: 295px;position:relative;  margin: 0 auto 16px;}
+.Form .FormTextbox{padding:2px;border:1px solid #bdbcbc;height:18px;width:160px}
+.Form .FormCombo{border:1px solid #bdbcbc;height:22px;width:166px}
+.Form .FormBrowse{width: 215px;font-size: 12px;height:20px;padding: 0;margin: 0 5px 0 0;}
+.Form label{font-size:12px; font-weight:700;width:40%;display:inline-block;vertical-align:top}
+.Form textarea{padding:2px;border:1px solid #bdbcbc;height:60px;width:280px;margin:5px 0 0;resize:none}
+.Form .FormEntry{margin:0 0 5px 0;}
+.Form .Upload,.Form .Upload:hover,.Form .Upload:focus{background:#93ca5d;font-weight:700;color:#fff;padding:3px 7px;display:inline-block;border:none}
+.BrowseUpload{margin:1px 0}
+.SectionText{ margin: 0 0 25px;}
+.FormSide{padding:0 35px;width:340px; float:left;font-size:14px;line-height:18px}
+.FormSide h1{ color:#93ca5d; font-size:18px; font-family:impact,impact-webfont; padding:0 0 10px }
+.FormSide .DevStatus{ font-weight:700; font-size:25px; text-align:center; padding:10px 0 20px 0}
+.FormSide hr{ border:none;border-top: 1px solid #4C5254;  margin:10px 0;}
+.StatusControls { padding:10px 0 0}
+.StatusControls a{ color:#93ca5d; font-weight:700; font-size:14px; margin:10px 0 0}
+.StatusControls a:first-child{ border-right:1px solid #93ca5d; margin:0 8px 0 0 ; padding:0 5px 0 0 }
+.FormTable { margin:0 0 10px}
+.FormTable td{ padding:2px; }
+.FormTable input[type="text"],.FormTable input[type="password"]{ width:160px; padding:2px; margin:0 0 5px}
+.FormTable select{height: 25px;    padding: 0;    width: 166px; margin:0 0 5px}
+.FormTable textarea{ width:270px; padding:5px; height:66px; margin:2px 0 0}
+.SubmitForm{ position:relative; height:20px}
+.RegisterForm{ margin:0 auto; float:none}
+.participateHeader p{ width:84%; font-size:14px}
+.FiveSections{ overflow:hidden; margin:0 0 50px}
+.FiveSections div{ float:left; width:160px; padding:0 6px 5px 10px; background:url(#{resource['en:images/sectionBg.png']}) repeat-y left; min-height:150px}
+.FiveSections div:first-child{ background:none; padding:0 16px 5px 0}
+.BlogsContent{display:inline-block}
+.BlogTabs{ margin:0; padding:0; list-style:none; height:21px}
+.BlogTabs li{ margin:0 5px; display:block; float:left}
+.BlogTabs li a{ padding:5px; background:#e4e3e3; border:1px solid #bdbcbc; font-weight:700; color:#333}
+.BlogTabs li a.selected{background:#fff; border-bottom:1px solid #fff}
+.BlogsTabsContent{ border-top:1px solid #bdbcbc; padding:15px 28px;overflow:hidden} 
+.LeftBlogColumn{  width:100px; float:left;}
+.RightBlogColumn{ width:554px; float:left;font-size:14px}
+.VotesNcomments{ width:63px; padding:10px; background:#93ca5d; color:#fff; min-height:50px; text-align:center; font-weight:700;line-height: 16px;}
+.CommentArea{ width:416px; overflow:hidden}
+.CommentArea textarea{ width:410px; padding:2px; border:1px solid #ccc; height:66px;resize:none}
+.CustomBtn1{ color:#93ca5d; font-size:14px;float:right; display:inline-block  }
+.CustomBtn1:hover,.CustomBtn2:hover{ color:#93ca5d; }
+.CustomBtn2{ color:#93ca5d; font-weight:700; margin:0 0 10px; display:inline-block}
+.CommentSep{ border:none;border-top: 1px dashed #ccc;  margin:5px 0;}
+.DateNtime{ color:#777; margin:0 0 10px;font-size:11px}
+.LeftBlogColumn .CustomBtn1{ float:none; margin:10px }
+.StageDesc ul li{ list-style:none}
+.DeveloperForm{padding:0 0 80px 0 ;float:left }
+.Form .ChoicesLabel{width:70px}
+.Form .NormalWeight{font-weight:normal}
+.FAQ{ border-top: 1px solid #CCCCCC;margin:0 0 20px 0;font-size: 14px;line-height: 20px;overflow: hidden;padding: 10px 0 ;width: 85%;}
+.SectionText .FAQ:first-child{border:none}
+.ContactUsForm{background:url(#{resource['en:images/ContactUs.jpg']}) right top no-repeat;}
+.Question{width:30%; margin:0 10% 0 0;float:left }
+
+.Answer{width:60%; margin:0;float:left }
+.Popup{background:#fff;padding:10px}
+.PopupTitle{background:url(#{resource['en:images/terms_players_logo.jpg']}) 99% 3px no-repeat; border-bottom:2px solid #bed30c; font-family: 'neotechalt-webfont'; font-weight: bold; color:#bed30c;margin:0 0 10px;padding: 0 0 8px;font-size: 17px;font-weight: 700;}
+.Popup p{margin:0 0 10px}
+.Toggle{color:#719E19;padding:7px 20px;font-weight: 700;display:inline-block;background:url(#{resource['en:images/plus.gif']}) left 7px  no-repeat;cursor:pointer}
+.Minus{background:url(#{resource['en:images/minus.gif']}) left 7px no-repeat}
+.Toggle:hover{text-decoration:underline}
+.ExpandCollapse{display: none;padding: 0 20px 15px 20px}
+.JudgingAwardsImg{width:80px;height:80px;float:left}
+.JudgingAwardsDesc{float:left;margin:0  0 0 5px}
+.JudgingAwardsList{margin:10px 0 0}
+.JudgingAwardsList li{background:url(#{resource['en:images/draw_bullet.jpg']}) left 8px no-repeat;list-style-type:none;list-style-position:outside;padding:0 0 0 15px;font-size:14px;margin-bottom:14px}
+.JudgingAwardsList li .ListTitle{display:block;text-decoration:underline}
+.JudgingAwardsContainer{margin-bottom:20px;border-top:1px solid #ccc;padding: 15px 0 0;overflow:hidden;width:85%}
+.participateHeader .JudgingAwardsContainer:first-child{border-top:none}
+
+.BlogsDiscussions{width:100%}
+.BlogsDiscussions tr th{border-bottom:1px solid #ccc;border-right:1px solid #ccc;background:#93ca5d;color:#fff;text-align:center;padding: 5px;font-weight:700;font-size:13px}
+.BlogsDiscussions tr th:first-child{border-left:1px solid #ccc;}
+.BlogsDiscussions tr td{border-bottom:1px solid #ccc;border-right:1px solid #ccc;padding: 10px;text-align:center}
+.BlogsDiscussions tr td:first-child{border-left:1px solid #ccc;text-align:left}
+.DiscussionsTabsContent{border-top: 1px solid #BDBCBC;padding:0;width:100%}
+.DiscussionTitle{color:#5E5E5E;display:block;font-size:12px; font-weight:700;}
+.BlogsDiscussions tr td p{font-size:12px;color:#797979}
+.DiscussionTextbox{border: 1px solid #ABABAB;height: 16px;padding: 2px;width: 90%;font-size:11px}
+.DiscussionCombobox{border: 1px solid #ABABAB;padding: 2px;width: 90%;font-size:11px}
+.odd{background:#F8F8F8}
+.even{background:#fff}
+.DiscussionsContent{height: 21px;margin: 53px 0px 0px 0;}
+.Pagging{float:right}
+.Pagging li{ margin:0 1px; display:block; float:left}
+.Pagging li a{background:#fafafa}
+.Pagging li a.selected{background:#93ca5d;border-bottom: 1px solid #93ca5d;color:#fff}
+.LikeDislikeContainer{display: inline-block;width: 100%;background:url(#{resource['en:images/comments_arrow.png']}) 10px top  no-repeat }
+.LikeDislike{margin:9px 0 0;background:#f1f1f1 }
+.Like,.Dislike{border: 1px solid #f1f1f1;padding:5px 7px 2px 28px;display: inline-block;font-size: 11px;color: #6E6E6E;display: inline-block;height: 18px;font-weight:700}
+.Like:hover,.Dislike:hover{text-decoration:none;background-color:#f8f8f8}
+.Like{background:url(#{resource['en:images/like.png']}) 8px 6px  no-repeat }
+.Dislike{background:url(#{resource['en:images/dislike.png']}) 8px 6px  no-repeat }
+.LikeActive{background:url(#{resource['en:images/like_active.png']}) 8px 6px  no-repeat;background-color:#f8f8f8;box-shadow: inset 0 0 3px #DDD;border: 1px solid #E0E0E0;}
+.DislikeActive{background:url(#{resource['en:images/dislike_active.png']}) 8px 6px  no-repeat;background-color:#f8f8f8;box-shadow: inset 0 0 3px #DDD;border: 1px solid #E0E0E0;}
+.CommentsList li{list-style-type:none}
+	
+/* Footer
+--------------------------------------------------------------------*/
+.FooterContainer{background:#0d0d0d url(#{resource['en:images/footer_bg.jpg']}) repeat-x;color:#fff;text-align:center;padding: 19px 0 0 15px;height: 109px;}
+.FooterContainer ul{display:inline-block}
+.FooterContainer ul li{background:url(#{resource['en:images/menu_seb.jpg']}) left no-repeat;list-style-type:none;float:left}
+.FooterContainer ul li:first-child{background:none}
+.FooterContainer ul li a{color:#fff;padding:0 15px;}
+.TermsConditions{height:20px;float: left;clear: right;margin: 12px 0 0 0;}
+
+/* Controls 
+--------------------------------------------------------------------------------------------*/
+input[type="text"]:hover,input[type="password"]:hover,textarea:hover,select:hover{background-color: #fbfff0;}
+input[type="text"]:focus,input[type="password"]:focus,textarea:focus,select:focus{background-color: #fbfff0;border:1px solid #0a0a0a}
+.input_error{background-color: #faddd9;border: 1px solid #e5442c; color:#9d2817}
+.RadioLabel{ vertical-align:middle; margin:0  0 0 2px}
+.RadioFirst{vertical-align:middle;margin:0  0 0 3px}
+.Radio{vertical-align:middle; margin:0  0 0 5px}
+
+/* General Classes 
+--------------------------------------------------------------------*/	
+img{border:none}
+input{font-family:Tahoma, Geneva, sans-serif}
+a{text-decoration:none; font-weight:400;outline: none;color:#93ca5d}
+a:hover{text-decoration:underline}
+.Float{float:left}
+.FloatAway{float:right}
+.Bold{font-weight:700}
+.Italic{font-style:italic}
+.NormalWeight{font-weight:normal}
+.Underline{text-decoration:underline}
+.Pointer{cursor:pointer}	
+.AlignCenter{text-align:center}
+.AlignLeft{text-align:left}
+.AlignRight{text-align:right}
+.Hide{display:none}
+.Show{display:block}
+.Required{color:#F00}
+.Font11{font-size:11px}
+.Error{color:#ED0000;font-weight:700;padding:3px 0 3px 20px;background:url(#{resource['en:images/error.png']}) no-repeat left 3px;margin: 39px 0 0 0;}
+.Form .Error{color:#ED0000;font-weight:700;padding: 0;background:none;margin:-3px 0 10px 0}
+
+/* Responsive design
+--------------------------------------------------------------------*/
+@media screen and (min-width:0) and (max-width: 980px) { }
+@media screen and (min-width:0) and (max-width:768px)  {
+
+.MainContainer{width:100%;padding:0}
+.ContentContainer{padding:15px 10px 30px;background-image:none;overflow:hidden;}
+.SectionText {width: auto;}
+.SaytarLogo { display: block;margin: 0 auto;width:295px;float:left}
+.SideLogoTitle{ overflow: hidden;  width:372px;float:right}
+input.LoginButton[type="submit"] {top: 60px;right: -24px;}
+.HeaderTitle {line-height: 30px;padding: 50px 15px 15px 15px;width:65%;font-size: 30px;}
+.SmallHeaderTitle {font-size: 20px;display: block;}
+.MessageText{display:none}
+.TopMenuSelect{border:1px solid #bdbcbc;width:96%;margin: 10px;display:inline-block}
+.TopMenu{height:0;border:none}
+.TopMenu ul{display:none}
+.Logout {font-size: 16px;font-weight: 700;margin: 0 10px;float:none;padding: 10px 0;text-align: right;display:block}
+.MessageTitle {width: auto;padding: 0;margin: 0 10px;}
+.LoginForm{width:auto}
+.MessageTitle a.register {font-size: 35px;}
+.MessageTitle a {font-size: 28px;}
+.FooterContainer ul{display:inline-block}
+.FooterContainer ul li{background:none;list-style-type:disc;float:none;list-style-position:inside}
+.StepsGraph {margin: 15px 20px;text-align: center;}
+.StageArea {display: block;margin: 0 30px;width: 320px;}
+
+.FooterContainer{text-align:left}
+.TermsConditions {padding:0 0 10px 0;height: auto;}
+.LoginContainer input[type="text"], .LoginContainer input[type="password"] {width:60%}
+.FiveSections div{width:auto;background:none; padding: 0;min-height: 90px;}
+.participateHeader p{width:auto}
+.FiveSections div:first-child{  text-align: center;width: 100%;}
+.BlogsTabsContent{ padding:15px 0} 
+.CommentArea textarea {width: 99%;}  
+.FormSide {padding: 0 ;width: auto;}
+.VotesNcomments{margin:0 auto}
+.DeveloperForm{float:none;margin: 0 auto;width: 405px;}
+.RightBlogColumn {width: auto;}
+.CommentArea {margin: 0 0 20px;overflow: hidden;width: 100%;}
+.LeftBlogColumn {float: none;margin: 0 auto;width: auto; text-align: center;}
+.Error{margin:5px 0;width:70%}
+.Form .Error{margin:-3px 0 10px;width:100%}
+.JudgingAwardsImg {height: 65px;margin: 0 7px 0 0;width: 65px;}
+.JudgingAwardsDesc{float:none;margin: 0 0 0 5px}
+.JudgingAwardsDesc p{font-size: 16px;padding: 20px 15px;}
+.JudgingAwardsList {clear: both;}
+
+}
+@media screen and (min-width:0) and (max-width:685px)  { 	
+.SideLogoTitle{float:none;margin:-40px auto 0;}
+.SaytarLogo {float:none;margin:0 auto;}
+.HeaderTitle {line-height: 26px;padding: 50px 15px 15px 15px;width:60%;font-size: 24px;}
+.SmallHeaderTitle {font-size: 18px;display: block;}
+.TopMenuSelect{width:96%}
+.StepsGraph {float: none;margin: 15px auto;text-align: center;}
+.StageArea {display: block;float: none;margin: 0 auto;}
+.FAQ,.JudgingAwardsContainer{ width: 100%;}
+}
+@media screen and (min-width:0) and (max-width:600px)  {
+.TopMenuSelect{width:96%}
+.CommentArea textarea {width: 98%;}
+}
+@media screen and (min-width:0) and (max-width:568px)  { 
+.TopMenuSelect{width:96%}
+.FiveSections div{min-height: 120px;}
+}
+@media screen and (min-width:0) and (max-width:480px)  {
+.TopMenuSelect{width:94%} 
+.DeveloperForm{float:none;margin: 0 ;width: auto;}
+.BrowseUpload {margin: 10px 0;}
+.Form .FormBrowse{width:100%}
+input.SubmitFormButton[type="submit"] {right: -15px;bottom: -60px;}
+.Form {padding: 10px 15px;width: auto;}
+.Form .FormTextbox {width: 97%;}
+.Form textarea {width: 97%;}
+.Form .FormCombo {width: 98%;}
+.Form label {width:100%}
+input.RegisterButton[type="submit"] {  right: -20px;  bottom: -85px;}
+.StageArea {width:300px}
+.HeaderTitle {width: 66%;}
+.Question{width:100%; margin:0 0 10px;float:none }
+.Answer{width:100%; margin:0;float:none }
+
+.BlogTabs li{margin:0 1px}
+.BlogsDiscussions tr td p{display:none}
+.DiscussionsTabsContent{width:100%}
+.BlogsDiscussions tr th{padding: 2px;font-size:12px}
+.BlogsDiscussions tr td{padding: 2px;font-size:11px}
+.DiscussionTitle{font-size:11px;padding:3px;color:#333333 }
+
+}
+@media screen and (min-width:0) and (max-width:380px)  {
+.TopMenuSelect{width:92%}
+
+}
+@media screen and (min-width:0) and (max-width: 320px) {
+.TopMenuSelect{width:90%}
+.StageArea {width:300px}
+input.LoginButton[type="submit"] {right: -12px;}
+}
+
+.color { color: #587C35; font-size: 36px; /* font-weight: bold; */}
+
+.copyRight { float: left; clear: left; margin: 43px 0 0 15px;} 
+.bg { background: url(#{resource['en:images/sponser.jpg']}) no-repeat 442px -21px; width: 100%; display: inline-block; height: 109px;}
+
+.SubmitButton {background: url(#{resource['en:images/login.png']}) no-repeat; width:132px; height: 52px;padding: 0 0 14px 0;border:0;cursor:pointer;color: #FFF;font-size: 21px;margin: 0 0 17px 0;font-family: 'neotechalt-webfont', Helvetica, sans-serif;}
+
+.errorButton { margin: 0 0 0 0;}
+
+
+div.ideaUploadClass{padding:0px;}
+
+input[type="submit"].popupDeleteIdea{margin-left:62px; margin-right:5px; margin-top:10px;}
+
+div.ideasCollection{float:left; width:300px; padding:5px; margin-left:0px; border-right:0px;border-left:0px;border-top:0px;}
+
+.resetIdea{color:#3a9d0e;font-weight:700;text-decoration:underline; margin-left:2px;font-size:13px;}
+
+span.spanFontFamily{font-family:Arial}
+textarea.duscustionBoardTextArea{margin-left:110px}
+.BlogAccess{
+	float:right;
+}
+
+.BlogActions{
+	float:right;
+	padding-right:20px;
+	}
+	
+	.backAllBlogs{
+	float:right;
+	color: rgb(170, 214, 29);
+	}
+	
+	.alignTopForGrid{
+    vertical-align: top;
+}
+
+.personalDetails{
+	margin-left: 17px;
+	}

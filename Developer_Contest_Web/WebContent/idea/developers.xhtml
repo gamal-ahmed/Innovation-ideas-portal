@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+
+
+
+<ui:composition template="/templates/main.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{ideaController.preRenderIdeaScreen}" />
+	</f:metadata>
+
+
+	<ui:define name="content">
+		<h:outputScript rendered="#{ideaController.ideaAddedSuccessfully}">
+		jQuery(document).ready(function(){
+			#{rich:component('ideaInformationPopup')}.show();
+		 });
+	</h:outputScript>
+
+	<!--  	<div class="ContentContainer"> -->
+			<div class="Content">
+
+	
+
+
+<div class="SectionText participateHeader">
+					<p>You can submit up to 10 ideas in any of the contest’s categories.
+					<br/>
+					To make your idea available for public, <b>create Blog  </b>
+					
+					
+					</p>
+				   <br/>
+
+	
+				<h:panelGroup id="errorPanel">
+				</h:panelGroup>
+				
+				</div>
+				
+			
+				
+				<h:panelGroup columnClasses="alignTopForGrid,alignTopForGrid" columns="2" rendered="#{userSessionController.contender}" style="margin-top:5px;">
+					<h:panelGroup  id="submitIdeaPanel" rendered="#{ideaController.canSubmitIdea}">
+						<h:messages globalOnly="true" id="errrors" styleClass="Error"
+							rendered="#{not ideaController.ideaAddedSuccessfully}" />
+
+
+						<div class="DeveloperForm" style="float: left; display: block; width: 350px; margin-left: 200px;">
+							<h:form class="Form" id="developerForm" enctype="UTF-8">
+								<div class="FormEntry">
+									<h:outputLabel for="ideaname">#{messages['idea.contender.name']}</h:outputLabel>
+									<h:inputText id="ideaname" value="#{ideaController.currentIdea.ideaName}" styleClass="FormTextbox"
+										binding="#{ideaController.ideaName}" required="true"
+										requiredMessage="#{messages['idea.contender.idea.error.1']}"
+										readonly="#{! userSessionController.currentStage1}" />
+									<h:message for="ideaname" styleClass="Error" />
+								</div>
+								<div class="FormEntry">
+									<label>#{messages['idea.contender.chose']} </label>
+									<h:selectOneMenu value="#{ideaController.currentIdea.challenge}" converter="genericConverter"
+										disabled="#{! userSessionController.currentStage1}" style="width:200px;">
+										<f:selectItems value="#{ideaController.listOfContests}" var="c"
+											itemLabel="#{c.getLocalizedDescription(userSessionController.siteLanguage)}" itemValue="#{c}" />
+									</h:selectOneMenu>
+								</div>
+								<div class="FormEntry">
+									<h:outputLabel style="width:90px" for="ideaDesc">#{messages['idea.contender.ideaDesc']}</h:outputLabel> <i style="font-size:11px;">(maximum of 2500 characters)</i>
+									<br></br>
+									<h:inputTextarea id="ideaDesc" value="#{ideaController.currentIdea.ideaDescription}" required="true"
+										requiredMessage="#{messages['idea.contender.idea.error.2']}" onkeyup="limitText(this,2500)"
+										binding="#{ideaController.ideaDescription}" readonly="#{ideaController.canEditDesc}">
+										<f:validateLength maximum="3000"></f:validateLength>
+									</h:inputTextarea>
+									<h:message for="ideaDesc" styleClass="Error" />
+								</div>
+								<div class="FormEntry" id="uploadedfiles">
+									<rich:dataTable value="#{ideaController.listOfFilesForCurrentIdea_STG1}" var="file" style="width:285px;"
+										id="ideaFiles1Table">
+										<rich:column style="width:170px; white-space:normal">
+											<h:outputText value="#{fn:substring(file.fileName, 0, 20)} ..." rendered="#{fn:length(file.fileName) gt 30 }" />
+											<h:outputText value="#{file.fileName}" rendered="#{fn:length(file.fileName) le 30 }" />
+
+
+											<rich:tooltip followMouse="true" showDelay="500" styleClass="tooltip">
+												<h:panelGrid columns="1">
+													<h:outputText value="#{file.fileName}" />
+												</h:panelGrid>
+											</rich:tooltip>
+										</rich:column>
+										<rich:column>
+
+											<h:commandButton action="#{ideaController.downloadFile(file.filePath)}"
+												value="#{messages['idea.contender.download']}" />
+										</rich:column>
+
+										<rich:column>
+
+											<a4j:commandButton disabled="#{! userSessionController.currentStage1 and ! (userSessionController.currentStage3 and ideaController.currentIdea.ideaStatus.ideaStatusId == 3) }"
+												oncomplete="#{rich:component('filePopup')}.show()"
+												actionListener="#{ideaController.setFilePath(file.filePath)}" value=" #{messages['idea.contender.delete']}"
+												style="font-size:12px;"></a4j:commandButton>
+										</rich:column>
+									</rich:dataTable>
+								</div>
+
+
+								<div class="FormEntry" id="uploadedfiles2">
+									<rich:dataTable rendered="#{userSessionController.currentStage3 or userSessionController.currentStage4}"
+										value="#{ideaController.listOfFilesForCurrentIdea_STG3}" var="file" style="width:285px;" id="ideaFiles2Table">
+										<rich:column style="width:170px; white-space:normal">
+											<h:outputText value="#{fn:substring(file.fileName, 0, 20)} ..." rendered="#{fn:length(file.fileName) gt 30 }" />
+											<h:outputText value="#{file.fileName}" rendered="#{fn:length(file.fileName) le 30 }" />
+
+
+											<rich:tooltip followMouse="true" showDelay="500" styleClass="tooltip">
+												<h:panelGrid columns="1">
+													<h:outputText value="#{file.fileName}" />
+												</h:panelGrid>
+											</rich:tooltip>
+										</rich:column>
+										<rich:column>
+
+											<h:commandButton action="#{ideaController.downloadFile(file.filePath)}"
+												value="#{messages['idea.contender.download']}" />
+										</rich:column>
+
+										<rich:column>
+
+											<a4j:commandButton oncomplete="#{rich:component('filePopup')}.show()"
+												disabled="#{! userSessionController.currentStage3}"
+												actionListener="#{ideaController.setFilePath(file.filePath)}" value=" #{messages['idea.contender.delete']}"
+												style="font-size:12px;"></a4j:commandButton>
+										</rich:column>
+									</rich:dataTable>
+								</div>
+
+
+								<div class="FormEntry">
+									<rich:panel bodyClass="rich-laguna-panel-no-header" rendered="#{ideaController.currentIdea.new}"
+										style="padding:0px; border: none; background: transparent;">
+										<h:commandLink action="#{ideaController.sendIdea}" value="#{messages['idea.contender.uploadFiles']}"
+											rendered="#{ideaController.currentIdea.new}" styleClass="resetIdea" style="margin:0 0 0 0px;]">
+
+										</h:commandLink>
+									</rich:panel>
+									<br /> <br />
+
+									<h:panelGroup id="uploadFilePanel">
+										<rich:panel bodyClass="rich-laguna-panel-no-header ideaUploadClass"
+											rendered="#{!ideaController.currentIdea.new and ideaController.canSubmitFile}"
+											style="padding:0px; border: none; background: transparent;">
+											<span class="Bold">#{messages['idea.contender.upload']} (<h:outputText
+													value="#{ideaController.extensionsForStage}" />)
+											</span>
+											<span> - #{messages['idea.contender.maximum']} <h:outputText
+													value="#{ideaController.maximumFilesForStage}" /> #{messages['idea.contender.files']}
+											</span>
+											<br />
+											<span class="Bold"><h:outputFormat value="#{messages['idea.contender.filesize']}" >
+											<f:param value="#{ideaController.fileSize/1024/1024}"/>
+											</h:outputFormat>
+											</span>
+
+											<br />
+
+											<rich:fileUpload fileUploadListener="#{ideaController.listener}" maxFilesQuantity="1" id="upload"
+												immediateUpload="true" uploadLabel="#{messages['idea.contender.upload']}"
+												addLabel="#{messages['idea.contender.add']}" clearAllLabel="#{messages['idea.contender.clear']}"
+												deleteLabel="#{messages['idea.contender.delete']}" acceptedTypes="#{ideaController.extensionsForStage}"
+												allowFlash="false" ontyperejected="alert('#{messages['idea.contender.idea.error3']}');"
+												style="width:285px; height:96px;padding:0px;"
+												render="uploadFilePanel, ideaFiles1Table,ideaFiles2Table, errrors" limitRender="false">
+											</rich:fileUpload>
+										</rich:panel>
+									</h:panelGroup>
+								</div>
+						
+								<h:commandButton rendered="#{(userSessionController.currentStage1 or userSessionController.currentStage3) }" styleClass="SubmitFormButton" value="Submit"
+									action="#{ideaController.sendIdeaAndReset}" />
+							</h:form>
+						<div class="SectionText participateHeader" style="margin-right: 5px;width: 75%;padding: 10px;">
+						
+						Please make sure before submitting your idea to fulfill challenge requirements and judging criteria as per challenge 
+						content:<a href="http://reach/HPfiles_Reach/innovation%20icons/innovation%20index1.htm" target="_new">Here</a>
+					
+						
+						</div>
+						</div>
+				
+					</h:panelGroup>
+					<h:panelGroup > 
+						<div class="FormSide" style="margin-top: -110px; margin-right: 50px;">
+							<h4 class="Titles" >#{messages['idea.contender.personal']}</h4>
+							
+							<p class="DevStatus">
+								<c:choose>
+									<c:when test="#{userSessionController.currentStage1}">
+										<h:outputText style="font-size:20px;" value="#{messages['idea.status.stage1']}" />
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="#{userSessionController.currentStage2}">
+												<h:outputText value="#{messages['idea.status.stage2']}" />
+											</c:when>
+											<c:otherwise>
+												<c:choose>
+													<c:when test="#{userSessionController.currentStage3}">
+														<h:outputText style="font-size:18px;" value="#{messages['idea.status.stage3.shortlisted']}" rendered="#{ideaController.currentUser.shorlisted}"/>
+														
+														<h:outputText style="font-size:18px;" value="#{messages['idea.status.stage3.notshortlisted']}" rendered="#{not ideaController.currentUser.shorlisted}" />
+													</c:when>
+													<c:otherwise>
+														<c:choose>
+															<c:when test="#{userSessionController.currentStage4}">
+																<h:outputText style="font-size:18px;" value="#{messages['idea.status.stage4.shortlisted']}" rendered="#{ideaController.currentUser.shorlisted or ideaController.currentUser.winner}" />
+																<h:outputText style="font-size:18px;" value="#{messages['idea.status.stage4.notshortlisted']}" rendered="#{(not ideaController.currentUser.shorlisted and (not ideaController.currentUser.winner))}" />
+															</c:when>
+														</c:choose>
+													</c:otherwise>
+												</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
+							</p>
+							
+							
+							<hr />
+							<h4 class="Titles">#{messages['idea.contender.ideas']}</h4>
+							<h:panelGroup
+								rendered="#{userSessionController.currentStage1 and fn:length(ideaController.currentUser.ideas)  lt 10}">
+								<h:form>
+									 
+									<h:commandLink disabled="#{! userSessionController.currentStage1 or ideaController.listOfAllIdeas ge 10}"
+										action="#{ideaController.resetIdea}" value="&lt;&lt; Add new idea &gt;&gt;" styleClass="resetIdea">
+									</h:commandLink>
+									
+								</h:form>
+							</h:panelGroup>
+							<h:form>
+							<div style="height: 200px; overflow-y: scroll; ">
+								<a4j:repeat value="#{ideaController.currentUser.ideas}" var="idea" rows="10" id="repeat">
+									<rich:panel styleClass="ideasCollection">
+
+										<h:panelGroup styleClass="spanFontFamily">
+											<h:outputText value="#{messages['idea.contender.name']}" style="font-weight:bold" />: 
+                    <h:outputText value="#{idea.ideaName}" />
+											<br />
+											<h:outputText value="#{messages['idea.contender.idea.status']}" style="font-weight:bold" />: 
+                    <h:outputText value="#{ideaController.getLocalizedMessageForDescription(idea.ideaStatus)}" />
+											<p class="StatusControls">
+												<h:commandLink actionListener="#{ideaController.editIdea(idea)}" value="Edit Idea" 
+													disabled="#{userSessionController.currentStage2 or userSessionController.currentStage4 }" style="font-size:12px;">
+												</h:commandLink>
+												
+												<a4j:commandLink disabled="#{! userSessionController.currentStage1  }"
+													oncomplete="#{rich:component('popup')}.show()" actionListener="#{ideaController.deleteProvidedIdea(idea)}"
+													value=" Delete Idea" style="font-size:12px;">
+												</a4j:commandLink>
+
+												
+												<br />
+												<h:commandLink action="#{ideaController.createBlog}"
+													value="#{messages['idea.manageIdea.message.createBlog']}"
+													rendered="#{userSessionController.isManageBlogPostsEnabled(idea.ideaStatus) and !idea.rejected and idea.ideaBlog == null}"
+													style="font-size:12px;">
+													<f:setPropertyActionListener target="#{ideaController.currentIdea}" value="#{idea}" />
+												</h:commandLink>
+											</p>
+
+											<p class="StatusControls">
+
+
+
+												<h:commandLink action="#{ideaBlogController.editBlog}"
+													value="#{messages['idea.manageIdea.message.updateBlog']}"
+													rendered="#{userSessionController.isManageBlogPostsEnabled(idea.ideaStatus) and !idea.rejected and idea.ideaBlog != null}"
+													style="font-size:12px;">
+													<f:setPropertyActionListener target="#{ideaBlogController.currentIdeaBlog}" value="#{idea.ideaBlog}" />
+												</h:commandLink>
+
+												<a4j:commandLink value="#{messages['idea.manageIdea.message.deleteBlog']}" disabled="#{ userSessionController.currentStage3  }"
+													rendered="#{userSessionController.isManageBlogPostsEnabled(idea.ideaStatus) and !idea.rejected and idea.ideaBlog != null}"
+													style="font-size:12px;" oncomplete="#{rich:component('deleteBlogpopup')}.show()">
+													<f:setPropertyActionListener target="#{ideaBlogController.currentIdeaBlog}" value="#{idea.ideaBlog}" />
+												</a4j:commandLink>
+
+											</p>
+										</h:panelGroup>
+									</rich:panel>
+
+								</a4j:repeat>
+								</div>
+							</h:form>
+							<hr />
+							<h4 class="Titles">Your Blogs</h4>
+							<p><h:link  class="resetIdea" style="color:#3a9d0e" outcome="/idea/personalBlogs.html" value="Manage your Personal Blog(s)" /></p>
+						</div>
+					</h:panelGroup>
+				</h:panelGroup>
+
+			</div>
+	<!-- 	</div>  -->
+		<rich:popupPanel id="popup" modal="true" autosized="true" resizeable="false">
+			<f:facet name="header">
+				<h:outputText value="#{messages['idea.contender.confirm']}" />
+			</f:facet>
+
+			<p style="font-size: 12px; font-family: tahoma;">#{messages['idea.contender.confirm2']}</p>
+			<h:form>
+
+				<h:commandButton actionListener="#{ideaController.deleteIdea}" value="#{messages['idea.contender.yes']}"
+					styleClass="popupDeleteIdea" />
+				<h:commandButton onclick="#{rich:component('popup')}.hide(); return false;" value="#{messages['idea.contender.no']}" />
+			</h:form>
+		</rich:popupPanel>
+
+		<rich:popupPanel id="filePopup" modal="true" autosized="true" resizeable="false">
+			<f:facet name="header">
+				<h:outputText value="#{messages['idea.contender.confirm']}" />
+			</f:facet>
+
+			<p style="font-size: 12px; font-family: tahoma;">#{messages['idea.contender.confirm2file']}</p>
+			<h:form>
+
+				<h:commandButton actionListener="#{ideaController.deleteFileIdea()}" value="#{messages['idea.contender.yes']}"
+					styleClass="popupDeleteIdea" />
+				<h:commandButton onclick="#{rich:component('filePopup')}.hide(); return false;"
+					value="#{messages['idea.contender.no']}" />
+			</h:form>
+		</rich:popupPanel>
+
+
+		<rich:popupPanel id="withdrawPopup" modal="true" autosized="true" resizeable="false">
+			<f:facet name="header">
+				<h:outputText value="#{messages['idea.contender.confirm']}" />
+			</f:facet>
+
+			<p style="font-size: 12px; font-family: tahoma;">#{messages['idea.contender.confirm2withdraw']}</p>
+			<h:form>
+
+				<h:commandButton immediate="true" action="#{userSessionController.withDrawFromCompetition}"
+					value="#{messages['idea.contender.yes']}" styleClass="popupDeleteIdea" />
+				<h:commandButton onclick="#{rich:component('withdrawPopup')}.hide(); return false;"
+					value="#{messages['idea.contender.no']}" />
+			</h:form>
+		</rich:popupPanel>
+
+
+		<rich:popupPanel id="deleteBlogpopup" modal="true" autosized="true" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages['blog.manageBlog.message.confirm']}" />
+			</f:facet>
+
+			<p style="font-size: 12px;">#{messages['blog.manageBlog.message.beforDelete']}</p>
+			<h:form>
+				<h:commandButton actionListener="#{ideaBlogController.deleteBlogs}"
+					value="#{messages['blog.manageBlog.message.confirm.yes']}" styleClass="popupDeleteIdea" immediate="true" />
+				<h:commandButton onclick="#{rich:component('deleteBlogpopup')}.hide(); return false;"
+					value="#{messages['blog.manageBlog.message.confirm.no']}" />
+			</h:form>
+
+		</rich:popupPanel>
+
+		<rich:popupPanel id="ideaInformationPopup" modal="true" autosized="true" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages['blog.manageBlog.message.info']}" />
+			</f:facet>
+
+			<div style="text-align: center; padding: 10px;">
+				<h:messages style="font-size: 12px;" />
+				<br />
+				<h:form>
+					<a4j:commandButton onclick="#{rich:component('ideaInformationPopup')}.hide();"
+						value="#{messages['blog.manageBlog.message.ok']}" immediate="true">
+						<f:setPropertyActionListener target="#{ideaController.ideaAddedSuccessfully}" value="#{false}" />
+					</a4j:commandButton>
+
+				</h:form>
+			</div>
+
+		</rich:popupPanel>
+
+
+
+		<h:outputScript>
+function limitText(limitField, limitNum) {
+	if (limitField.value.length > limitNum) {
+	limitField.value = limitField.value.substring(0, limitNum);
+	} 
+}
+
+</h:outputScript>
+
+	</ui:define>
+</ui:composition>
+</html>

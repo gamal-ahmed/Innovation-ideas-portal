@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<ui:composition template="/templates/main.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{challengeController.initiateChalleng}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:message for="messages"></h:message>
+		<div>
+			<h:form>
+				<h:panelGrid columns="3">
+					<rich:validator>
+						<h:outputLabel value="Challenge Name" />
+						<h:inputText id="name"
+							value="#{challengeController.currentChallenge.name}"
+							required="true" requiredMessage="Challenge Name is Required"></h:inputText>
+						<rich:message for="name" ajaxRendered="true" />
+
+
+
+						<h:outputLabel value="Arabic Description" />
+						<h:inputTextarea id="desc_ar"
+							requiredMessage="Arabic Description is short"
+							value="#{challengeController.currentChallenge.description_ar}">
+							<f:validateLength minimum="5" />
+						</h:inputTextarea>
+						<rich:message for="desc_ar" ajaxRendered="true" />
+
+						<h:outputLabel value="English Description" />
+						<h:inputTextarea id="desc_en"
+							requiredMessage="English Description is short"
+							value="#{challengeController.currentChallenge.description_en}">
+							<f:validateLength minimum="5" />
+						</h:inputTextarea>
+						<rich:message for="desc_en" ajaxRendered="true" />
+
+
+						<h:outputLabel value="Challenge Type "
+							rendered="#{!challengeController.hasParentContest}" />
+						<h:selectOneRadio styleClass="FormTextbox"
+							rendered="#{!challengeController.hasParentContest}"
+							value="#{challengeController.currentChallenge.internal}"
+							id="chType" required="true"
+							requiredMessage="Challenge Type Required">
+							<f:selectItem itemValue="1" itemLabel="INTERNAL" />
+							<f:selectItem itemValue="0" itemLabel="EXTERNAL" />
+						</h:selectOneRadio>
+						<h:message rendered="#{!challengeController.hasParentContest}"
+							for="chType" styleClass="Error" />
+
+
+
+
+						<h:outputLabel value="Challenge Contest "
+							rendered="#{!challengeController.hasParentContest}" />
+						<h:selectOneMenu converter="genericConverter" immediate="true"
+							rendered="#{!challengeController.hasParentContest}"
+							requiredMessage="ChallengeType Is Required" id="contesta"
+							value="#{challengeController.parentContest}">
+							<f:selectItems value="#{challengeController.allContests}"
+								var="contest" itemLabel="#{contest.name}" itemValue="#{contest}" />
+						</h:selectOneMenu>
+						<rich:message rendered="#{!challengeController.hasParentContest}"
+							for="contesta" ajaxRendered="true" />
+
+					</rich:validator>
+
+
+					<h:commandButton value="Add"
+						action="#{challengeController.creatChallenge}" />
+
+
+
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

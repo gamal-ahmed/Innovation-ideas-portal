@@ -1,0 +1,327 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<div class="home">
+			<div class="content">
+				<div class="mainContent">
+					<div id="tabs"
+						class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+						<ul
+							class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
+							role="tablist">
+							<li
+								class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"
+								role="tab" tabindex="0" aria-controls="tabs-1"
+								aria-labelledby="ui-id-1" aria-selected="true"
+								aria-expanded="true"><a href="#tabs-1"
+								class="ui-tabs-anchor" role="presentation" tabindex="-1"
+								id="ui-id-1">First</a></li>
+							<li class="ui-state-default ui-corner-top" role="tab"
+								tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2"
+								aria-selected="false" aria-expanded="false"><a
+								href="#tabs-2" class="ui-tabs-anchor" role="presentation"
+								tabindex="-1" id="ui-id-2">Second</a></li>
+							<li class="ui-state-default ui-corner-top" role="tab"
+								tabindex="-1" aria-controls="tabs-3" aria-labelledby="ui-id-3"
+								aria-selected="false" aria-expanded="false"><a
+								href="#tabs-3" class="ui-tabs-anchor" role="presentation"
+								tabindex="-1" id="ui-id-3">Third</a></li>
+						</ul>
+						<div id="tabs-1" aria-labelledby="ui-id-1"
+							class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+							role="tabpanel" aria-hidden="false">
+							<ui:repeat value="#{userController.recentUserIdeas}"
+								var="recentIdea" varStatus="counter">
+								<div class="component">
+									<div class="head">
+										<span class="bullet"></span> <span class="title">#{recentIdea.ideaName}</span>
+									</div>
+									<div class="content">
+										<span class="bullet"></span>
+										<div class="textContent">
+											<span class="title">Secondary title</span>
+											<p>IT Teschnical Complex of Technical Schools in New York
+												Self education via books, courses &amp; practices on graphic
+												design, SEO, websites creation, maintenance of computers.</p>
+										</div>
+										<div class="rate">
+											<span class="value"><p>6</p></span> <span class="vote"><p>vote</p></span>
+											<span class="grade"><p>Good</p></span>
+										</div>
+										<div class="sc_title_trasparent insideComponent">
+											<div class="icons">
+												<div>
+													<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+													<span><a href="#"><i class="fa fa-star"></i></a>
+														<p>12</p></span> <span><a href="#"><i
+															class="fa fa-commenting"></i></a>
+														<p>35</p></span>
+												</div>
+											</div>
+											<a href="#" class="sc_button_green">More</a>
+										</div>
+									</div>
+								</div>
+							</ui:repeat>
+						</div>
+						<div id="tabs-2" aria-labelledby="ui-id-2"
+							class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+							role="tabpanel" aria-hidden="true" style="display: none;">
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>8</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>8</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>8</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tabs-3" aria-labelledby="ui-id-3"
+							class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+							role="tabpanel" aria-hidden="true" style="display: none;">
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>8</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>8</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Title</span>
+								</div>
+								<div class="content">
+									<span class="bullet"></span>
+									<div class="textContent">
+										<span class="title">Secondary title</span>
+										<p>IT Technical Complex of Technical Schools in New York
+											Self education via books, courses &amp; practices on graphic
+											design, SEO, websites creation, maintenance of computers.</p>
+									</div>
+									<div class="rate">
+										<span class="value"><p>6.5</p></span> <span class="vote"><p>vote</p></span>
+										<span class="grade"><p>Good</p></span>
+									</div>
+									<div class="sc_title_trasparent insideComponent">
+										<div class="icons">
+											<div>
+												<span><a href="#"><i class="fa fa-share-alt"></i></a></span>
+												<span><a href="#"><i class="fa fa-star"></i></a>
+													<p>12</p></span> <span><a href="#"><i
+														class="fa fa-commenting"></i></a>
+													<p>35</p></span>
+											</div>
+										</div>
+										<a href="#" class="sc_button_green">More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sideContent">
+					<div class="top">
+						<div class="component">
+							<div class="head">
+								<span class="bullet"></span> <span class="title">Idea Box</span>
+							</div>
+							<span class="bullet"></span>
+							<div class="content">
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+
+								<div class="textContent">
+									<span class="title">Complex of Technical</span> - Schools in
+									New York, Complex of Technical Schools Selfeducation via books,
+									gemi ongraphic design, SEO, websites creation.
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="rssFeed">
+							<div class="component">
+								<div class="head">
+									<span class="bullet"></span> <span class="title">Inspiration
+										RSS feed</span>
+								</div>
+								<span class="bullet"></span>
+								<div class="content">
+									<div class="textContent">
+										<span class="rssIcon"></span><span class="rssTxt"><span
+											class="title">Complex of Technical</span> - Schools in New
+											York, Complex of Technical Schools Selfeducation via books,
+											gemi ongraphic design, SEO, websites creation.</span>
+									</div>
+									<div class="textContent">
+										<span class="rssIcon"></span><span class="rssTxt"><span
+											class="title">Complex of Technical</span> - Schools in New
+											York, Complex of Technical Schools Selfeducation via books,
+											gemi ongraphic design, SEO, websites creation.</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

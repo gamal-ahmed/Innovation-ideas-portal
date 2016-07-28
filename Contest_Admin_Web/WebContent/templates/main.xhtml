@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+	
+<f:view contentType="text/html"  locale="#{userSessionController.siteLanguage}" >
+	<h:head>
+
+		<title>#{messages['site.template.title']}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<c:set value="#{facesContext.viewRoot.locale.language}" var="siteLanguage" scope="session" />
+		<c:set value="#{siteLanguage}/images/favicon.ico" var="shortcutIcon" />
+		<ui:include src="/templates/_jsAndCss.xhtml" />
+	</h:head>
+	<h:body>
+		<div class="innovationContainer innerContent">
+			<ui:include src="/templates/_header.xhtml" />
+	
+			<ui:include src="/templates/_body.xhtml" />
+			<br/><br/>
+			<ui:include src="/templates/_footer.xhtml" />
+		</div>
+
+		
+		<a4j:status onstart="#{rich:component('statPane')}.show()"
+			onstop="#{rich:component('statPane')}.hide()" />
+
+
+		<rich:popupPanel id="statPane" autosized="true"  shadowOpacity="0" style="background-color: transparent;" visualOptions="transparent">
+			<h:graphicImage library="#{siteLanguage}" name="images/loading.gif"	width="80" height="80"  style="background-color:transparent;"/>
+      
+      <h:outputStylesheet>
+
+ .rf-pp-cntr{
+	border:none;
+	}
+	#statPane_container .rf-pp-cnt-scrlr{
+	background-color:transparent;
+	background:transparent;
+	}
+	
+	</h:outputStylesheet>
+      
+        </rich:popupPanel>
+
+	</h:body>
+</f:view>
+
+
+
+
+</html>

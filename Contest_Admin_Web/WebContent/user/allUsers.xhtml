@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+<ui:composition template="/templates/main.xhtml">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{userController.loadAllUsers}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:outputStylesheet>
+.selectedPage {
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.notSelectedPage {
+    background: none repeat scroll 0% 0% ;
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.rf-ds-act:hover{
+    border: 1px solid rgb(189, 188, 188);
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border-bottom: 1px solid rgb(161, 196, 47);
+}
+
+.rf-ds {
+padding-bottom: 6px;
+}
+</h:outputStylesheet>
+		<div class="DiscussionsTabsContent">
+			<h:messages />
+			<h:form>
+				<h:panelGroup id="paginationContainer">
+					<div class="DiscussionsContent"></div>
+				</h:panelGroup>
+				<rich:dataTable value="#{userController.allUsers}" var="user" styleClass="BlogsDiscussions" rowClasses="odd,even"
+					id="table" rows="10">
+					<f:facet name="header">
+						<h:outputText value="All System Users" />
+					</f:facet>
+					<rich:column filterValue="#{userController.nameFilter}"
+						filterExpression="#{fn:containsIgnoreCase(user.fullName,userController.nameFilter)}">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="Name " />
+								<h:inputText value="#{userController.nameFilter}">
+									<a4j:ajax event="blur" render="table" execute="@this" />
+								</h:inputText>
+							</h:panelGroup>
+						</f:facet>
+						<h:commandLink value="#{user.firstName} #{user.lastName}" action="#{userController.editUser()}">
+							<f:setPropertyActionListener value="#{user}" target="#{userController.currentUser}" />
+						</h:commandLink>
+					</rich:column>
+					<rich:column filter="#{userController.threadFilterImpl}">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="Discussion Status" />
+								<h:selectOneMenu value="#{userController.threadStatusfilter}" converter="genericConverter">
+									<f:selectItem itemValue="#{userController.noStatus}" itemLabel="          " />
+									<f:selectItem itemValue="#{userController.opendStatus}" itemLabel="#{userController.opendStatus.description}" />
+									<f:selectItem itemValue="#{userController.closedStatus}" itemLabel="#{userController.closedStatus.description}" />
+									<a4j:ajax render="table" event="change" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+						</f:facet>
+						<h:commandLink value="#{user.discussionThread.threadStatus.description}" rendered="#{user.contender}"
+							action="#{userController.editThread()}">
+							<f:setPropertyActionListener value="#{user}" target="#{userController.currentUser}" />
+						</h:commandLink>
+					</rich:column>
+					<rich:column filterValue="#{userController.msisdnFilter}"
+						filterExpression="#{fn:containsIgnoreCase(user.msisdn,userController.msisdnFilter)}">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="MSISDN " />
+								<h:inputText value="#{userController.msisdnFilter}">
+									<a4j:ajax event="blur" render="table" execute="@this" />
+								</h:inputText>
+							</h:panelGroup>
+						</f:facet>
+						#{user.msisdn}	
+					</rich:column>
+					<rich:column filter="#{userController.userTypeFilterImpl}">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="User Type" />
+								<h:selectOneMenu value="#{userController.userTypeFilterValue}" converter="genericConverter">
+									<f:selectItems value="#{userController.userTypes}" var="userType" itemValue="#{userType}"
+										itemLabel="#{userType.description}" />
+									<a4j:ajax render="table" event="change" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+						</f:facet>	
+						#{user.userType.description}
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Group</f:facet>
+							#{user.groupFlag == 'G'? 'yes':'no'}		
+					</rich:column>
+					<rich:column filterValue="#{userController.emailFilter}"
+							filterExpression="#{fn:containsIgnoreCase(user.email,userController.emailFilter)}">
+							<f:facet name="header">
+								<h:panelGroup>
+									<h:outputText value="Email " />
+									<h:inputText value="#{userController.emailFilter}">
+										<a4j:ajax event="blur" render="table" execute="@this" />
+									</h:inputText>
+								</h:panelGroup>
+							</f:facet>	
+						#{user.email}	
+					</rich:column>
+					<rich:column sortBy="#{user.userStatus.description}">
+						<f:facet name="header">Status</f:facet>	
+						<a4j:commandLink styleClass="no-decor" render="editGrid" execute="@this"
+							oncomplete="#{rich:component('editPane')}.show()" action="#{userController.loadAllUserStatus()}">
+							#{user.userStatus.description}	
+						<f:setPropertyActionListener target="#{userController.currentUser}" value="#{user}" />
+						</a4j:commandLink>
+					</rich:column>
+					
+					<f:facet name="footer">
+						<rich:dataScroller renderIfSinglePage="true" id="datascroller" boundaryControls="show" fastStep="5"
+							fastControls="auto" />
+					</f:facet>
+				</rich:dataTable>
+				</h:form>
+				
+				<h:form>
+					<rich:popupPanel header="Chnage user status" id="editPane" domElementAttachment="parent" width="400" height="170">
+
+						<h:panelGrid columns="3" id="editGrid">
+							<h:outputText value="user status" />
+							<h:selectOneMenu value="#{userController.currentUser.userStatus}" converter="genericConverter" id="userStatus">
+								<f:selectItems value="#{userController.allUserStatus}" var="status" itemValue="#{status}"
+									itemLabel="#{status.description}" />
+							</h:selectOneMenu>
+						</h:panelGrid>
+						<br />
+						<br />
+						<a4j:commandButton value="chnage status" style="margin-right:5px;" action="#{userController.changeUserStatus()}"
+							render=":table" execute="editPane" oncomplete="{#{rich:component('editPane')}.hide();}" />
+						<a4j:commandButton value="Cancel" onclick="#{rich:component('editPane')}.hide(); return false;" />
+
+					</rich:popupPanel>
+				</h:form>
+
+
+			
+			<br />
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

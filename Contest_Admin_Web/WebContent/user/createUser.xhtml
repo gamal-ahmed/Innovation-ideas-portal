@@ -1,0 +1,311 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+
+<ui:composition template="/templates/main.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{userController.initiateUser}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form id="outerForm">
+			<table width="100%">
+				<tr>
+					<td>
+						<div class="SectionTitle">
+							<h:outputLabel
+								value="#{messages['user.manageUser.registration']}"
+								rendered="#{userController.currentUser.new}" />
+							<h:outputLabel
+								value="#{messages['user.manageUser.updateprofile']}"
+								rendered="#{!userController.currentUser.new}" />
+
+
+						</div> <h:messages errorClass="Error" globalOnly="true"  />
+
+					</td>
+
+				</tr>
+				<tr>
+
+					<td><strong><h:outputLabel style="font:strong"
+								for="userType" rendered="#{userController.currentUser.new}">#{messages['user.manageUser.registeras']}</h:outputLabel></strong>
+
+						<h:selectOneRadio styleClass="radio" onclick="submit();" immediate="true"
+							value="#{userController.currentUser.userType}"
+							converter="genericConverter" id="userType"
+							rendered="#{userController.currentUser.new}">
+							<f:selectItem itemValue="#{userController.contentnderUserType}"
+								style="display :inline;"
+								itemLabel="#{messages['user.manageUser.contender']}" />
+							<f:selectItem itemValue="#{userController.voterUserType}"
+								style="display :inline;"
+								itemLabel="#{messages['user.manageUser.voter']}" />
+							</h:selectOneRadio></td>
+
+				</tr>
+
+			</table>
+		</h:form>
+		<br />
+
+		<h:form styleClass="Form" id="mainForm">
+			<rich:panel id="panel">
+
+				<table>
+					<tr>
+						<td width="40%"><h:outputLabel for="userType"
+								rendered="#{userController.currentUser.userType eq userController.contentnderUserType &amp;&amp; userController.currentUser.new}">#{messages['user.manageUser.iam']}:</h:outputLabel>
+						</td>
+						<td><h:selectOneRadio
+								value="#{userController.currentUser.groupFlag}" id="groupFlag"
+								rendered="#{userController.currentUser.userType eq userController.contentnderUserType &amp;&amp; userController.currentUser.new}">
+								<f:selectItem itemValue="I"
+									itemLabel="#{messages['user.manageUser.individual']}" />
+								<f:selectItem itemValue="G"
+									itemLabel="#{messages['user.manageUser.group']}" />
+								<f:ajax event="click" execute="@this" render="panel" immediate="true"></f:ajax>
+							</h:selectOneRadio> <h:outputLabel
+								rendered="#{userController.currentUser.userType eq userController.contentnderUserType &amp;&amp; userController.currentUser.new}"></h:outputLabel>
+
+							<h:outputLabel
+								rendered="#{userController.currentUser.userType eq userController.contentnderUserType &amp;&amp; userController.currentUser.new}"></h:outputLabel>
+
+						</td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td width="40%"><h:outputLabel for="firstName"
+								style="display :inline;">#{messages['user.manageUser.firstName']} </h:outputLabel></td>
+						<td><h:inputText id="firstName"
+								value="#{userController.currentUser.firstName}" required="true"
+								size="50"
+								requiredMessage="#{messages['user.manageUser.messages.firstName']}"
+								styleClass="FormTextbox">
+							</h:inputText> <h:message for="firstName" styleClass="Error" /></td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+
+					<tr>
+						<td width="40%"><h:outputLabel for="lastName"
+								style="display :inline;">#{messages['user.manageUser.lastName']} </h:outputLabel></td>
+						<td><h:inputText id="lastName" styleClass="FormTextbox"
+								size="50" value="#{userController.currentUser.lastName}"
+								required="true"
+								requiredMessage="#{messages['user.manageUser.messages.lastName']}" />
+							<h:message for="lastName" styleClass="Error" /></td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td width="40%"><h:outputLabel for="msisdn"
+								style="display :inline;"> #{messages['user.manageUser.mobile']}  </h:outputLabel></td>
+						<td><h:inputText id="msisdn" styleClass="FormTextbox"
+								value="#{userController.currentUser.msisdn}" required="true"
+								size="11"
+								requiredMessage="#{messages['user.manageUser.messages.mobileNumber']}"
+								validatorMessage="#{messages['user.manageUser.messages.mobileNumber']}">>
+								<f:validateRegex pattern="01[0-9]{9}" />
+							</h:inputText> <h:message for="msisdn" styleClass="Error" /></td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td width="40%"><h:outputLabel for="email"
+								rendered="#{userController.currentUser.new}"
+								style="display :inline;">#{messages['user.manageUser.email']} </h:outputLabel></td>
+						<td><h:inputText id="email" styleClass="FormTextbox"
+								size="150" value="#{userController.currentUser.email}"
+								required="true"
+								requiredMessage="#{messages['user.manageUser.message.emailrequired']}"
+								rendered="#{userController.currentUser.new}"
+								validatorMessage="#{messages['user.manageUser.message.emailPattern']}">
+								<f:validateRegex
+									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+							</h:inputText> <h:message for="email" styleClass="Error"
+								rendered="#{userController.currentUser.new}" /></td>
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<rich:panel
+						rendered="#{userController.currentUser.new ||  !userSessionController.judge}"
+						style="border: none;">
+						<tr>
+
+							<td width="40%"><h:outputLabel for="password"
+									style="display :inline;">#{messages['user.manageUser.enterpassword']} </h:outputLabel></td>
+							<td><h:inputSecret id="password" styleClass="FormTextbox"
+									size="100" value="#{userController.currentUser.password}"
+									required="#{userController.currentUser.new}"
+									requiredMessage="#{messages['user.manageUser.message.passwordrequired']}"
+									validatorMessage="#{messages['user.manageUser.message.passwordlength']}"
+									validator="PasswordValidator">
+								</h:inputSecret> <h:message styleClass="Error" for="password" /></td>
+
+						</tr>
+
+						<tr>
+							<td><br /></td>
+						</tr>
+
+						<tr>
+							<td width="40%"><h:outputLabel for="confirmPassword"
+									style="display :inline;">#{messages['user.manageUser.confirmPassword']} </h:outputLabel></td>
+							<td><h:inputSecret id="confirmPassword" size="100"
+									styleClass="FormTextbox"
+									value="#{userController.confirmPassword}"
+									required="#{userController.currentUser.new}"
+									requiredMessage="#{messages['user.manageUser.message.passwordrequired']}"
+									validatorMessage="#{messages['user.manageUser.message.passwordlength']}"
+									validator="PasswordValidator">
+								</h:inputSecret> <h:message for="confirmPassword" styleClass="Error" /></td>
+						</tr>
+					</rich:panel>
+					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td width="40%"><h:outputLabel for="capimg"
+								rendered="#{userController.currentUser.new}"
+								style="display :inline;"></h:outputLabel></td>
+						<td><h:graphicImage id="capimg"
+								value="#{facesContext.externalContext.requestContextPath}/../Captcha.jpg"
+								rendered="#{userController.currentUser.new}" /> <h:message
+								for="capimg" styleClass="Error" /></td>
+
+
+					</tr>
+					<tr>
+						<td><br /></td>
+					</tr>
+
+					<tr>
+						<td width="40%"><h:outputLabel for="captchaValue"
+								style="display :inline;"
+								value="#{messages['user.manageUser.capcha']}"
+								rendered="#{userController.currentUser.new}"></h:outputLabel></td>
+						<td><h:inputText id="captchaValue" styleClass="FormTextbox"
+								value="#{userController.capatchValue}"
+								rendered="#{userController.currentUser.new}"
+								 required="false"
+								requiredMessage="#{messages['user.manageUser.messages.capcharequires']}"
+								validatorMessage="#{messages['user.manageUser.message.capcthcaValueError']}" />
+							<h:message styleClass="Error" for="captchaValue"
+								rendered="#{userController.currentUser.new}" /></td>
+					</tr>
+
+
+					<tr>
+						<td><br /></td>
+					</tr>
+				</table>
+				<rich:panel id="voterSection"
+					rendered="#{userController.currentUser.userType eq userController.voterUserType}"
+					style="border: none;">
+					<table>
+						<tr>
+							<td width="40%"><h:outputLabel for="age">#{messages['user.manageUser.age']}</h:outputLabel></td>
+							<td><h:inputText id="age" styleClass="FormTextbox"
+									value="#{userController.currentUser.age}" required="true"
+									size="2"
+									requiredMessage="#{messages['user.manageUser.messages.age']}"
+									validatorMessage="#{messages['user.manageUser.messages.ageValidation']}"
+									converterMessage="#{messages['user.manageUser.messages.ageValidation']}">
+									<f:validateLongRange minimum="0" maximum="100" for="age" />
+								</h:inputText> <h:message for="age" styleClass="Error" /></td>
+						</tr>
+						<tr>
+							<td><br /></td>
+						</tr>
+						<tr>
+							<td width="40%"><h:outputLabel for="gender">#{messages['user.manageUser.gender']}</h:outputLabel></td>
+							<td><h:selectOneRadio styleClass="FormTextbox"
+									value="#{userController.currentUser.gender}" id="gender"
+									required="true"
+									requiredMessage="#{messages['user.manageUser.messages.genderRequired']}">
+									<f:selectItem itemValue="M" itemLabel="Male" />
+									<f:selectItem itemValue="F" itemLabel="Female" />
+								</h:selectOneRadio> <h:message for="gender" styleClass="Error" /></td>
+						</tr>
+						<tr>
+							<td><br /></td>
+						</tr>
+					</table>
+				</rich:panel>
+
+				<rich:panel
+					rendered="#{userController.currentUser.userType eq userController.contentnderUserType &amp;&amp; userController.currentUser.groupFlag eq 'G'}">
+					<table>
+
+						<tr>
+							<td width="100%"><h:outputLabel style="display :inline;">#{messages['user.manageUser.groupselection']}</h:outputLabel></td>
+
+						</tr>
+						<tr>
+							<td><h:selectOneMenu
+									value="#{userController.currentUser.groupCount}">
+									<f:selectItem itemValue="1" itemLabel="1" />
+									<f:selectItem itemValue="2" itemLabel="2" />
+									<f:selectItem itemValue="3" itemLabel="3" />
+									<f:selectItem itemValue="4" itemLabel="4" />
+									<f:selectItem itemValue="5" itemLabel="5" />
+								</h:selectOneMenu></td>
+						</tr>
+
+						<tr>
+							<td><h:inputTextarea style="width:220px;height:60px"
+									value="#{userController.currentUser.groupEmails}"
+									required="true" requiredMessage="Group mails are required"
+									onkeyup="limitText(this,200)">
+									<f:validateLength maximum="500"></f:validateLength>
+								</h:inputTextarea></td>
+						</tr>
+					</table>
+				</rich:panel>
+
+				<h:commandButton styleClass="RegisterButton" style="height : 140px;"
+					action="#{userController.addNewUser()}"
+					rendered="#{userController.currentUser.new}" />
+
+				<h:link outcome="/user/allUsers.xhtml" style="margin-right:6px;"> back </h:link>
+					
+				<h:link outcome="/user/allUsers.xhtml" style="margin-right:135px;"> cancel</h:link>
+				
+				<h:commandButton action="#{userController.updateUser}"
+					value="#{messages['user.manageUser.update']}"
+					rendered="#{!userController.currentUser.new}" />
+			</rich:panel>
+			<br />
+		</h:form>
+
+		<h:outputScript>
+function limitText(limitField, limitNum) {
+	if (limitField.value.length > limitNum) {
+	limitField.value = limitField.value.substring(0, limitNum);
+	} 
+}
+
+
+
+
+</h:outputScript>
+
+	</ui:define>
+</ui:composition>
+</html>

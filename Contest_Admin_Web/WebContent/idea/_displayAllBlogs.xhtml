@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<f:metadata>
+	<f:event type="preRenderView" listener="#{ideaBlogController.loadAllBlogs}" />
+</f:metadata>
+
+<h:outputStylesheet>
+.selectedPage {
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.notSelectedPage {
+    background: none repeat scroll 0% 0% ;
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.rf-ds-act:hover{
+    border: 1px solid rgb(189, 188, 188);
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border-bottom: 1px solid rgb(161, 196, 47);
+}
+
+.rf-ds {
+padding-bottom: 6px;
+}
+
+
+</h:outputStylesheet>
+
+<div class="DiscussionsTabsContent">
+
+
+
+	<h:messages />
+	<h:form>
+		<h:panelGroup id="paginationContainer">
+			<div class="DiscussionsContent">
+				<rich:dataScroller id="tableScroller" for="blogTable" styleClass="BlogTabs Pagging" boundaryControls="show"
+					selectedStyleClass="selectedPage" inactiveStyleClass="notSelectedPage" maxPages="5" fastStep="5"
+					fastControls="auto" />
+			</div>
+		</h:panelGroup>
+
+		<rich:dataTable styleClass="BlogsDiscussions" value="#{ideaBlogController.ideaBlogs}" var="blog" id="blogTable"
+			rows="6" rowClasses="odd,even">
+			<f:facet name="header">
+				<h:outputText value=" #{messages['blog.manageBlog.message.availableBlogs']}" />
+			</f:facet>
+
+			<f:facet name="noData">
+                	 #{messages['blog.manageBlog.message.noBlogs']}
+                </f:facet>
+
+
+			<rich:column>
+				<f:facet name="header"> #{messages['blog.manageBlog.message.blogs']}</f:facet>
+				<h:commandLink styleClass="DiscussionTitle" action="#{ideaBlogController.showBlog}" value="#{blog.blogTitle}">
+					<f:setPropertyActionListener target="#{ideaBlogController.currentIdeaBlog}" value="#{blog}" />
+				</h:commandLink>
+				<br></br>
+					#{blog.blogText}
+				</rich:column>
+
+			<rich:column>
+				<f:facet name="header"> #{messages['blog.manageBlog.message.idea']}</f:facet>	
+					#{blog.idea.ideaName}
+				</rich:column>
+
+			<rich:column filterValue="#{ideaBlogController.statusFilter}"
+				filterExpression="#{fn:containsIgnoreCase(blog.idea.ideaStatus.description,ideaBlogController.statusFilter)}">
+				<f:facet name="header"> #{messages['blog.manageBlog.message.status']}   
+				      <h:panelGroup>
+						<h:selectOneMenu value="#{ideaBlogController.statusFilter}">
+							<f:selectItem itemLabel="#{messages['blog.manageBlog.message.all']}" itemValue="" />
+							<f:selectItems value="#{ideaBlogController.allIdeaStatus}" var="ideaStatus" itemLabel="#{ideaStatus.description}"
+								itemValue="#{ideaStatus.description}" />
+							<a4j:ajax render="blogTable,tableScroller" execute="@this" event="change" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+				</f:facet>	
+					#{blog.idea.ideaStatus.description}
+				</rich:column>
+
+			<rich:column filterValue="#{ideaBlogController.categoryFilter}"
+				filterExpression="#{fn:containsIgnoreCase(blog.idea.category.getLocalizedDescription(userSessionController.siteLanguage),ideaBlogController.categoryFilter.getLocalizedDescription(userSessionController.siteLanguage))}">
+				<f:facet name="header">
+					     #{messages['blog.manageBlog.message.category']}
+					     <h:panelGroup>
+						<h:selectOneMenu value="#{ideaBlogController.categoryFilter}" converter="genericConverter">
+							<f:selectItem itemLabel="#{messages['blog.manageBlog.message.all']}" itemValue="#{null}" />
+							<f:selectItems value="#{ideaBlogController.allCategories}" var="category"
+								itemLabel="#{category.getLocalizedDescription(userSessionController.siteLanguage)}" itemValue="#{category}" />
+							<a4j:ajax render="blogTable,tableScroller" execute="@this" event="change" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+				</f:facet>	
+					#{blog.idea.category.getLocalizedDescription(userSessionController.siteLanguage)}
+				</rich:column>
+
+
+			<rich:column filterValue="#{ideaBlogController.nameFilter}"
+				filterExpression="#{fn:containsIgnoreCase(blog.idea.user.fullName,fn:trim(ideaBlogController.nameFilter))}">
+				<f:facet name="header">#{messages['user.manageUser.contender']}
+						<h:panelGroup>
+						<h:inputText value="#{ideaBlogController.nameFilter}">
+							<a4j:ajax event="blur" render="blogTable,tableScroller" execute="@this" />
+						</h:inputText>
+					</h:panelGroup>
+				</f:facet>	
+					#{blog.idea.user.fullName}
+				</rich:column>
+
+			<rich:column sortBy="#{blog.positiveRating}" sortOrder="#{ideaBlogController.sortOrderPos}">
+				<f:facet name="header">
+					<u><a4j:commandLink value="Rating" render="blogTable" action="#{ideaBlogController.sortPos()}" style="color:#FFFFFF"/></u>
+				</f:facet>	
+					#{blog.positiveRating}
+				</rich:column>
+				
+				<rich:column sortBy="#{ideaBlogController.loadFullIdeaBlog(blog)}" sortOrder="#{ideaBlogController.sortOrderNeg}">
+				<f:facet name="header">
+					<u><a4j:commandLink value="Total Voters" render="blogTable" action="#{ideaBlogController.sortNeg()}" style="color:#FFFFFF"/></u>
+				</f:facet>	
+					#{ideaBlogController.loadFullIdeaBlog(blog)}
+				</rich:column>
+
+			<rich:column sortBy="#{blog.totalComments}" sortOrder="#{ideaBlogController.sortOrderComm}">
+				<f:facet name="header">
+					<u><a4j:commandLink value="Comments" render="blogTable" action="#{ideaBlogController.sortComm()}" style="color:#FFFFFF"/></u>
+				</f:facet>
+					#{blog.totalComments}
+			</rich:column>
+
+		</rich:dataTable>
+
+	</h:form>
+</div>
+
+</html>

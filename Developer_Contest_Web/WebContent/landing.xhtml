@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<h:outputStylesheet library="en" name="css/jquery-ui.css" />
+	<link rel="shortcut icon" href="StaticFiles/favicon.ico" />
+	<h:outputStylesheet id="strap" library="en"
+		name="css/landing/bootstrap.min.css" />
+	<h:outputStylesheet library="en" name="css/landing/style.css" />
+	<h:outputStylesheet library="en" name="css/style.css" />
+	<h:outputScript library="en" name="js/jquery.min.js" />
+	<h:outputScript library="en" name="js/landing/jquery-ui.min.js" />
+	<h:outputScript library="en" name="js/landing/index.js" />
+	<h:outputScript library="en" name="js/landing/landing.js" />
+	<h:outputScript library="en" name="js/fancybox/jquery.fancybox.js" />
+	<h:outputStylesheet library="en" name="css/jquery.fancybox.css" />
+	<h:outputScript>
+$(document).ready(function(){
+		<!-- FancyBox -->
+		$('.fancybox').fancybox();
+		
+		<!--Group Hidden-->
+		$('#individual').click(function () {
+			$('.groupTextArea').css("display", "none");
+		});	
+		$('#group').click(function () {
+			$('.groupTextArea').css("display", "block");
+		});
+	});
+
+</h:outputScript>
+</h:head>
+
+
+<h:body>
+
+	<h:graphicImage id="background1" styleClass="background"
+		value="#{resource['en:images/firstBG.jpg']}" style="opacity: 1;" />
+	<h:graphicImage id="background2" styleClass="background"
+		value="#{resource['en:images/secondBG.jpg']}" style="opacity: 1;" />
+	<h:graphicImage id="background3" styleClass="background"
+		value="#{resource['en:images/thirdBG.jpg']}" style="opacity: 1;" />
+	<h:graphicImage id="background4" styleClass="background"
+		value="#{resource['en:images/fourthBG.jpg']}" style="opacity: 1;" />
+
+
+	<div id="overlay" class="background" style="opacity: 1;"></div>
+	<div id="sensor"></div>
+	<div class="landing">
+		<table id="content1" class="content"
+			style="display: table; opacity: 1; margin-top: 0px;">
+			<tbody>
+				<tr>
+					<td>
+						<h1>About Innovation Program ?</h1> <span>Some smaller text
+							goes here and continues here...</span>
+						<table class="hidden-xs">
+							<tbody>
+								<tr>
+									<td><a href="#" class="signup">Sign Up</a></td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="visible-xs">
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="#" class="download">Get the
+											App</a></td>
+									<td style="padding-left: 10px;" class="visible-landscape"><a
+										href="#" class="video"></a></td>
+									<td class="visible-landscape"><a href="#" class="video"><span>Watch
+												the Video</span></a></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="content2" class="content"
+			style="display: none; opacity: 0; margin-top: -8px;">
+			<tbody>
+				<tr>
+					<td>
+						<h1>Contests</h1> <span>Some smaller text goes here and
+							continues here...</span>
+						<table class="hidden-xs">
+							<tbody>
+								<tr>
+									<td><a href="#" class="signup">Sign Up</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="content3" class="content"
+			style="display: none; opacity: 0; margin-top: -8px;">
+			<tbody>
+				<tr>
+					<td>
+						<h1>Open Challenges</h1> <span>Some smaller text goes here
+							and continues here...</span>
+						<table class="hidden-xs">
+							<tbody>
+								<tr>
+									<td><a href="#" class="signup">Sign Up</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="content4" class="content"
+			style="opacity: 0; display: none;">
+			<tbody>
+				<tr>
+					<td>
+						<h1>Inspiration</h1> <span>Some smaller text goes here and
+							continues here...</span>
+						<table class="hidden-xs">
+							<tbody>
+								<tr>
+									<td><a href="#" class="signup">Sign Up</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="sidenav">
+			<tbody>
+				<tr>
+					<td>
+						<table>
+							<tbody>
+								<tr>
+									<td><a href="#" class="navitem navitem1 selected"></a></td>
+								</tr>
+								<tr>
+									<td><div class="line"></div></td>
+								</tr>
+								<tr>
+									<td><a href="#" class="navitem navitem2"></a></td>
+								</tr>
+								<tr>
+									<td><div class="line"></div></td>
+								</tr>
+								<tr>
+									<td><a href="#" class="navitem navitem3"></a></td>
+								</tr>
+								<tr>
+									<td><div class="line"></div></td>
+								</tr>
+								<tr>
+									<td><a href="#" class="navitem navitem4"></a></td>
+								</tr>
+								<tr>
+									<td><div class="line"></div></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="bouncy" style="margin-bottom: 88px; display: initial;">
+			<a href="#" class="next"></a>
+		</div>
+		<table id="header" class="header" style="position: absolute;">
+			<tbody>
+				<tr>
+					<td class="zero hidden-xs">
+						<table>
+							<tbody>
+								<tr>
+									<td><a href="#" class="logo"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td class="hidden-xs">
+						<table class="middle">
+							<tbody>
+								<tr>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td class="zero hidden-xs">
+						<table>
+							<tbody>
+								<tr>
+									<td><span><a class="fancybox" href="#signup">Sign
+												Up</a></span></td>
+									<td><span class="bullet"><a class="fancybox"
+											href="#signin">Sign In</a></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td class="visible-xs">
+						<table>
+							<tbody>
+								<tr>
+									<td><a href="#" class="logo"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td class="zero visible-xs">
+						<table class="middle">
+							<tbody>
+								<tr>
+									<td><a href="#">Sign In</a></td>
+									<td class="menuwrapper"><a href="#" class="menu bullet">Menu</a></td>
+									<td class="closewrapper" style="display: none;"><a
+										href="#" class="close2 bullet">Close</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="footer">
+			<tbody>
+				<tr>
+					<td class="zero hidden-xs left"><p style="margin-left: 0">©
+							2015</p></td>
+					<td class="zero hidden-xs left"><a href="#">Terms</a></td>
+					<td class="zero hidden-xs left"><a href="#">Privacy</a></td>
+					<td class="zero hidden-xs left"><a href="#">Contact Us</a></td>
+					<td class="zero hidden-xs left"><a href="#">FAQ</a></td>
+					<td style="width: 100%"></td>
+					<td class="zero"><span class="twitter"><a href=""><h:graphicImage
+									value="#{resource['en:images/twitter.png']}" /></a></span></td>
+					<td class="zero"><span class="youtube"><a href=""><h:graphicImage
+									value="#{resource['en:images/youtube.png']}" /></a></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="popmenu" style="display: none;">
+			<table id="header" class="header" style="position: absolute;">
+				<tbody>
+					<tr>
+						<td class="zero hidden-xs">
+							<table>
+								<tbody>
+									<tr>
+										<td><a href="#" class="logo"></a></td>
+										<td class="visible-md visible-lg"><span class="bullet">The
+												App for Two</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td class="hidden-xs">
+							<table class="middle">
+								<tbody>
+									<tr>
+										<td><a href="#" style="margin-left: 0px">About Us</a></td>
+										<td><a href="#">Map</a></td>
+										<td><a href="#">Blog</a></td>
+										<td><a href="#">Jobs</a></td>
+										<td><a href="#">Press</a></td>
+										<td><span
+											style="padding-right: 0; margin-right: 0; padding-left: 0"
+											class="bullet"></span></td>
+										<td><a href="#" style="margin-left: 5px;">Sign In</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td class="zero hidden-xs">
+							<table>
+								<tbody>
+									<tr>
+										<td class="visible-md visible-lg"><span>Download</span></td>
+										<td><a id="app-store" href="#"></a></td>
+										<td><a id="play-store" href="#"></a></td>
+										<td><a id="web-store" href="#"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td class="visible-xs">
+							<table>
+								<tbody>
+									<tr>
+										<td><a href="#" class="logo"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td class="zero visible-xs">
+							<table class="middle">
+								<tbody>
+									<tr>
+										<td><a href="#">Sign In</a></td>
+										<td class="menuwrapper"><a href="#" class="menu bullet">Menu</a></td>
+										<td class="closewrapper" style="display: none;"><a
+											href="#" class="close2 bullet">Close</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="popcontent">
+				<table>
+					<tbody>
+						<tr>
+							<td><a href="#">Sign Up</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<table>
+					<tbody>
+						<tr>
+							<td><a href="#">About Us</a></td>
+						</tr>
+						<tr>
+							<td><a href="#">Blog</a></td>
+						</tr>
+						<tr>
+							<td><a href="#">Jobs</a></td>
+						</tr>
+						<tr>
+							<td><a href="#">Press</a></td>
+						</tr>
+						<tr>
+							<td><a href="#">Privacy</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="blocker" style="left: -20px; top: -20px;"></div>
+		<!-- Sign Up & Sign In-->
+		<div id="signup" style="display: none">
+			<div class="signUp">
+				<div class="title">
+					<span class="iconBorder"><i
+						class="iconh:inputText fa fa-user"></i></span><span>Sign Up</span>
+				</div>
+				<div class="form">
+					<div class="option">
+						<span><h:inputText type="radio" name="group"
+								id="individual" /> Individual </span> <span><h:inputText
+								type="radio" name="group" id="group" /> Group </span>
+					</div>
+					<div class="name">
+						<h:inputText type="text" placeholder="Name" />
+						<i class="iconh:inputText fa fa-user"></i>
+					</div>
+					<div class="email">
+						<h:inputText type="text" placeholder="Email Address" />
+						<i class="iconh:inputText fa fa-envelope"></i>
+					</div>
+					<div class="password">
+						<h:inputText type="text" placeholder="Password" />
+						<i class="iconh:inputText fa fa-lock"></i>
+					</div>
+					<div class="password">
+						<h:inputText type="text" placeholder="Confirm Password" />
+						<i class="iconh:inputText fa fa-lock"></i>
+					</div>
+					<div class="phoneNo">
+						<h:inputText type="text" placeholder="Phone Number" />
+						<i class="iconh:inputText fa fa-mobile"></i>
+					</div>
+					<div class="groupTextArea">
+						<textarea>Group Email</textarea>
+					</div>
+					<div class="kaptchaDiv">
+						<div class="kaptcha"></div>
+						<div class="code">
+							<h:inputText class="password" type="text"
+								placeholder="Enter Code" />
+							<i class="iconh:inputText fa fa-lock"></i>
+							<div class="sc_title_trasparent">
+								<a href="#" class="sc_button_blue">Another</a> <a href="#"
+									class="sc_button_green">Submit</a>
+							</div>
+						</div>
+					</div>
+					<div class="sc_title_trasparent">
+						<a href="#" class="sc_button_green fullBtn">Sign Up</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="signin" style="display: none">
+			<div class="signIn">
+				<div class="title">
+					<span class="iconBorder"><i
+						class="iconh:inputText fa fa-user"></i></span><span>Sign In</span>
+				</div>
+				<div class="form">
+					<h:form id="loginForm">
+						<div class="name">
+							<i class="iconh:inputText fa fa-user"></i>
+
+							<p:inputText type="text"
+								value="#{userController.currentUser.email}"
+								placeholder="#{messages['user.manageUser.email']}">
+								<f:validateRegex
+									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+
+							</p:inputText>
+						</div>
+						<div class="password">
+							<i class="iconh:inputText fa fa-lock"></i>
+
+							<p:password placeholder="#{messages['user.manageUser.password']}"
+								value="#{userController.currentUser.password}" required="true"
+								requiredMessage="#{messages['user.manageUser.message.passwordrequired']}">
+
+
+							</p:password>
+						</div>
+
+						<div class="lostPassword">
+							<h:link outcome="/resetPassword.xhtml"
+								styleClass="ForgetPassword"> #{messages['user.manageUser.forgetpasswd']}</h:link>
+
+						</div>
+						<div class="sc_title_trasparent">
+							<h:commandButton action="#{userController.login()}"
+								styleClass="sc_button_green fullBtn" value="Sign In" />
+
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<!-- End Sign Up & Sign In-->
+
+	</div>
+
+
+</h:body>
+</html>

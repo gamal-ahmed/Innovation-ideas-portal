@@ -1,0 +1,462 @@
+Build No: 1.0.01
+
+New Features:  
+      - Second Milestone
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      - DDL: CR_01.sql
+      - DML: CR_02.sql
+
+Fixes:
+      - QC[10],QC[11],QC[13],QC[15],QC[16],QC[18],QC[19], QC[21],QC[22],QC[27], QC[33], QC[39], QC[34], QC[44]
+      - QC[23],QC[24],QC[26],QC[40]
+---------------------------------------------------------------------------------------
+Build No: 1.0.02
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      - DDL: CR_03.sql
+
+Fixes:
+      - QC[12],QC[30],QC[37],QC[47],QC[48],QC[49],QC[50]      
+      
+---------------------------------------------------------------------------------------
+Build No: 1.0.03
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -N/A
+
+Fixes:  
+      - QC[51],QC[53],QC[54],QC[56],Q[61],Q[62],QC[63]
+ 
+ ---------------------------------------------------------------------------------------
+Build No: 1.0.04
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -DDL: CR_04.sql
+      -DML:CR_05.sql
+
+Fixes:  
+      - QC[58],QC[59],QC[70],QC[72],Q[29],Q[32],Q[34],Q[35],Q[36],Q[52],Q[55],Q[57],Q[64],Q[67],Q[68]
+   
+    ---------------------------------------------------------------------------------------
+Build No: 1.0.0.6
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -DML: CR_06.sql
+
+Fixes:  
+      - QC[12],QC[54],QC[79],QC[83],Q[84],Q[74],Q[76],Q[77],Q[81],Q[86],Q[87],Q[88],Q[89],Q[90]
+            
+---------------------------------------------------------------------------------------
+Build No: 1.0.07
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -N/A
+
+Fixes:  
+      - QC[91], QC[92], QC[93], QC[94],QC[95]
+ 
+ ---------------------------------------------------------------------------------------
+Build No: 1.0.08
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -N/A
+
+Fixes:  
+      - Major issue in toString function for all lazy lists              
+       ---------------------------------------------------------------------------------------
+Build No: 1.0.09
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -N/A
+
+Fixes:  
+      - QC[100], QC[101]    
+      
+---------------------------------------------------------------------------------------
+Build No: 1.0.10
+
+Captcha is by-passed for Load Testing
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - N/A
+      
+Database Changes:
+      -N/A
+
+Fixes:  
+      - QC[102], QC[103] , QC[104]          
+---------------------------------------------------------------------------------------
+Build No: 1.0.11
+
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+      - UAT changes
+      
+Database Changes:
+      -DDL: CR_08.sql
+      -DML: CR_08.sql
+
+Fixes:  
+      - Remaining time in stage 4      
+      
+     ---------------------------------------------------------------------------------------
+Build No: 1.0.0.12
+
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+       - N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  
+      -QC[108]
+      
+----------------------------------------------------------------------------
+Build No: 1.0.0.13
+
+
+New Features:  
+   	 	- Counter to have the date then the days as the UI represent.
+   	 	- Register Email response received to have the username and password of the user.
+                  
+Code Changes:
+       - The picture that will replace the video should follow this size 300 * 260 and preferably exist on a JPEG format . ( Heba to provide )
+       - Remove Categories from the menu
+       - Logo to link to homepage
+       - Etisalat logo to link to Etisalat corporate portal
+       - Privacy policy & terms popup window to increase in width since Etisalat logo is trimmed.
+       - Developers page: align the status / personal data topÃ¢â‚¬Â¦ also align the form
+       - A small disclaimer under the email address to mention that it is the users login name.
+      
+Database Changes:
+       - DML: CR_07.sql (updated)
+
+Fixes:  
+      - Judging & awards page to have content aligned after the icon as UI 
+      - Logout in Arabic goes to English
+      - fix full path issue in download files  
+---------------------------------------------------------------------------------------
+Build No: 1.0.0.14
+
+New Features:  
+   	 - N/A
+                  
+Code Changes:
+       - N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  
+      -QC[110]      
+----------------------------------------------------------------------------     
+Build No: 1.0.0.15
+
+New Features:  
+   	 	- Enable options menu in case of minimized browser
+                  
+Code Changes:
+       - N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  
+
+	Use the below status instead:
+	 
+	Stage 1
+	Now you can submit your idea(s)
+	Ã™Å Ã™â€¦Ã™Æ’Ã™â€ Ã™Æ’ Ã˜Â§Ã™â€žÃ˜Â£Ã™â€  Ã˜ÂªÃ™â€šÃ˜Â¯Ã™Å Ã™â€¦ Ã™ï¿½Ã™Æ’Ã˜Â±Ã˜ÂªÃ™Æ’ / Ã˜Â£Ã™ï¿½Ã™Æ’Ã˜Â§Ã˜Â±Ã™Æ’
+	 
+	Stage2
+	Your project is being reviewed
+	Ã™â€¦Ã˜Â´Ã˜Â±Ã™Ë†Ã˜Â¹Ã™Æ’ Ã™Å Ã˜ÂªÃ™â€¦ Ã™â€¦Ã˜Â±Ã˜Â§Ã˜Â¬Ã˜Â¹Ã™â€¡
+		 
+	Stage 3
+	If User is short listed:
+	You have been shortlisted.
+	Start by submitting your project.
+	Ã˜ÂªÃ™â€¦ Ã˜Â§Ã˜Â®Ã˜ÂªÃ™Å Ã˜Â§Ã˜Â± Ã™â€¦Ã˜Â´Ã˜Â±Ã™Ë†Ã˜Â¹Ã™Æ’ Ã™ï¿½Ã™Å  Ã˜Â§Ã™â€žÃ˜ÂªÃ˜ÂµÃ™ï¿½Ã™Å Ã˜Â© Ã˜Â§Ã™â€žÃ™â€ Ã™â€¡Ã˜Â§Ã˜Â¦Ã™Å Ã˜Â©.
+	Ã™â€šÃ™â€¦ Ã˜Â¨Ã˜ÂªÃ™â€šÃ˜Â¯Ã™Å Ã™â€¦ Ã™â€¦Ã˜Â´Ã˜Â±Ã™Ë†Ã˜Â¹Ã™Æ’.
+	 
+	If User is not Short listed:
+	Sorry you have not being short listed.
+	Ã˜Â¹Ã™ï¿½Ã™Ë†Ã˜Â§ Ã™â€žÃ™â€¦ Ã˜ÂªÃ˜ÂµÃ™â€ž Ã™â€žÃ™â€žÃ˜ÂªÃ˜ÂµÃ™ï¿½Ã™Å Ã˜Â© Ã˜Â§Ã™â€žÃ™â€ Ã™â€¡Ã˜Â§Ã˜Â¦Ã™Å Ã˜Â©.
+	 
+	Stage 4
+	If User is short listed:
+	Stay tuned, you could be a WINNER.
+	Ã˜ÂªÃ˜Â±Ã™â€šÃ˜Â¨! Ã™â€šÃ˜Â±Ã™Å Ã˜Â¨Ã˜Â§ Ã˜Â³Ã™Å Ã˜ÂªÃ™â€¦ Ã˜Â¥Ã˜Â¹Ã™â€žÃ˜Â§Ã™â€  Ã˜Â§Ã™â€žÃ™ï¿½Ã˜Â§Ã˜Â¦Ã˜Â²Ã™Å Ã™â€ .
+
+
+	-Add reset button image 
+	-fix days  in home timer 
+----------------------------------------------------------------------------     
+Build No: 1.0.0.16
+
+New Features:  
+   	 	- Handset view
+                  
+Code Changes:
+		1.   Ã¢â‚¬Å“Reset passwordÃ¢â‚¬ï¿½ in page title is written using the wrong font.
+		2.   Ã¢â‚¬Å“Reset buttonÃ¢â‚¬ï¿½ should have two shadows and it should be on the right bottom corner.
+		3.   "Remove Ã¢â‚¬Å“homeÃ¢â‚¬ï¿½ link from under the "Get started below" title.
+		4.   Ã¢â‚¬Å“go to your homepageÃ¢â‚¬ï¿½ instead of Ã¢â‚¬Å“get started belowÃ¢â‚¬ï¿½ is not present after the user login.
+		5.   Ã¢â‚¬Å“blogÃ¢â‚¬ï¿½ should be Ã¢â‚¬Å“blogsÃ¢â‚¬ï¿½.
+		6.   in stage three the submit button will have a text under it saying: Ã¢â‚¬Å“upload your project filesÃ¢â‚¬ï¿½.
+		7.   the wording for the blogs page tabs is different, instead of Ã¢â‚¬Å“voters/developersÃ¢â‚¬ï¿½ it is Ã¢â‚¬Å“personal blogsÃ¢â‚¬ï¿½, and instead of Ã¢â‚¬Å“developers/judgesÃ¢â‚¬ï¿½ it is Ã¢â‚¬Å“discussion boardÃ¢â‚¬ï¿½.      
+
+Database Changes:
+       - N/A
+
+Fixes:  
+		-N/A
+		
+----------------------------------------------------------------------------     
+Build No: 1.0.0.17
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+       - N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		-QC[111]	
+ 		- Fix fonts in English pages
+ 		
+ ----------------------------------------------------------------------------     
+Build No: 1.0.0.18
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Cosmetic Updates in manage users screen
+		- Merge two applications Contender/Voter & Judge/Admin in one single EAR application
+		- Update Datasource file configurations  
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		- QC[112], QC[113], QC[114], QC[115]	
+ 		- Fix fonts in English pages on IE	
+ 		- Add arrows to "Go to Home"	link		
+        - fix privacy policy link in (Context_Admin_Web)
+        - Fix Yalla N'saytar link (Context_Admin_Web)
+        - Fix mismatch password message. 
+        
+  ----------------------------------------------------------------------------     
+Build No: 1.0.0.19
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Limit uploaded files'size (5MB in STG1 and 20 in STG3)
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		- QC[116], QC[117]  
+  ----------------------------------------------------------------------------     
+Build No: 1.0.0.20
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Limit uploaded files'size (5MB in STG1 and 20 in STG3)
+		- add idea status label in judge admin application 
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		- N/A
+----------------------------------------------------------------------------     
+Build No: 1.0.0.21
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Update in content
+		- Add https to login  (comment the section of 'SecureConnection' in file Developer_Contest_Web.war/WEB-INF/web.xml in order to enable normal login)
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		- User status if the user has idea rejected and winner idea in stage 4. 		 		
+ 		       - N/A
+
+Fixes:  	
+ 		- N/A
+----------------------------------------------------------------------------     
+Build No: 1.0.0.22
+
+New Features:  
+   	 	- Add google analytics script
+   	 	- Update home page image
+                  
+Code Changes:
+		- N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		-N/A 
+----------------------------------------------------------------------------     
+Build No: 1.0.0.23
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- N/A
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		-Fix user status is stage 3 and stage 4
+----------------------------------------------------------------------------     
+Build No: 1.0.0.24
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Update Arabic Content
+		- From	To
+			يلا N'Saytar 	يلا نسيطر
+			لتطبيقات الهاتف المتحرك	لبرامج الهاتف المحمول
+			نمط الحياه	لايف ستايل
+			
+		- Remove www. in FAQ pages AR/EN
+		- update reset password to use email address in case sensitive
+		- Add Register and updateProfile pages to security pages
+		-	Don’t send password in email while registration
+		-	Send email with link valid for 30 mins instead of sending the password.
+		-	The link will allow user to insert new password
+		-	New password should be effective immediately
+		-	Include old password if wanted to change existing password/user data
+		-  Strong password contains minimum of 8 characters with combination of upper-case letters, 
+		lower-case letters, numbers and/or symbols (Regular expression replicated from portal).
+					
+      
+Database Changes:
+       - DML : CR_01.sql
+
+Fixes:  	
+ 		-email encoding for Arabic characters (hotmail, yahoo)
+ 		
+ _____________________________________________________________________________________________
+ Build No: 1.0.0.25
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- Save Contest URL in DB
+		- update blocking list for admin module to be limited for 
+			10.223.3.252       Khaled Mokhtar
+			10.223.1.145       Tarek.Ammar
+			10.222.98.32       Ahmed.Gamaleldin
+			10.222.83.33       Ashraf.Amer
+			10.222.98.106     Bassel.Zaki
+			10.222.111.*       Middlware          
+			10.222.107.*       Support
+			127.0.0.1		   localhost
+		
+					
+      
+Database Changes:
+       - DML : CR_01.sql
+
+Fixes:  	
+ 		-QC[120],QC[121],QC[122],QC[123],QC[124],QC[125]
+_____________________________________________________________________________________________
+ Build No: 1.0.0.26
+
+New Features:  
+   	 	- N/A
+                  
+Code Changes:
+		- update blocking list for admin module to be limited for 
+			10.223.3.252       Khaled Mokhtar
+			10.223.1.145       Tarek.Ammar
+			10.222.83.*     commercial sub-net 1
+			10.222.98.*     commercial sub-net 2
+			10.222.111.*       Middlware          
+			10.222.107.*       Support
+			127.0.0.1		   localhost
+      
+Database Changes:
+       - N/A
+
+Fixes:  	
+ 		-N/A 		

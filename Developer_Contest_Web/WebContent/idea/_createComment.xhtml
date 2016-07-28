@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" >
+
+
+<f:metadata>
+	<f:event type="preRenderView" listener="#{ideaBlogController.initiateComment}" />
+</f:metadata>
+<h:form id="commentForm">
+    <div class="LikeDislikeContainer">
+    	<div class="LikeDislike">
+    		
+    	 	<h:panelGroup id="votesPanel" rendered="#{userSessionController.currentUser != null and !userSessionController.currentStage4}" >
+ 	 
+ 	 			<a4j:jsFunction name="rate" actionListener="#{ideaBlogController.onrate}" render="votesOutput"></a4j:jsFunction>
+ 	 			
+    	 		<table>
+    	 		<tr><td onclick="rate()">
+        		<input name="star" type="radio" class="star" value="1" checked="#{(ideaBlogController.userVote == 1) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="2" checked="#{(ideaBlogController.userVote == 2) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="3" checked="#{(ideaBlogController.userVote == 3) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="4" checked="#{(ideaBlogController.userVote == 4) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="5" checked="#{(ideaBlogController.userVote == 5) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="6" checked="#{(ideaBlogController.userVote == 6) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="7" checked="#{(ideaBlogController.userVote == 7) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="8" checked="#{(ideaBlogController.userVote == 8) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="9" checked="#{(ideaBlogController.userVote == 9) ? 'checked' : ''}" />
+				<input name="star" type="radio" class="star" value="10" checked="#{(ideaBlogController.userVote == 10) ? 'checked' : ''}" />
+			
+    	 		</td>
+    	 		</tr>
+			</table>
+				
+			
+			
+        		
+        		
+
+		</h:panelGroup>	
+    	 
+    	</div>
+    </div>
+	<h:inputTextarea id="commentText" value="#{ideaBlogController.currentBlogCommemt.commentText}" 
+		requiredMessage="#{messages['blog.comments.message.mandatoryComment']}"
+		disabled="#{userSessionController.currentUser== null or (not userSessionController.manageVoteEnabled)  }" 
+		required="true" >
+		<f:validateLength maximum="2000" />
+		</h:inputTextarea>
+	<a4j:commandLink styleClass="CustomBtn1" id="addCommentLink" action="#{ideaBlogController.addNewComment}" value="#{messages['blog.comments.message.addComment']}"
+		disabled="#{userSessionController.currentUser== null or (not userSessionController.manageVoteEnabled) }" 
+		render=":#{commentsAreaId},commentText,:commentsNo">
+		</a4j:commandLink>
+	<p>
+		<h:message for="commentText" styleClass="Error" />
+	</p>
+	</h:form>
+</html>

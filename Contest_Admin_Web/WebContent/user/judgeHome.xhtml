@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<div class="YoutubeContainer">
+			<h:graphicImage library="#{siteLanguage}" name="images/idea.jpg"	width="280" height="260"/>
+		</div>
+		<div class="StepsGraph">
+			<h:graphicImage library="#{siteLanguage}" name="images/stages.png" />
+		</div>
+
+		<c:set value="#{userSessionController.currentStage.nextStageStartDate == null}" var="lastStage" />
+
+		<div class="StageArea" style="width: 330px;">
+			<div class="StageNumber Stage1">#{userSessionController.currentStage.getStageName(siteLanguage)}</div>
+			<div class="TimerContainer">
+				<div class="Timer">
+					<c:choose>
+						<c:when test="#{not lastStage}">
+							<span id="defaultCountdown"></span>
+							
+						</c:when>
+						<c:otherwise>
+							<span id="defaultCountdown"><h:outputText value="#{messages['user.manageUser.lastStage']}" /> </span>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</div>
+
+		<c:if test="#{not lastStage}">
+
+			<h:outputScript>
+	jQuery(document).ready(function(jQuery){
+	
+	jQuery('#defaultCountdown').countdown({
+		until: new Date(#{userSessionController.currentStage.nextStageStartDate.time}),layout: ' #{messages['user.manageUser.stage.leftTime']}'
+   	});
+   
+   jQuery('.Toggle').click(function () {
+	  jQuery(this).toggleClass('Minus');
+      jQuery(this).parent().next('.ExpandCollapse').slideToggle('slow')
+	 
+    });
+
+
+});
+		</h:outputScript>
+		</c:if>
+	</ui:define>
+
+</ui:composition>
+</html>

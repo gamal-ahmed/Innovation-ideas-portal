@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="updateUser::#user#createUser.xhtml"
+    NAME="output1" PATH="/user/createUser.xhtml"
+    TARGET="rules:#user#createUser.xhtml" TITLE="updateUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#user#createUser.xhtml"
+  PATH="/user/createUser.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

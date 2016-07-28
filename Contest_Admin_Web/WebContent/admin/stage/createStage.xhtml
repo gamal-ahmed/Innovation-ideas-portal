@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core" >
+
+
+
+<ui:composition template="/templates/main.xhtml">
+<f:metadata>
+	<f:event type="preRenderView" listener="#{stageController.initiateStage}" />
+</f:metadata>
+
+	<ui:define name="content">
+		
+		<div class="SectionTitle">#{messages['stage.manageStage.message.StagePage']}</div>
+		<div class="SectionText participateHeader">
+		<p></p>
+		</div>
+		<div class="DeveloperForm" style="height:450px;">
+			
+			<h:form class="Form" style="width:550px;">
+			<h:messages globalOnly="true" />
+				    <div class="FormEntry">
+					<h:outputLabel for="stageArabicName">#{messages['stage.manageStage.message.EnterArabicName']}</h:outputLabel>
+					<h:inputText id="stageArabicName" value="#{stageController.currentContestStage.stageArabicName}" required="true" requiredMessage="#{messages['stage.manageStage.message.EnterArabicNameCheck']}" readonly="true" />
+					<h:message for="stageArabicName" />
+					</div>
+					
+					<div class="FormEntry">
+					<h:outputLabel for="stageEnglishName">#{messages['stage.manageStage.message.EnterEnglishName']}</h:outputLabel>
+					<h:inputText id="stageEnglishName" value="#{stageController.currentContestStage.stageEnglishName}" required="true" requiredMessage="#{messages['stage.manageStage.message.EnterEnglishNameCheck']}" readonly="true" />
+					<h:message for="stageEnglishName" />
+					</div>
+					
+				    <div class="FormEntry">
+					<h:outputLabel for="stageArabicDesc">#{messages['stage.manageStage.message.EnterArabicDesc']}</h:outputLabel>
+					<h:inputTextarea  id="stageArabicDesc" value="#{stageController.currentContestStage.stageArabicDesc}" required="true" >
+						<f:validateLength maximum="250" />
+					</h:inputTextarea>
+					<h:message for="stageArabicDesc" />
+					</div>
+					
+				    <div class="FormEntry">	
+					<h:outputLabel for="stageEnglishDesc">#{messages['stage.manageStage.message.EnterEnglishDesc']}</h:outputLabel>
+					<h:inputTextarea id="stageEnglishDesc" value="#{stageController.currentContestStage.stageEnglishDesc}" required="true"  >
+						<f:validateLength maximum="250" />
+					</h:inputTextarea>
+					<h:message for="stageEnglishDesc" />
+					</div>
+
+					<div class="FormEntry">
+				    <h:outputLabel for="stageStartDate">#{messages['stage.manageStage.message.EnterStartDate']}</h:outputLabel>
+			        <rich:calendar value="#{stageController.currentContestStage.stageStartDate}" popup="true" datePattern="dd-MMM-yy" locale="" > </rich:calendar>
+					<h:message for="stageStartDate" />
+					</div>
+					
+					
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{stageController.updateStage}" value="#{messages['stage.manageStage.message.UpdateStage']}"></h:commandButton>
+				</h:panelGrid>
+			
+			<h:link outcome="allStages.xhtml">#{messages['stage.manageStage.message.AllStage']}</h:link>
+			</h:form>
+		</div>
+		
+		
+
+
+	</ui:define>
+</ui:composition>
+</html>

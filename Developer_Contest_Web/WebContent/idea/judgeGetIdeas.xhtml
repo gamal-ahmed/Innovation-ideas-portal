@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+<ui:composition template="/templates/main.xhtml">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{ideaController.preRenderAllIdeasScreen}" />
+	</f:metadata>
+
+	<h:outputStylesheet>
+.selectedPage {
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.notSelectedPage {
+    background: none repeat scroll 0% 0% ;
+    border: 1px solid rgb(189, 188, 188);
+    border-bottom: 1px solid rgb(161, 196, 47);
+    color: rgb(255, 255, 255);
+    width:10px;
+font-weight: 700;
+padding: 5px;
+text-decoration: none;
+outline: medium none;
+
+}
+
+.rf-ds-act:hover{
+    border: 1px solid rgb(189, 188, 188);
+    background: none repeat scroll 0% 0% rgb(161, 196, 47);
+    border-bottom: 1px solid rgb(161, 196, 47);
+}
+
+.rf-ds {
+padding-bottom: 6px;
+}
+
+
+</h:outputStylesheet>
+	<ui:define name="content">
+		<h:messages />
+
+					
+
+					
+<a4j:commandLink onclick="#{rich:component('rejectPopup')}.show()"
+						value="Reject All other non-Short-listed ideas" styleClass="ForgetPassword" disabled="#{! userSessionController.currentStage2}"></a4j:commandLink>
+
+		<rich:popupPanel id="rejectPopup" modal="true" autosized="true" resizeable="false">
+			<f:facet name="header">
+				<h:outputText value="#{messages['idea.contender.confirm']}" />
+			</f:facet>
+
+			<p style="font-size: 12px;">Are you sure you want to reject all non-Short-listed ideas? <br/> <b>This action can not be rolled back</b></p>
+			<h:form>
+
+				<h:commandButton immediate="true" action="#{ideaController.rejectAllNonSubmittedIdeas}"
+					value="#{messages['idea.contender.yes']}" styleClass="popupDeleteIdea" />
+				<h:commandButton onclick="#{rich:component('rejectPopup')}.hide(); return false;"
+					value="#{messages['idea.contender.no']}" />
+			</h:form>
+		</rich:popupPanel>
+		
+			<h:form id="developerForm">
+				<h:panelGroup rendered="true">
+
+
+
+					<div class="DiscussionsTabsContent" style="float:left; width:66%">
+
+
+						<h:panelGroup id="paginationContainer">
+							<div class="DiscussionsContent">
+								<rich:dataScroller for="ideasTable" styleClass="BlogTabs Pagging" boundaryControls="show"
+									selectedStyleClass="selectedPage" inactiveStyleClass="notSelectedPage" fastStep="5" fastControls="auto" />
+							</div>
+						</h:panelGroup>
+
+						<rich:dataTable styleClass="BlogsDiscussions" value="#{ideaController.listOfAllIdeas}" var="idea" id="ideasTable"
+							rows="12" rowClasses="odd,even">
+							<f:facet name="header">
+								<h:outputText value=" #{messages['idea.judge.availableideas']}" />
+							</f:facet>
+
+							<f:facet name="noData">
+                	 #{messages['idea.judge.noideas']}
+                </f:facet>
+
+
+
+							<rich:column filterValue="#{ideaController.ideaNameFilter}"
+								filterExpression="#{fn:containsIgnoreCase(idea.ideaName,ideaController.ideaNameFilter)}" >
+								<f:facet name="header">#{messages['blog.manageBlog.message.idea']}
+										<h:inputText value="#{ideaController.ideaNameFilter}">
+											<a4j:ajax event="blur" render="ideasTable,paginationContainer" execute="@this" />
+										</h:inputText>
+								</f:facet>
+
+								<a4j:commandLink actionListener="#{ideaController.loadCurrentIdea(idea)}" value="#{idea.ideaName}" styleClass="DiscussionTitle" render="ideaUpdatePanel" immediate="true">
+									
+								</a4j:commandLink>
+
+							</rich:column>
+
+							<rich:column filterValue="#{ideaController.statusFilter}"
+								filterExpression="#{fn:containsIgnoreCase(idea.ideaStatus.description,ideaController.statusFilter)}">
+								<f:facet name="header"> #{messages['blog.manageBlog.message.status']}   
+					      <h:panelGroup>
+										<h:selectOneMenu value="#{ideaController.statusFilter}" >
+											<f:selectItem itemLabel="All" itemValue="" />
+											<f:selectItems value="#{ideaController.allIdeaStatus}" var="ideaStatus" itemLabel="#{ideaStatus.description}"
+												itemValue="#{ideaStatus.description}" />
+											<a4j:ajax render="ideasTable,paginationContainer" execute="@this" event="change" />
+										</h:selectOneMenu>
+									</h:panelGroup>
+
+								</f:facet>	
+						#{idea.ideaStatus.description}
+						
+				</rich:column>
+					<rich:column filterValue="#{ideaController.userNameFilter}"
+								filterExpression="#{fn:containsIgnoreCase(idea.user.fullName,ideaController.userNameFilter)}">
+								<f:facet name="header">#{messages['user.manageUser.contender']}
+						<h:panelGroup>
+										<h:inputText value="#{ideaController.userNameFilter}">
+											<a4j:ajax event="blur" render="ideasTable,paginationContainer" execute="@this" />
+										</h:inputText>
+									</h:panelGroup>
+								</f:facet>	
+					#{idea.user.fullName}
+				</rich:column>
+
+
+						</rich:dataTable>
+
+
+
+					</div>
+				</h:panelGroup>
+			
+			</h:form>
+	
+
+	</ui:define>
+</ui:composition>
+</html>

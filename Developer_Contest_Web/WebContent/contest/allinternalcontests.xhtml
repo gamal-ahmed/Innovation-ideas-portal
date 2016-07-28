@@ -1,0 +1,194 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<div class="contests">
+			<div class="content">
+				<div class="mainContentFull">
+					<div class="component">
+						<div class="head">
+							<span class="bullet"></span> <span class="title"><h:link
+									class="title" outcome="allcontests.xhtml"> Internal</h:link></span>
+						</div>
+						<div class="content">
+							<span class="bullet"></span>
+							<div class="contestContainer">
+								<div class="row">
+									<ui:repeat
+										value="#{contestController.getAllInternalContests(8)}"
+										var="internalContest" varStatus="counter">
+										<div id="capslide_img_cont#{counter.index+1}"
+											class="ic_container contestImg">
+											<h:link
+												outcome="contest.xhtml?id=#{internalContest.contestId}"
+												includeViewParams="true">
+
+												<span><h:graphicImage library="#{siteLanguage}"
+														name="images/img.gif" /></span>
+												<div class="overlay" style="display: none;"></div>
+												<p class="ic_category">#{internalContest.name}</p>
+												<div class="ic_caption">
+													<h3>#{internalContest.getLocalizedPlaceHolder(userSessionController.siteLanguage)}</h3>
+													<p class="ic_text">IT Technical Complex</p>
+												</div>
+
+												<f:param name="id" value="#{internalContest.contestId}" />
+											</h:link>
+										</div>
+									</ui:repeat>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h:outputScript type="text/javascript">
+            $(function() {
+				 $("#capslide_img_cont1").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+                $("#capslide_img_cont2").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont3").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont4").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont5").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont6").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+                 $("#capslide_img_cont7").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont8").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont9").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont10").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+				 $("#capslide_img_cont11").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont12").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont13").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont14").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont15").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+			   $("#capslide_img_cont16").capslide({
+                    caption_color	: 'white',
+                    caption_bgcolor	: '',
+                    overlay_bgcolor : '#000000',
+                    border			: '',
+                    showcaption	    : true
+                });
+              
+
+              
+            });
+</h:outputScript>
+		<h:outputScript>
+$( "#tabs" ).tabs();
+
+// Hover states on the static widgets
+$( "#dialog-link, #icons li" ).hover(
+	function() {
+		$( this ).addClass( "ui-state-hover" );
+	},
+	function() {
+		$( this ).removeClass( "ui-state-hover" );
+	}
+);
+</h:outputScript>
+	</ui:define>
+</ui:composition>
+</html>

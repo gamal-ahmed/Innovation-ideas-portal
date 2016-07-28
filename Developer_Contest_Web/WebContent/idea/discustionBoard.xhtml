@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+
+
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{discustionThreadController.loadThreadMessages}" />
+</f:metadata>
+
+
+
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<div class="SectionTitle">#{messages['blog.manageBlog.message.blogs']}</div>
+		<br />
+		<div>
+			<ui:include src="/idea/_blogTabs.xhtml" />
+
+			<div class="DiscussionsTabsContent" >
+				<div class="DiscussionsContent" />
+				<h:form class="Form" style="width:590px;border:3px solid lightGray" id="discustinForm">
+					<h:panelGroup id="messageTable">
+						<ui:repeat
+							value="#{discustionThreadController.currentDiscussionThread.threadMessages}"
+							var="message">
+
+							<h:panelGroup style="float: left;"
+								rendered="#{message.messageType == discustionThreadController.responseMessageType}">
+
+								<div class="balloon">
+
+									<div class="arrow"></div>
+									<div style="font-size: 9px; font-style: italic;">#{message.messageDate}:</div>
+									<div>#{message.messageText}</div>
+								</div>
+								<br />
+							</h:panelGroup>
+							<h:panelGroup style="float: right;"
+								rendered="#{message.messageType == discustionThreadController.requestMessageType}">
+								<div class="balloonJudge">
+									<div style="font-size: 9px; font-style: italic;">#{message.messageDate}:</div>
+									<div class="arrowJudge"></div>
+									<div>#{message.messageText}</div>
+								</div>
+								<br />
+							</h:panelGroup>
+						</ui:repeat>
+					</h:panelGroup>
+					<div class="FormEntry">
+						<h:panelGroup>
+							<h:inputTextarea style="width:350px" id="threadMessage"
+								styleClass="duscustionBoardTextArea"
+								value="#{discustionThreadController.currentThreadMessage.messageText}"
+								required="true"
+								requiredMessage="#{messages['blog.manageBlog.message.mandatoryName']}">
+								<f:validateLength maximum="500" />
+							</h:inputTextarea>
+							<br />
+							<a4j:commandButton style="margin:10px 230px;"
+								styleClass="duscustionBoardSubmit"
+								action="#{discustionThreadController.addMessage()}"
+								value="#{messages['idea.discustionthread.send']}"
+								render="discustinForm" />
+						</h:panelGroup>
+					</div>
+
+
+
+
+				</h:form>
+				<h:messages />
+			</div>
+		</div>
+		<h:outputStylesheet>
+ .balloonJudge {  
+    background: yellowgreen;  
+    border-radius: 4px;  
+    -moz-border-radius: 4px;  
+    -webkit-border-radius: 4px;  
+    padding: 10px;  
+    position: relative;  
+    font-size: 12px;  
+    width: 300px;  
+    text-align: justify;  
+    color: #3a3a3a;  
+}  
+  .balloonJudge .arrowJudge {  
+    border-color: transparent  transparent transparent yellowgreen ;  
+    border-style: solid;  
+    border-width: 10px;  
+    display: block;  
+    height: 0;  
+    right: -20px;  
+    position: absolute;  
+    top: 15px;  
+    width: 0;  
+}
+
+        
+        
+    .balloon {  
+    background: lightgray;  
+  
+    border-radius: 4px;  
+    -moz-border-radius: 4px;  
+    -webkit-border-radius: 4px;  
+  
+    padding: 10px;  
+    position: relative;  
+    font-size: 12px;  
+    width: 300px;  
+    text-align: justify;  
+    color: #3a3a3a;  
+}  
+  
+.balloon .arrow {  
+    border-color: transparent lightgray transparent transparent;  
+    border-style: solid;  
+    border-width: 10px;  
+    display: block;  
+    height: 0;  
+    left: -20px;  
+    position: absolute;  
+    top: 15px;  
+    width: 0;  
+}  
+
+</h:outputStylesheet>
+	</ui:define>
+
+</ui:composition>
+</html>

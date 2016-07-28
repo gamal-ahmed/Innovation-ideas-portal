@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<h:head>
+		<style>
+.optionList {
+	height: 22px;
+}
+
+.vertical-menu-cell {
+	padding: 0px 4px 0px 4px;
+}
+</style>
+	</h:head>
+	<ui:composition template="/templates/main.xhtml">
+
+
+		<ui:define name="content">
+			<div id='cssmenu'>
+				<ul>
+					<li><a href='#'><span>Home</span></a></li>
+					<li class='active has-sub'><a href='#'><span>Products</span></a>
+						<ul>
+							<li class='has-sub'><a href='#'><span>Product 1</span></a>
+								<ul>
+									<li><a href='#'><span>Sub Product</span></a></li>
+									<li class='last'><a href='#'><span>Sub Product</span></a></li>
+								</ul></li>
+							<li class='has-sub'><a href='#'><span>Product 2</span></a>
+								<ul>
+									<li><a href='#'><span>Sub Product</span></a></li>
+									<li class='last'><a href='#'><span>Sub Product</span></a></li>
+								</ul></li>
+						</ul></li>
+					<li><a href='#'><span>About</span></a></li>
+
+					<li><a href='#'><span>About</span></a></li>
+					<li><a href='#'><span>About</span></a></li>
+					<li class='last'><a href='#'><span>Contact</span></a></li>
+				</ul>
+			</div>
+		</ui:define>
+	</ui:composition>
+	</html>

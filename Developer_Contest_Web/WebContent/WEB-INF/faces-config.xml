@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <converter>
+  <converter-id>genericConverter</converter-id>
+  <converter-class>eg.com.etisalat.jsf.converters.GenericConverter</converter-class>
+ </converter>
+ <converter>
+  <converter-for-class>java.lang.String</converter-for-class>
+  <converter-class>eg.com.etisalat.jsf.converters.StringConverter</converter-class>
+ </converter>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <!-- 
+  <navigation-case>
+   <from-outcome>logout</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+   -->
+  <navigation-case>
+   <from-outcome>updateUser</from-outcome>
+   <to-view-id>/user/createUser.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <validator>
+  <validator-id>PasswordValidator</validator-id>
+  <validator-class>eg.com.etisalat.jsf.utility.PasswordValidator</validator-class>
+ </validator>
+ <validator>
+  <validator-id>CapthaValidator</validator-id>
+  <validator-class>eg.com.etisalat.jsf.utility.CapthaValidator</validator-class>
+ </validator>
+ <application>
+  <locale-config>
+   <default-locale>en</default-locale>
+   <supported-locale>ar</supported-locale>
+  </locale-config>
+ <!--    <resource-bundle>
+   <base-name>eg.com.etisalat.resourcebundle.EGResourceBundle</base-name>
+   <var>messages</var>
+  </resource-bundle>  -->
+  <resource-bundle>
+   <base-name>messages</base-name>
+   <var>messages</var>
+  </resource-bundle>  
+ </application>
+ <factory>
+  <exception-handler-factory>eg.com.etisalat.contest.utility.ExceptionHandlingActionListener</exception-handler-factory>
+ </factory>
+</faces-config>
