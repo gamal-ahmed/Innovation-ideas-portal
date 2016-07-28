@@ -132,7 +132,7 @@ public class ChallengeController implements Serializable {
 				JSFUtils.displayInfoMessage(
 						"user.manageUser.message.userUpdated",
 						currentChallenge.getName());
-			return "/admin/index.xhtml?faces-redirect=true";
+			return "";
 			//
 		}
 
