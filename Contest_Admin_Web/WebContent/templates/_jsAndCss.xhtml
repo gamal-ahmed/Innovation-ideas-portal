@@ -1,63 +1,11 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <c:set value="#{siteLanguage}/images/favicon.ico" var="shortcutIcon" />
 <link rel="SHORTCUT ICON" href="#{resource[shortcutIcon]}" />
 <h:outputStylesheet library="#{siteLanguage}" name="css/general.css" />
-<h:outputStylesheet library="#{siteLanguage}"
-	name="css/jquery.rating.css" />
 <h:outputScript library="#{siteLanguage}" name="js/jquery-1.8.2.min.js" />
-
-<h:outputStylesheet library="#{siteLanguage}" name="css/style.css" />
-<h:outputScript library="#{siteLanguage}" name="js/jquery.min.js" />
-<h:outputStylesheet library="#{siteLanguage}" name="css/jquery-ui.css" />
-<h:outputScript library="#{siteLanguage}"
-	name="js/tabs/jquery-ui.min.js" />
-
-
-
-<h:outputScript library="#{siteLanguage}" name="js/jquery.capSlide.js" />
-
-<h:outputScript id="jq" library="#{siteLanguage}" name="js/jquery.js" />
-<h:outputScript id="jqfr" library="#{siteLanguage}"
-	name="js/jquery.form.js" />
-<h:outputScript id="jqmeta" library="#{siteLanguage}"
-	name="js/jquery.MetaData.js" />
-<h:outputScript id="jqrati" library="#{siteLanguage}"
-	name="js/jquery.rating.js" />
-<h:outputScript id="jqratpac" library="#{siteLanguage}"
-	name="js/jquery.rating.pack.js" />
-<h:outputScript id="jqcountdo" library="#{siteLanguage}"
-	name="js/jquery.countdown.js" />
-<h:outputScript id="jsgene" library="#{siteLanguage}"
-	name="js/general.js" />
+<h:outputScript library="#{siteLanguage}" name="js/jquery.countdown.js" />
+<h:outputScript library="#{siteLanguage}" name="js/general.js" />
 <h:outputScript library="#{siteLanguage}" name="js/modernizr.js" />
-
-
-
-<h:outputScript>
-
-	function rate(){
-		alert(1);
-	}
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-1048762-11']);
-  _gaq.push(['_setDomainName', 'etisalat.com.eg']);
-  _gaq.push(['_setAllowLinker', true]);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-
-	
-</h:outputScript>
 </html>

@@ -398,12 +398,24 @@ public class UserController implements Serializable {
 	}
 
 	public String login() {
+		String userName = "";
+		String password = "";
 		String outcome = "loginFail";
 		HttpServletRequest httpServletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		try {
 			User loggedinUser = userSessionController.getCurrentUser();
 			if (loggedinUser == null) {
-				httpServletRequest.login(currentUser.getEmail(), currentUser.getPassword());
+				if (currentUser.getEmail().toLowerCase().contains("@etisalat.com")) {// contains(""))
+					// {{
+					userName = currentUser.getEmail().toLowerCase().replace("@etisalat.com", "");
+
+				} else if (currentUser.getEmail().toLowerCase().contains("@outsource.etisalat.com")) {// contains(""))
+
+					userName = currentUser.getEmail().toLowerCase().replace("@outsource.etisalat.com", "");
+
+				}
+
+				httpServletRequest.login(userName, currentUser.getPassword());
 				currentUser = userSessionController.getCurrentUser();
 			}
 

@@ -2,4 +2,3 @@
 <jboss-web>
    <security-domain flushOnSessionInvalidation="true">java:/jaas/jbossHULDAP</security-domain>      
 </jboss-web>
-	
