@@ -43,9 +43,6 @@ import eg.com.etisalat.contest.utility.CommonUtility;
 @SessionScoped
 public class UserSessionController {
 
-	public static final String ARABIC_LANGUAGE = "ar";
-	public static final String ENGLISH_LANGUAGE = "en";
-
 	public static User getUserInformation(String searchToken) {
 		ArrayList userList = new ArrayList();
 		User ldapUser = null;
@@ -121,6 +118,10 @@ public class UserSessionController {
 		}
 		return null;
 	}
+
+	public static final String ARABIC_LANGUAGE = "ar";
+
+	public static final String ENGLISH_LANGUAGE = "en";
 
 	private String siteLanguage;
 	@Inject
@@ -334,7 +335,7 @@ public class UserSessionController {
 			e.printStackTrace();
 		}
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login.xhtml?faces-redirect=true";
+		return "/landing.xhtml";
 	}
 
 	public void setCurrentUser(User currentUser) {
