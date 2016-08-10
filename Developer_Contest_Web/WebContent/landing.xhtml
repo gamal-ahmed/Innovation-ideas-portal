@@ -3,7 +3,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
@@ -52,6 +51,10 @@ $(document).ready(function(){
 	<div id="overlay" class="background" style="opacity: 1;"></div>
 	<div id="sensor"></div>
 	<div class="landing">
+
+		<div id="bouncy1" style="margin-top: 88px; display: initial;">
+			<a href="#" class="prev"></a>
+		</div>
 		<table id="content1" class="content"
 			style="display: table; opacity: 1; margin-top: 0px;">
 			<tbody>
@@ -59,7 +62,7 @@ $(document).ready(function(){
 					<td>
 						<h1>About Innovation Program ?</h1> <span>Some smaller text
 							goes here and continues here...</span>
-						
+
 						<table class="visible-xs">
 							<tbody>
 								<tr>
@@ -84,7 +87,7 @@ $(document).ready(function(){
 					<td>
 						<h1>Contests</h1> <span>Some smaller text goes here and
 							continues here...</span>
-					
+
 					</td>
 				</tr>
 			</tbody>
@@ -401,32 +404,38 @@ $(document).ready(function(){
 				<div class="form">
 					<h:form id="loginForm">
 						<div class="name">
-							<i class="iconh:inputText fa fa-user"></i>
+							<table>
+								<tr>
+									<td><i class="iconh:inputText fa fa-user"></i></td>
+								</tr>
+								<tr>
+									<td><p:inputText style="width: 100%;" type="text"
+										value="#{userController.currentUser.email}"
+										placeholder="#{messages['user.manageUser.email']}">
+										<f:validateRegex
+											pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 
-							<p:inputText type="text"
-								value="#{userController.currentUser.email}"
-								placeholder="#{messages['user.manageUser.email']}">
-								<f:validateRegex
-									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-
-							</p:inputText>
+									</p:inputText></td>
+								</tr>
+							</table>
 						</div>
 						<div class="password">
-							<i class="iconh:inputText fa fa-lock"></i>
+							<table>
+								<tr>
+									<td><i class="iconh:inputText fa fa-lock"></i></td>
+								</tr>
+								<tr>
+									<td><p:password 
+										placeholder="#{messages['user.manageUser.password']}"
+										value="#{userController.currentUser.password}" required="true"
+										requiredMessage="#{messages['user.manageUser.message.passwordrequired']}">
 
-							<p:password placeholder="#{messages['user.manageUser.password']}"
-								value="#{userController.currentUser.password}" required="true"
-								requiredMessage="#{messages['user.manageUser.message.passwordrequired']}">
 
-
-							</p:password>
+									</p:password></td>
+								</tr>
+							</table>
 						</div>
 
-						<div class="lostPassword">
-							<h:link outcome="/resetPassword.xhtml"
-								styleClass="ForgetPassword"> #{messages['user.manageUser.forgetpasswd']}</h:link>
-
-						</div>
 						<div class="sc_title_trasparent">
 							<h:commandButton action="#{userController.login()}"
 								styleClass="sc_button_green fullBtn" value="Sign In" />
