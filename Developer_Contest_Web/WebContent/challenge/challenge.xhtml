@@ -37,23 +37,10 @@
 							<div class="head">
 								<span class="bullet"></span> <span class="title">Ideas</span>
 							</div>
-							<ui:repeat
-								value="#{challengePageController.getCurrentChallengeIdeas(4)}"
-								var="idea" varStatus="counter">
-								<div class="challenge">
-									<div class="content">
-										<span class="bullet"></span>
-										<div class="textContent">
-											<h:link class="title">#{idea.ideaName}:</h:link>
-											<h:outputText value="idea" />
-										</div>
-
-									</div>
-								</div>
-							</ui:repeat>
+							
 
 							<div class="sc_title_trasparent insideComponent">
-								<a href="#" class="sc_button_green">View All</a>
+								<h:link href="/idea/createidea.xhtml" class="sc_button_green">Submit Your Idea</h:link>
 							</div>
 						</div>
 					</div>

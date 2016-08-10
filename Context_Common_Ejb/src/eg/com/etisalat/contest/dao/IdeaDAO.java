@@ -23,7 +23,7 @@ public interface IdeaDAO extends BaseEntityDAO<Idea> {
 
 	List<Idea> getAllIdeasForUser(User user,RetreivingCriteria criteria,int max);
 
-	Idea getIdeaByIdeaId(String ideaId);
+	Idea getIdeaByIdeaId(Long ideaId);
 
 	boolean updateEntity(Idea idea, Idea oldIdea);
 

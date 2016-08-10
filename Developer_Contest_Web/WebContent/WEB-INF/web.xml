@@ -150,4 +150,7 @@
 	<security-role>
 		<role-name>Voter</role-name>
 	</security-role>
+	<welcome-file-list>
+	<welcome-file>/landing.xhtml</welcome-file>
+	</welcome-file-list>
 </web-app>

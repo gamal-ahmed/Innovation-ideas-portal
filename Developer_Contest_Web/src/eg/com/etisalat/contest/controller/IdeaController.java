@@ -50,16 +50,16 @@ import eg.com.etisalat.jsf.utility.JSFUtils;
 @ViewScoped
 public class IdeaController implements Serializable {
 
-	public static int getIdeasMaximumNumberPerUser() {
-		return IDEAS_MAXIMUM_NUMBER_PER_USER;
-	}
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final int IDEAS_MAXIMUM_NUMBER_PER_USER = 10;
+
+	public static int getIdeasMaximumNumberPerUser() {
+		return IDEAS_MAXIMUM_NUMBER_PER_USER;
+	}
 
 	@Inject
 	private IdeaDAO ideaDAO;
@@ -567,6 +567,7 @@ public class IdeaController implements Serializable {
 			else
 				setCanEditDesc(true);
 		}
+
 		manageAttributes();
 		setCurrentUser(userSessionController.getCurrentUser());
 		if (currentUser != null) {
@@ -574,17 +575,22 @@ public class IdeaController implements Serializable {
 			currentUser.setIdeas(listOfIdeas);
 
 			if (CommonUtility.isEmptyList(listOfContests)) {
-				if (!currentUser.getEmail().toLowerCase().contains("@etisalat"))
-					listOfContests = contesDAO.getAllContestsByType(ContestType.EXTERNAL, 0, true);
-				else
-					listOfContests = contesDAO.getAllEntites(Contest.class);
+				// if
+				// (!currentUser.getEmail().toLowerCase().contains("@etisalat"))
+				// listOfContests =
+				// contesDAO.getAllContestsByType(ContestType.EXTERNAL, 0,
+				// true);
+				// else
+				listOfContests = contesDAO.getAllEntites(Contest.class);
 
 			}
 			if (CommonUtility.isEmptyList(listOfOpenChallengies)) {
-				if (!currentUser.getEmail().toLowerCase().contains("@etisalat"))
-					listOfOpenChallengies = challengeDAO.getAllOpenChallenges(0, ContestType.EXTERNAL);
-				else
-					listOfOpenChallengies = challengeDAO.getAllOpenChallenges(0, ContestType.ALL);
+				// if
+				// (!currentUser.getEmail().toLowerCase().contains("@etisalat"))
+				// listOfOpenChallengies = challengeDAO.getAllOpenChallenges(0,
+				// ContestType.EXTERNAL);
+				// else
+				listOfOpenChallengies = challengeDAO.getAllOpenChallenges(0, ContestType.ALL);
 
 			}
 
@@ -800,6 +806,11 @@ public class IdeaController implements Serializable {
 
 	public void setSlectedContest(Contest slectedContest) {
 		this.slectedContest = slectedContest;
+
+		if (slectedContest != null) {
+
+			listOfChallengies = slectedContest.getChallenges();
+		}
 	}
 
 	public void setStatusFilter(String statusFilter) {

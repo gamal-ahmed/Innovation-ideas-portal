@@ -4,13 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>Developer_Contest_Web</display-name>
 	<filter>
-	    <filter-name>CustomCharacterEncodingFilter</filter-name>
-	    <filter-class>eg.com.etisalat.jsf.utility.CustomCharacterEncodingFilter</filter-class>
-	</filter>	
+		<filter-name>CustomCharacterEncodingFilter</filter-name>
+		<filter-class>eg.com.etisalat.jsf.utility.CustomCharacterEncodingFilter</filter-class>
+	</filter>
 	<filter-mapping>
-	    <filter-name>CustomCharacterEncodingFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
+		<filter-name>CustomCharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<context-param>
+		<param-name>com.sun.faces.injectionProvider</param-name>
+		<param-value>
+        org.jboss.web.jsf.integration.injection.JBossInjectionProvider
+    </param-value>
+	</context-param>
 	<context-param>
 		<param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
 		<param-value>35000000</param-value>

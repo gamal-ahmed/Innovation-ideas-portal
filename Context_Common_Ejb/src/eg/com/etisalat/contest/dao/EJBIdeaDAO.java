@@ -82,7 +82,7 @@ public class EJBIdeaDAO extends EJBEntityDAO<Idea> implements IdeaDAO {
 	}
 
 	@Override
-	public Idea getIdeaByIdeaId(String IdeaId) {
+	public Idea getIdeaByIdeaId(Long IdeaId) {
 		try {
 			Query query = entityManager.createQuery("select i from Idea i where i.ideaId = ?");
 			query.setParameter(1, IdeaId);

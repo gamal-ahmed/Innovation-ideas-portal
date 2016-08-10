@@ -209,8 +209,8 @@ public class Idea extends eg.com.etisalat.base.entity.BaseEntity implements
 	}
 
 	public boolean isSameIdea(Object obj) {
-		if (this == obj)
-			return true;
+//		if (this == obj)
+//			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
@@ -364,6 +364,11 @@ public class Idea extends eg.com.etisalat.base.entity.BaseEntity implements
 		return IdeaStatus.WINNER_1st.equals(ideaStatus)
 				|| IdeaStatus.WINNER_2nd.equals(ideaStatus)
 				|| IdeaStatus.WINNER_3rd.equals(ideaStatus);
+	}
+
+	public Idea cloneIdea(Idea obj) {
+
+		return obj;
 	}
 
 }

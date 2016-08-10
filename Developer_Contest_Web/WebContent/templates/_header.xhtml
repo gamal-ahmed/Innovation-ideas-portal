@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <header class="ltr ">
 <div class="innovationContainer innerContent">
-		<div class="header">
-			<div class="wrapper">
-				<div class="topPart">
-					<div class="logo"><h:graphicImage library="#{siteLanguage}" name="images/logo.png" /></div>
-					<div class="menu">
-						<ul>
-							<li><a href="#">Navigation</a></li>
-							<li><a href="#">Navigation</a></li>
-							<li><a href="#">Navigation</a></li>
-							<li><a href="#">Navigation</a></li>
-						</ul>
-						<div class="welcome">
-							<span>Welcome Username</span>
-						</div>
+	<div class="header">
+		<div class="wrapper">
+			<div class="topPart">
+				<div class="logo">
+					<h:graphicImage library="#{siteLanguage}" name="images/logo.png" />
+				</div>
+				<div class="menu">
+					<ul>
+						<li><h:link id="homeLink" outcome="/landing.xhtml">#{messages['site.template.menu.home']}</h:link></li>
+						<li><a href="#"><h:link id="contactUsLink" outcome="/contactUs.xhtml"> #{messages['site.template.menu.contactUs']}</h:link></a></li>
+						<li><a href="#">Navigation</a></li>
+						<li><a href="#"> <h:form>
+									<h:commandLink value="#{messages['user.manageUser.logout']}"
+										action="#{userSessionController.logout()}"
+										rendered="#{userSessionController.currentUser != null}" />
+								</h:form>
+						</a></li>
+					</ul>
+					<div class="welcome">
+						<h:outputLabel
+							rendered="#{userSessionController.currentUser != null}">
+							<span>Welcome
+								#{userSessionController.currentUser.firstName}</span>
+						</h:outputLabel>
 					</div>
 				</div>
-				<div class="mainTitle">
-					<span class="bigTxt">Some Big Text</span>
-					<span class="smallTxt">Some smaller text as slogan</span>
-				</div>
+			</div>
+			<div class="mainTitle">
+				<span class="bigTxt">Some Big Text</span> <span class="smallTxt">Some
+					smaller text as slogan</span>
 			</div>
 		</div>
-
-		
 	</div>
+
+
+</div>
 </header>
 
 </html>

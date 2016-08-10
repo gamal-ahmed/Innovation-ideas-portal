@@ -36,18 +36,31 @@
 						</div>
 					</div>
 					<h:panelGroup columnClasses="alignTopForGrid,alignTopForGrid"
-						columns="2" rendered="#{userSessionController.contender}">
+						columns="2">
 						<h:panelGroup id="submitIdeaPanel"
-							rendered="#{ideaController.canSubmitIdea}">
+						>
 							<h:messages globalOnly="true" id="errrors" styleClass="Error"
-								rendered="#{not ideaController.ideaAddedSuccessfully}" />
+								 />
 
 
 							<div class="DeveloperForm">
 								<h:form class="Form" id="developerForm" enctype="UTF-8">
-									
-									
-
+									<div class="sc_box_280">
+										<h:selectOneRadio id="radio"
+											value="#{ideaController.isOpenChallenge}"
+											styleClass="sc_input_radio" name="number">
+											<f:selectItem itemValue="1" itemLabel="Open Challenge-Yes" />
+											<f:selectItem itemValue="0" itemLabel="Open Challenge-No" />
+											<p:ajax update="@form"></p:ajax>
+										</h:selectOneRadio>
+									</div>
+									<div class="sc_box_280">
+										<h:selectOneRadio id="privacy"
+											value="#{ideaController.privacy}" name="number">
+											<f:selectItem itemValue="0" itemLabel="privacy- private" />
+											<f:selectItem itemValue="1" itemLabel="privacy- public" />
+										</h:selectOneRadio>
+									</div>
 									<div class="sc_box_280">
 										<p:inputText id="ideaname" styleClass="sc_input_text"
 											value="#{ideaController.currentIdea.ideaName}"
