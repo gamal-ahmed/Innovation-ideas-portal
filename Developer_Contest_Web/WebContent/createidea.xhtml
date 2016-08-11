@@ -36,68 +36,50 @@
 						</div>
 					</div>
 					<h:panelGroup columnClasses="alignTopForGrid,alignTopForGrid"
-						columns="2" rendered="#{userSessionController.contender}">
-						<h:panelGroup id="submitIdeaPanel"
-							rendered="#{ideaController.canSubmitIdea}">
+						columns="2">
+						<h:panelGroup id="submitIdeaPanel">
 							<h:messages globalOnly="true" id="errrors" styleClass="Error"
 								rendered="#{not ideaController.ideaAddedSuccessfully}" />
 
-
 							<div class="DeveloperForm">
 								<h:form class="Form" id="developerForm" enctype="UTF-8">
-									<div class="sc_box_280">
-										<h:selectOneRadio id="radio"
-											value="#{ideaController.isOpenChallenge}"
-											styleClass="sc_input_radio" name="number">
-											<f:selectItem itemValue="1" itemLabel="Open Challenge-Yes" />
-											<f:selectItem itemValue="0" itemLabel="Open Challenge-No" />
-											<p:ajax update="@form"></p:ajax>
-										</h:selectOneRadio>
-									</div>
-									<div class="sc_box_280">
-										<h:selectOneRadio id="privacy"
-											value="#{ideaController.privacy}" name="number">
-											<f:selectItem itemValue="0" itemLabel="privacy- private" />
-											<f:selectItem itemValue="1" itemLabel="privacy- public" />
-										</h:selectOneRadio>
-									</div>
+
+
+
 									<div class="sc_box_280">
 										<p:inputText id="ideaname" styleClass="sc_input_text"
 											value="#{ideaController.currentIdea.ideaName}"
 											binding="#{ideaController.ideaName}" required="true"
 											placeholder="${messages['idea.contender.name']}"
-											requiredMessage="#{messages['idea.contender.idea.error.1']}"
-											readonly="#{! userSessionController.currentStage1}" />
+											requiredMessage="#{messages['idea.contender.idea.error.1']}" />
 
 										<h:message for="ideaname" styleClass="Error" />
 									</div>
 									<div class="sc_box_280">
-
-
-										<p:selectOneMenu value="#{ideaController.slectedContest}"
+										<h:selectOneMenu styleClass="sc_input_list"
+											value="#{ideaController.slectedContest}"
 											converter="genericConverter" id="contests"
-											disabled="#{! userSessionController.currentStage1}"
-											style="width:150px">
-											<p:ajax listener="#{ideaController.loadChalengesOfContest}" />
-											<f:selectItem itemLabel="Select Contest"
-												noSelectionOption="true" itemValue="" />
-											<f:selectItems value="#{ideaController.listOfContests}" />
-										</p:selectOneMenu>
+											style="width:200px;">
+											<a4j:ajax listener="#{ideaController.loadChalengesOfContest}"
+												render="@all" />
 
+											<f:selectItem itemLabel="Select contest" />
 
-									</div>
-									<div class="sc_box_280">
-										<h:selectOneMenu
-											rendered="#{ideaController.isOpenChallenge==1}"
+											<f:selectItems value="#{ideaController.listOfContests}"
+												var="c" itemLabel="#{c.name}" itemValue="#{c}" />
+
+										</h:selectOneMenu>
+
+										<h:selectOneMenu label="Select Challenge"
 											styleClass="sc_input_list" converter="genericConverter"
-											id="openchallenges"
-											disabled="#{! userSessionController.currentStage1}"
+											id="challenges"
 											value="#{ideaController.currentIdea.challenge}">
-											<f:selectItem itemLabel="---Select Challenge---" />
-											<f:selectItems
-												value="#{ideaController.listOfOpenChallengies}" />
+											<f:selectItem itemLabel="Select Challenge" />
+											<f:selectItems value="#{ideaController.listOfChallengies}"
+												var="chal" itemLabel="#{chal.name}" itemValue="#{chal}" />
 										</h:selectOneMenu>
 									</div>
+
 									<div class="sc_box_280">
 										<i style="font-size: 11px;">(maximum of 2500 characters)</i> <br></br>
 										<p:inputTextarea id="ideaDesc"
@@ -142,7 +124,6 @@
 											<rich:column>
 
 												<a4j:commandButton
-													disabled="#{! userSessionController.currentStage1 and ! (userSessionController.currentStage3 and ideaController.currentIdea.ideaStatus.ideaStatusId == 3) }"
 													oncomplete="#{rich:component('filePopup')}.show()"
 													actionListener="#{ideaController.setFilePath(file.filePath)}"
 													value=" #{messages['idea.contender.delete']}"
@@ -154,7 +135,6 @@
 
 									<div class="FormEntry" id="uploadedfiles2">
 										<rich:dataTable
-											rendered="#{userSessionController.currentStage3 or userSessionController.currentStage4}"
 											value="#{ideaController.listOfFilesForCurrentIdea_STG3}"
 											var="file" style="width:285px;" id="ideaFiles2Table">
 											<rich:column style="width:170px; white-space:normal">
@@ -183,7 +163,6 @@
 
 												<a4j:commandButton
 													oncomplete="#{rich:component('filePopup')}.show()"
-													disabled="#{! userSessionController.currentStage3}"
 													actionListener="#{ideaController.setFilePath(file.filePath)}"
 													value=" #{messages['idea.contender.delete']}"
 													style="font-size:12px;"></a4j:commandButton>
@@ -208,7 +187,6 @@
 										<h:panelGroup id="uploadFilePanel">
 											<rich:panel
 												bodyClass="rich-laguna-panel-no-header ideaUploadClass"
-												rendered="#{!ideaController.currentIdea.new and ideaController.canSubmitFile}"
 												style="padding:0px; border: none; background: transparent;">
 												<span class="Bold">#{messages['idea.contender.upload']}
 													(<h:outputText value="#{ideaController.extensionsForStage}" />)
@@ -243,9 +221,7 @@
 										</h:panelGroup>
 									</div>
 
-									<h:commandButton
-										rendered="#{(userSessionController.currentStage1 or userSessionController.currentStage3) }"
-										styleClass="SubmitFormButton" value="Submit"
+									<h:commandButton styleClass="SubmitFormButton" value="Submit"
 										action="#{ideaController.sendIdeaAndReset}" />
 								</h:form>
 								<div class="SectionText participateHeader"

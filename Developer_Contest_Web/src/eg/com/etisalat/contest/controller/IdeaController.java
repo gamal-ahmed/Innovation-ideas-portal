@@ -128,7 +128,7 @@ public class IdeaController implements Serializable {
 
 	private Idea oldIdea;
 
-	private int fileSize;
+	private int fileSize = 1024 * 1024 * 10;
 
 	private int isOpenChallenge;
 
@@ -401,6 +401,7 @@ public class IdeaController implements Serializable {
 	}
 
 	public void listener(FileUploadEvent event) throws Exception {
+		manageAttributes();
 		UploadedFile item = event.getUploadedFile();
 
 		String fileName = item.getName();
@@ -530,16 +531,16 @@ public class IdeaController implements Serializable {
 
 	public void manageAttributes() {
 
-		if (userSessionController.isCurrentStage1()) {
-			setMaximumFilesForStage(1);
-			setExtensionsForStage("doc, docx, ppt, pptx, pdf,mp4,mov,avi,mp3");
-			fileSize = 1024 * 1024 * 10;
-		}
-		if (userSessionController.isCurrentStage3()) {
-			setMaximumFilesForStage(1);
-			setExtensionsForStage("doc, docx, ppt, pptx, pdf,mp4,mov,avi,mp3");
-			fileSize = 1024 * 1024 * 10;
-		}
+		// if (userSessionController.isCurrentStage1()) {
+		// setMaximumFilesForStage(1);
+		// setExtensionsForStage("doc, docx, ppt, pptx, pdf,mp4,mov,avi,mp3");
+		// fileSize = 1024 * 1024 * 10;
+		// }
+		// if (userSessionController.isCurrentStage3()) {
+		setMaximumFilesForStage(1);
+		setExtensionsForStage("doc, docx, ppt, pptx, pdf,mp4,mov,avi,mp3");
+		fileSize = 1024 * 1024 * 10;
+		// }
 	}
 
 	public void preRenderAllIdeasScreen(ComponentSystemEvent systemEvent) {
