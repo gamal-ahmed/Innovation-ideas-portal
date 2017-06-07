@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import eg.com.etisalat.contest.dao.UserDAO;
 import eg.com.etisalat.contest.domain.User;
 
-//@WebFilter(filterName = "UserAuthFilter", urlPatterns = { "/*" })
+@WebFilter(filterName = "UserAuthFilter", urlPatterns = { "/*" })
 public class UserAuthFilter implements Filter {
 
 	@Inject
